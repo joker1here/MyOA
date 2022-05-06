@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="oa.mapper.FileMapper">
+
+	<select id="findAllFile" resultType="File">
+		SELECT * FROM File
+	</select>
+	<select id="findFileById" parameterType="int" resultType="File">
+		SELECT * FROM File WHERE FileId = #{id}
+	</select>
+	<insert id="saveFile" parameterType="File">
+		insert into File VALUES
+		(#{fileId},#{fileName},#{fileForm},#{fileTime},#{fileText},#{FileTo},#{employeeId})
+	</insert>
+	<update id="updateFile" parameterType="File">
+		update File set
+		fileName=#{fileName},fileForm=#{fileForm},fileTime=#{fileTime},fileText=#{fileText},FileTo=#{FileTo},employeeId=#{employeeId}
+		where FileId=#{FileId}
+	</update>
+	<delete id="deleteFileById" parameterType="int">
+		DELETE FROM File WHERE FileId = #{id}
+	</delete>
+
+</mapper>

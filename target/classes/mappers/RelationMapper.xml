@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="oa.mapper.RelationMapper">
+
+	<select id="findAllRelation" resultType="Relation">
+		SELECT * FROM Relation
+	</select>
+	<select id="findRelationById" parameterType="int" resultType="Relation">
+		SELECT * FROM Relation WHERE employeeId = #{id}
+	</select>
+	<insert id="saveRelation" parameterType="Relation">
+		insert into Relation VALUES
+		(#{employeeId},#{deptId},#{jobId})
+	</insert>
+	<update id="updateRelation" parameterType="Relation">
+		update Relation set deptId=#{deptId},jobId=#{jobId}
+		where employeeId=#{employeeId}
+	</update>
+	<delete id="deleteRelationById" parameterType="int">
+		DELETE FROM Relation WHERE employeeId = #{id}
+	</delete>
+
+</mapper>

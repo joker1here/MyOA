@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="oa.mapper.NoticeMapper">
+
+	<select id="findAllNotice" resultType="Notice">
+		SELECT * FROM Notice
+	</select>
+	<select id="findNoticeById" parameterType="int" resultType="Notice">
+		SELECT * FROM Notice WHERE NoticeId = #{id}
+	</select>
+	<insert id="saveNotice" parameterType="Notice">
+		insert into Notice VALUES
+		(#{noticeId},#{noticeName},#{noticeInfo},#{noticeTime},#{employeeId})
+	</insert>
+	<update id="updateNotice" parameterType="Notice">
+		update Notice set noticeName=#{noticeName},noticeInfo=#{noticeInfo},noticeTime=#{noticeTime},employeeId=#{employeeId}
+		where noticeId=#{noticeId}
+	</update>
+	<delete id="deleteNoticeById" parameterType="int">
+		DELETE FROM Notice WHERE NoticeId = #{id}
+	</delete>
+
+</mapper>
