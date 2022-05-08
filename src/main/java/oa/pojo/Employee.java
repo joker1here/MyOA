@@ -14,6 +14,9 @@ public class Employee {
     private int sex;
     private int userLevel;
 
+    private Dept dept;
+    private Job job;
+
     public int getEmployeeId() {
         return employeeId;
     }
@@ -94,6 +97,22 @@ public class Employee {
         this.userLevel = userLevel;
     }
 
+    public Dept getDept() {
+        return dept;
+    }
+
+    public void setDept(Dept dept) {
+        this.dept = dept;
+    }
+
+    public Job getJob() {
+        return job;
+    }
+
+    public void setJob(Job job) {
+        this.job = job;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -107,6 +126,8 @@ public class Employee {
                 ", photo='" + photo + '\'' +
                 ", sex=" + sex +
                 ", userLevel=" + userLevel +
+                ", dept=" + dept +
+                ", job=" + job +
                 '}';
     }
 }

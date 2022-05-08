@@ -16,7 +16,7 @@
         <!--地址前缀和后缀/jsp/success-->
         <!--默认前缀为forword:转发，可以改为redirect重定向，但外部无法访问-->
         <property name="prefix" value="/views/"/>
-        <property name="suffix" value=".jsp"/>
+        <property name="suffix" value=""/>
     </bean>
 
 

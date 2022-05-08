@@ -29,15 +29,6 @@
     </environments>
     <!--加载配置文件-->
     <mappers>
-        <!--类相对路径-->
-        <mapper resource="mappers\DeptMapper.xml"/>
-        <mapper resource="mappers\EmployeeMapper.xml"/>
-        <mapper resource="mappers\FileMapper.xml"/>
-        <mapper resource="mappers\JobMapper.xml"/>
-        <mapper resource="mappers\NoticeMapper.xml"/>
-        <mapper resource="mappers\RelationMapper.xml"/>
-        <mapper resource="mappers\TaskMapper.xml"/>
-        <!--包路径-->
-        <!--<package name="mapper\*"/>-->
+        <package name="oa.mapper"/>
     </mappers>
 </configuration>
