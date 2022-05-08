@@ -14,22 +14,22 @@
 <div class="container">
     <div class="form-box">
         <!-- 注册 -->
-        <div class="register-box hidden">
+        <form class="register-box hidden" action="employee/register" method="post" enctype="multipart/form-data">
             <h1>register</h1>
             <input id="username2" type="text" name="username2" placeholder="用户名">
             <input id="userpwd2" type="password" name="userpwd2" placeholder="密码">
             <input id="userpwd3" type="password" name="userpwd3" placeholder="确认密码"><br>
             <span id="msg1" style="font-size: 12px; color: red; letter-spacing: 2px;"></span>
-            <button type="button" id="registerbtn">注册</button>
-        </div>
+            <button type="submit" id="registerbtn">注册</button>
+        </form>
         <!-- 登录 -->
-        <div class="login-box">
+        <form class="login-box" action="employee/login" method="post" enctype="multipart/form-data">
             <h1>login</h1>
             <input id="username1" type="text" name="username1" placeholder="用户名">
             <input id="userpwd1" type="password" name="userpwd1" placeholder="密码"><br>
             <span id="msg" style="font-size: 12px; color: red; letter-spacing: 2px;"></span>
-            <button type="button" id="loginbtn" >登录</button>
-        </div>
+            <button type="submit" id="loginbtn" >登录</button>
+        </form>
     </div>
     <div class="con-box left">
         <h2>欢迎来到<span>网上办公系统</span></h2>
@@ -130,6 +130,15 @@
         }
 
         window.alert("用户名：" + une2 + "\n密码：" + upd2 + "\n确认密码：" + upd3);
+        $.post('./employee/login', {
+            username:$("#username").val(),
+            password:$("#password").val()
+        }, function(data) {
+            /*optional stuff to do after success */
+            if(data!="") $.messager.alert('警告',data);
+            else location.href = "./index.html";
+            //密码正确则跳转至主界面
+        });
     })
 
     //登录按钮事件
@@ -181,7 +190,7 @@
             return;
         }
         window.alert("用户名：" + une1 + "\n密码：" + upd1);
-        $.load('employee/register?employeeName=张三&password=123')
+        $.load('employee/register')
     })
 
     /**

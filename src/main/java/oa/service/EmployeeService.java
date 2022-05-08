@@ -1,5 +1,6 @@
 package oa.service;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import oa.mapper.DeptMapper;
 import oa.mapper.EmployeeMapper;
 import oa.mapper.JobMapper;
@@ -9,6 +10,8 @@ import oa.pojo.Job;
 import oa.pojo.Relation;
 import oa.util.SqlSessionUtil;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpSession;
 
 
 @Service
@@ -30,6 +33,8 @@ public class EmployeeService {
             Relation relation = relationMapper.findRelationById(id);
             employee.setDept(deptMapper.findDeptById(relation.getDeptId()));
             employee.setJob(jobMapper.findJobById(relation.getJobId()));
+            //TODO
+
             return employee;
         }
         return null;
@@ -46,6 +51,7 @@ public class EmployeeService {
             employeeMapper.saveEmployee(employee);
             return "保存成功";
         }catch (Exception e){
+            System.out.println(e);
             return "操作异常，请刷新后操作";
         }
     }
