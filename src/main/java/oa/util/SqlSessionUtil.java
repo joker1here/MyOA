@@ -16,7 +16,7 @@ public class SqlSessionUtil {
             //获得session工厂对象
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
             //获得session会话对象
-            SqlSession sqlSession = sqlSessionFactory.openSession();
+            SqlSession sqlSession = sqlSessionFactory.openSession(true);
             return sqlSession.getMapper((Class<Object>) object);
         }catch (IOException e){
             System.out.println(object+"get sqlSession is wrong!");

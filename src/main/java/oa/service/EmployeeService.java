@@ -31,8 +31,10 @@ public class EmployeeService {
         if (employee!=null){
             int id = employee.getEmployeeId();
             Relation relation = relationMapper.findRelationById(id);
-            employee.setDept(deptMapper.findDeptById(relation.getDeptId()));
-            employee.setJob(jobMapper.findJobById(relation.getJobId()));
+            if (relation!=null) {
+                employee.setDept(deptMapper.findDeptById(relation.getDeptId()));
+                employee.setJob(jobMapper.findJobById(relation.getJobId()));
+            }
             //TODO
 
             return employee;

@@ -12,41 +12,41 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
   <title>滑动切换的注册登录界面</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <script src="../js/jquery-3.6.0.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/jquery-3.6.0.js"></script>
 </head>
 <body>
 <div class="container">
   <div class="form-box">
     <!-- 注册 -->
-    <form class="register-box hidden" action="employee/register" method="post" enctype="multipart/form-data">
+    <div class="register-box hidden">
       <h1>register</h1>
       <input id="username2" type="text" name="username2" placeholder="用户名">
       <input id="userpwd2" type="password" name="userpwd2" placeholder="密码">
       <input id="userpwd3" type="password" name="userpwd3" placeholder="确认密码"><br>
       <span id="msg1" style="font-size: 12px; color: red; letter-spacing: 2px;"></span>
       <button type="button" id="registerbtn">注册</button>
-    </form>
+    </div>
     <!-- 登录 -->
-    <form class="login-box" action="employee/login" method="post" enctype="multipart/form-data">
+    <div class="login-box">
       <h1>login</h1>
       <input id="username1" type="text" name="username1" placeholder="用户名">
       <input id="userpwd1" type="password" name="userpwd1" placeholder="密码"><br>
       <span id="msg" style="font-size: 12px; color: red; letter-spacing: 2px;"></span>
       <button type="button" id="loginbtn" >登录</button>
-    </form>
+    </div>
   </div>
   <div class="con-box left">
     <h2>欢迎来到<span>网上办公系统</span></h2>
     <p>创建您的专属<span>工作</span>编号</p>
-    <img src="../images/1.png" alt="">
+    <img src="images/1.png" alt="">
     <p>已有账号！</p>
     <button id="login">去登录</button>
   </div>
   <div class="con-box right">
     <h2>欢迎来到<span>网络办公系统</span></h2>
     <p>继续完成您的<span>工作</span>任务</p>
-    <img src="../images/2.png" alt="">
+    <img src="images/2.png" alt="">
     <p>没有账号？</p>
     <button id="register">去注册</button>
   </div>
@@ -135,6 +135,7 @@
     }
 
     window.alert("用户名：" + une2 + "\n密码：" + upd2 + "\n确认密码：" + upd3);
+    employeeRegister(une2,upd2);
   })
 
   //登录按钮事件
@@ -186,7 +187,32 @@
       return;
     }
     window.alert("用户名：" + une1 + "\n密码：" + upd1);
-  })
+    employeeLogin(une1,upd1);
+  });
+  //TODO
+  function employeeRegister(username,password) {
+    alert("进入注册");
+    window.location.href='/employee/register?username='+username+'&password='+password;
+  }
+  //TODO
+  function employeeLogin(username,password) {
+    alert("进入登陆");
+    window.location.href='/employee/login?username='+username+'&password='+password;
+    // $.ajax({
+    //   url: "/MMS_war_exploded/employee/login",
+    //   async: false,//这一步是非常重要的，作用是设置为同步执行
+    //   type: "GET",
+    //   data: { "username1": "zhangsan","userpwd1": "123" },
+    //   dataType: "json",
+    //   success: function (data) {
+    //     alert("success");
+    //   }
+    // });
+
+    // $.post("/employee/login", {"username1": "zhangsan","userpwd1": "123"}, function (data) {
+    //   alert("success");
+    // });
+  }
 
   /**
    * 判断字符串为空

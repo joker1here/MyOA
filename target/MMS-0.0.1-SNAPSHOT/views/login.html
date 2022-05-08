@@ -6,42 +6,42 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
     <title>滑动切换的注册登录界面</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <script src="../js/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.6.0.js"></script>
 </head>
 
 <body>
 <div class="container">
     <div class="form-box">
         <!-- 注册 -->
-        <form class="register-box hidden" action="employee/register" method="post" enctype="multipart/form-data">
+        <div class="register-box hidden">
             <h1>register</h1>
             <input id="username2" type="text" name="username2" placeholder="用户名">
             <input id="userpwd2" type="password" name="userpwd2" placeholder="密码">
             <input id="userpwd3" type="password" name="userpwd3" placeholder="确认密码"><br>
             <span id="msg1" style="font-size: 12px; color: red; letter-spacing: 2px;"></span>
-            <button type="submit" id="registerbtn">注册</button>
-        </form>
+            <button type="button" id="registerbtn">注册</button>
+        </div>
         <!-- 登录 -->
-        <form class="login-box" action="employee/login" method="post" enctype="multipart/form-data">
+        <div class="login-box">
             <h1>login</h1>
             <input id="username1" type="text" name="username1" placeholder="用户名">
             <input id="userpwd1" type="password" name="userpwd1" placeholder="密码"><br>
             <span id="msg" style="font-size: 12px; color: red; letter-spacing: 2px;"></span>
-            <button type="submit" id="loginbtn" >登录</button>
-        </form>
+            <button type="button" id="loginbtn" >登录</button>
+        </div>
     </div>
     <div class="con-box left">
         <h2>欢迎来到<span>网上办公系统</span></h2>
         <p>创建您的专属<span>工作</span>编号</p>
-        <img src="../images/1.png" alt="">
+        <img src="images/1.png" alt="">
         <p>已有账号！</p>
         <button id="login">去登录</button>
     </div>
     <div class="con-box right">
         <h2>欢迎来到<span>网络办公系统</span></h2>
         <p>继续完成您的<span>工作</span>任务</p>
-        <img src="../images/2.png" alt="">
+        <img src="images/2.png" alt="">
         <p>没有账号？</p>
         <button id="register">去注册</button>
     </div>
@@ -128,17 +128,17 @@
             $("#msg1").html("确认密码不能为空");
             return;
         }
-
+        //$.post("employee/login");
         window.alert("用户名：" + une2 + "\n密码：" + upd2 + "\n确认密码：" + upd3);
-        $.post('./employee/login', {
-            username:$("#username").val(),
-            password:$("#password").val()
-        }, function(data) {
-            /*optional stuff to do after success */
-            if(data!="") $.messager.alert('警告',data);
-            else location.href = "./index.html";
-            //密码正确则跳转至主界面
-        });
+        // $.post('./employee/login', {
+        //     username:$("#username").val(),
+        //     password:$("#password").val()
+        // }, function(data) {
+        //     /*optional stuff to do after success */
+        //     if(data!="") $.messager.alert('警告',data);
+        //     else location.href = "./index.html";
+        //     //密码正确则跳转至主界面
+        // });
     })
 
     //登录按钮事件
@@ -184,13 +184,17 @@
                 return;
             }else {
                 //此处测试正确,继续
+                //TODO
+                // const url = "/employee/login";
+                // goto(url)
             }
         }else{
             $("#msg").html("密码不能为空");
             return;
         }
+        //TODO
         window.alert("用户名：" + une1 + "\n密码：" + upd1);
-        $.load('employee/register')
+
     })
 
     /**
@@ -222,6 +226,15 @@
         login_box.classList.remove('hidden');
         clear_content();
     })
+    //TODO
+    function goto(url) {
+        window.alert("Post");
+        const param = {"employeeName": une1, "password":upd1};
+        $.post(url,param,function(data){
+
+            alert(data.message);
+        },"json");
+    }
 
     //清空输入框内容
     function clear_content() {

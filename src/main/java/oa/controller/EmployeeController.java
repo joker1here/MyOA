@@ -18,20 +18,21 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login",produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public Employee login(@RequestParam("username1") String employeeName,@RequestParam("userpwd1") String password, HttpSession session){
+    public String login(@RequestParam("username") String employeeName, String password, HttpSession session){
         System.out.println("名字"+employeeName+"密码"+password);
         Employee employee=employeeService.login(employeeName,password);
-        if (employee!=null)session.setAttribute("employee",employee);
-        return employee;
+        if (employee!=null){
+            session.setAttribute("employee",employee);
+            return employee.toString();
+        }
+        return "登陆失败";
     }
 
     @RequestMapping(value = "/register" ,produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public String register(@RequestParam("username2") String employeeName,@RequestParam("userpwd2") String password,@RequestParam("userpwd3") String confirmpassword){
-        if (password.equals(confirmpassword))
+    public String register(@RequestParam("username") String employeeName, String password){
         return employeeService.register(employeeName,password);
-        else return "密码验证错误";
     }
 }
