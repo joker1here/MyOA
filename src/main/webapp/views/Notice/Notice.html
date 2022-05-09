@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="index.css">
@@ -101,7 +100,50 @@
                 <div class="chart-container p-3">
                     <h1 style="color:white">公告</h1>
                     <div style="height: 300px">
-                        <canvas id="chart3" width="100%"></canvas>
+                        <canvas id="chart3" width="100%">
+
+                            <!--TODO-->
+                            <!--数据列表-->
+                            <table id="dataList"
+                                   class="table table-bordered table-striped table-hover dataTable">
+                                <thead>
+                                <tr>
+                                    <th class="" style="padding-right: 0px"><input
+                                            id="selall" type="checkbox" class="icheckbox_square-blue">
+                                    </th>
+                                    <th class="sorting_asc">ID</th>
+                                    <th class="sorting_desc">用户名</th>
+                                    <th class="sorting_asc sorting_asc_disabled">邮箱</th>
+                                    <th class="sorting_desc sorting_desc_disabled">联系电话</th>
+                                    <th class="sorting">具有角色</th>
+                                    <th class="sorting">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${userList}" var="User">
+                                    <tr>
+                                        <td><input name="ids" type="checkbox"></td>
+                                        <td>${User.id}</td>
+                                        <td>${User.username}</td>
+                                        <td>${User.email}</td>
+                                        <td>${User.phoneNum}</td>
+                                        <td class="text-center">
+                                            <c:forEach items="${User.roles}" var="Role">
+                                                &nbsp;${Role.roleName}
+                                            </c:forEach>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="javascript:void(0);" onclick="delUser('${User.id}')" class="btn bg-olive btn-xs">删除</a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+
+                            </table>
+                            <!--数据列表/-->
+
+
+                        </canvas>
                     </div>
                 </div>
             </section>
