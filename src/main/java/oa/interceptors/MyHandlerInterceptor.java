@@ -1,5 +1,6 @@
 package oa.interceptors;
 
+import oa.pojo.Employee;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,8 +30,9 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
 			throws Exception {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		Object username = session.getAttribute("user");
-		Object password = session.getAttribute("password");
+		Employee employee = (Employee) session.getAttribute("employee");
+		String username = employee.getEmployeeName();
+		String password = employee.getPwd();
 		if (username == null || password == null) {
 			response.sendRedirect("../login.html");
 			System.out.println("##");

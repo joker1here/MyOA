@@ -10,6 +10,15 @@ public class File {
     private String fileText;
     private String FileTo;
     private int employeeId;
+    private int fileRead;
+
+    public int getFileRead() {
+        return fileRead;
+    }
+
+    public void setFileRead(int fileRead) {
+        this.fileRead = fileRead;
+    }
 
     public int getEmployeeId() {
         return employeeId;
@@ -70,13 +79,14 @@ public class File {
     @Override
     public String toString() {
         return "File{" +
-                "employeeId=" + employeeId +
-                ", fileForm='" + fileForm + '\'' +
-                ", fileId=" + fileId +
+                "fileId=" + fileId +
                 ", fileName='" + fileName + '\'' +
-                ", fileText='" + fileText + '\'' +
+                ", fileForm='" + fileForm + '\'' +
                 ", fileTime=" + fileTime +
+                ", fileText='" + fileText + '\'' +
                 ", FileTo='" + FileTo + '\'' +
+                ", employeeId=" + employeeId +
+                ", fileRead=" + fileRead +
                 '}';
     }
 }

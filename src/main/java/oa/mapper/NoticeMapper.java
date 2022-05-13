@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Update;
 import java.util.List;
 
 public interface NoticeMapper {
-    @Select("SELECT * FROM Notice")
+    @Select("SELECT * FROM Notice ORDER BY NoticeTime DESC")
     List<Notice> findAllNotice();
 
     @Select("SELECT * FROM Notice WHERE NoticeId = #{id}")

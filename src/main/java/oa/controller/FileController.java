@@ -1,7 +1,11 @@
 package oa.controller;
 
+import oa.pojo.Employee;
+import oa.service.FileService;
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -9,16 +13,23 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.URLEncoder;
+import java.util.List;
 
 @Controller
 @RequestMapping("/file")
 public class FileController {
+    @Autowired
+    private FileService fileService;
+
+    private String FilePath="D:\\Upload\\";
+
     @RequestMapping("/test")
     public String test(){
         System.out.println("testing");
-        return "upload";
+        return "/upload";
     }
     @RequestMapping("/test1")
     @ResponseBody
@@ -41,14 +52,19 @@ public class FileController {
         return "失败";
     }
     @RequestMapping("/download")
-    public void download(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void download(HttpServletRequest request, HttpServletResponse response ,@RequestBody(required = false) oa.pojo.File file1) throws IOException {
+        file1=new oa.pojo.File();
+        file1.setFileForm("txt");
+        file1.setFileName("路线");
+
         request.setCharacterEncoding("UTF-8");
-        String fileName="D:\\Upload\\路线.txt";
-        File file = new File(fileName);
+        String type = file1.getFileForm();
+        String fileName=file1.getFileName()+"."+type;
+
+        System.out.println(FilePath+fileName);
+        File file = new File(FilePath+fileName);
         //创建输入流读文件
         FileInputStream in = new FileInputStream(file);
-        //通过文件名字获取文件的大类型
-        String type = "txt";
         //设置响应头ContentType指定响应内容的类型
         response.setHeader("Content-type",type);
         //设置响应头Content-Disposition 指定以附件形式保存响应的信息
@@ -59,6 +75,24 @@ public class FileController {
         if(in!=null){
             in.close();
         }
+    }
+    @RequestMapping("/CountFileNoRead")
+    @ResponseBody
+    public int CountFileNoRead(HttpSession session){
+        Employee employee = (Employee) session.getAttribute("employee");
+        return fileService.CountFileNoRead(employee.getEmployeeId());
+    }
+    @RequestMapping("/ShowFileRead")
+    @ResponseBody
+    public List<oa.pojo.File> ShowFileRead(HttpSession session){
+        Employee employee = (Employee) session.getAttribute("employee");
+        return fileService.ShowFileRead(employee.getEmployeeId());
+    }
+    @RequestMapping("/ShowFileNoRead")
+    @ResponseBody
+    public List<oa.pojo.File> ShowFileNoRead(HttpSession session){
+        Employee employee = (Employee) session.getAttribute("employee");
+        return fileService.ShowFileNoRead(employee.getEmployeeId());
     }
 
 }
