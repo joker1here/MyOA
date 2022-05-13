@@ -31,10 +31,8 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		Employee employee = (Employee) session.getAttribute("employee");
-		String username = employee.getEmployeeName();
-		String password = employee.getPwd();
-		if (username == null || password == null) {
-			response.sendRedirect("../login.html");
+		if (employee==null) {
+			response.sendRedirect("../views/login.jsp");
 			System.out.println("##");
 			return false;
 		}

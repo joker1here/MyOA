@@ -18,4 +18,8 @@ public class WorkService {
     public List<Work> ShowWorkNoFinish(int employeeId) {
         return workMapper.ShowWorkNoFinish(employeeId);
     }
+
+    public int CountWorkNoFinish(int employeeId) {
+        return workMapper.CountWorkNoFinish(employeeId);
+    }
 }

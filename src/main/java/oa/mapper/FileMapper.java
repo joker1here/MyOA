@@ -28,7 +28,7 @@ public interface FileMapper {
     @Delete("DELETE FROM File WHERE FileId = #{id}")
     void deleteFileById(int id);
 
-    @Select("SELECT COUNT(1) FROM file WHERE FileRead=1 AND EmployeeID=#{employeeId}")
+    @Select("SELECT COUNT(1) FROM file WHERE FileRead=0 AND EmployeeID=#{employeeId}")
     int CountFileNoRead(int employeeId);
 
     @Select("SELECT * FROM file WHERE FileRead=1 AND EmployeeID=#{employeeId}")

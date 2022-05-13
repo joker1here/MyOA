@@ -27,8 +27,8 @@ public interface WorkMapper {
     @Delete("DELETE FROM Work WHERE WorkId = #{id}")
     void deleteWorkById(int id);
 
-    @Select("SELECT COUNT(1) FROM Work WHERE WorkRead=1 AND EmployeeID=#{employeeId}")
-    int CountWorkNoRead(int employeeId);
+    @Select("SELECT COUNT(1) FROM Work WHERE WorkRead=0 AND EmployeeID=#{employeeId}")
+    int CountWorkNoFinish(int employeeId);
 
     @Select("SELECT * FROM Work WHERE workFinish=1 AND EmployeeID=#{employeeId} ORDER BY workTime DESC")
     List<Work> ShowWorkFinish(int employeeId);

@@ -29,4 +29,10 @@ public class WorkController {
         Employee employee = (Employee) session.getAttribute("employee");
         return workService.ShowWorkNoFinish(employee.getEmployeeId());
     }
+    @RequestMapping("/CountWorkNoFinish")
+    @ResponseBody
+    public int CountWorkNoFinish(HttpSession session){
+        Employee employee = (Employee) session.getAttribute("employee");
+        return workService.CountWorkNoFinish(employee.getEmployeeId());
+    }
 }
