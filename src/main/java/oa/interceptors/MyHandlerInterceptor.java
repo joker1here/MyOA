@@ -32,7 +32,7 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
 		HttpSession session = request.getSession();
 		Employee employee = (Employee) session.getAttribute("employee");
 		if (employee==null) {
-			response.sendRedirect("../views/login.jsp");
+			response.sendRedirect("/views/login.jsp");
 			System.out.println("##");
 			return false;
 		}

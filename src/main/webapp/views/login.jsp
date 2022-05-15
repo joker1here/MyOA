@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ASUS
-  Date: 2022/5/8
-  Time: 17:14
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
   <title>滑动切换的注册登录界面</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/jquery-3.6.0.js"></script>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+  <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.js"></script>
 </head>
 <body>
 <div class="container">
@@ -39,14 +32,14 @@
   <div class="con-box left">
     <h2>欢迎来到<span>网上办公系统</span></h2>
     <p>创建您的专属<span>工作</span>编号</p>
-    <img src="images/1.png" alt="">
+    <img src="${pageContext.request.contextPath}/images/1.png" alt="">
     <p>已有账号！</p>
     <button id="login">去登录</button>
   </div>
   <div class="con-box right">
     <h2>欢迎来到<span>网络办公系统</span></h2>
     <p>继续完成您的<span>工作</span>任务</p>
-    <img src="images/2.png" alt="">
+    <img src="${pageContext.request.contextPath}/images/2.png" alt="">
     <p>没有账号？</p>
     <button id="register">去注册</button>
   </div>

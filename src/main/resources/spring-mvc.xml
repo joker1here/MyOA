@@ -40,12 +40,15 @@
     </bean>
 
     <!--配置拦截器-->
-    <!--<mvc:interceptors>-->
-    <!--    <mvc:interceptor>-->
-    <!--        <mvc:mapping path="/**"/>-->
-    <!--        <mvc:exclude-mapping path="/employee/login"/>-->
-    <!--        <mvc:exclude-mapping path="/employee/register"/>-->
-    <!--        <bean class="oa.interceptors.MyHandlerInterceptor"/>-->
-    <!--    </mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/employee/login"/>
+            <mvc:exclude-mapping path="/employee/register"/>
+            <mvc:exclude-mapping path="/css/**"/>
+            <mvc:exclude-mapping path="/images/**"/>
+            <mvc:exclude-mapping path="/js/**"/>
+            <bean class="oa.interceptors.MyHandlerInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
