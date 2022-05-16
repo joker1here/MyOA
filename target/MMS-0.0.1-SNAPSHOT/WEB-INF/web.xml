@@ -42,6 +42,9 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
+    <listener>
+        <listener-class>oa.listener.VisitedListener</listener-class>
+    </listener>
 
     <welcome-file-list>
         <welcome-file>/views/login.jsp</welcome-file>

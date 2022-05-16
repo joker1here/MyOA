@@ -127,7 +127,7 @@
       return;
     }
 
-    window.alert("用户名：" + une2 + "\n密码：" + upd2 + "\n确认密码：" + upd3);
+    // window.alert("用户名：" + une2 + "\n密码：" + upd2 + "\n确认密码：" + upd3);
     employeeRegister(une2,upd2);
   })
 
@@ -179,17 +179,17 @@
       $("#msg").html("密码不能为空");
       return;
     }
-    window.alert("用户名：" + une1 + "\n密码：" + upd1);
+    // window.alert("用户名：" + une1 + "\n密码：" + upd1);
     employeeLogin(une1,upd1);
   });
   //TODO
   function employeeRegister(username,password) {
-    alert("进入注册");
+    // alert("进入注册");
     window.location.href='/employee/register?username='+username+'&password='+password;
   }
   //TODO
   function employeeLogin(username,password) {
-    alert("进入登陆");
+    // alert("进入登陆");
     window.location.href='/employee/login?username='+username+'&password='+password;
     // $.ajax({
     //   url: "/MMS_war_exploded/employee/login",

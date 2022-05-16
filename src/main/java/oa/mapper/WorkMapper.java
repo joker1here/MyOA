@@ -27,11 +27,11 @@ public interface WorkMapper {
     @Delete("DELETE FROM Work WHERE WorkId = #{id}")
     void deleteWorkById(int id);
 
-    @Select("SELECT COUNT(1) FROM Work WHERE WorkRead=0 AND EmployeeID=#{employeeId}")
+    @Select("SELECT COUNT(1) FROM Work WHERE workFinish=0 AND workTo=#{employeeId}")
     int CountWorkNoFinish(int employeeId);
 
-    @Select("SELECT * FROM Work WHERE workFinish=1 AND EmployeeID=#{employeeId} ORDER BY workTime DESC")
+    @Select("SELECT * FROM Work WHERE workFinish=1 AND workTo=#{employeeId} ORDER BY workTime DESC")
     List<Work> ShowWorkFinish(int employeeId);
-    @Select("SELECT * FROM Work WHERE workFinish=0 AND EmployeeID=#{employeeId} ORDER BY workTime DESC")
+    @Select("SELECT * FROM Work WHERE workFinish=0 AND workTo=#{employeeId} ORDER BY workTime DESC")
     List<Work> ShowWorkNoFinish(int employeeId);
 }
