@@ -191,20 +191,6 @@
   function employeeLogin(username,password) {
     // alert("进入登陆");
     window.location.href='/employee/login?username='+username+'&password='+password;
-    // $.ajax({
-    //   url: "/MMS_war_exploded/employee/login",
-    //   async: false,//这一步是非常重要的，作用是设置为同步执行
-    //   type: "GET",
-    //   data: { "username1": "zhangsan","userpwd1": "123" },
-    //   dataType: "json",
-    //   success: function (data) {
-    //     alert("success");
-    //   }
-    // });
-
-    // $.post("/employee/login", {"username1": "zhangsan","userpwd1": "123"}, function (data) {
-    //   alert("success");
-    // });
   }
 
   /**

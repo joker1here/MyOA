@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css">
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
 
 </head>
@@ -131,12 +131,12 @@
                     <%--<canvas id="chart1" width="100%"></canvas>--%>
                     <!--TODO-->
                     <!--数据列表-->
-                    <table id="dataList1"
+                    <table id="dataList"
                            class="table table-bordered table-striped table-hover dataTable">
                         <thead>
                         <tr>
                             <th class="" style="padding-right: 0px"><input
-                                    id="selall1" type="checkbox" class="icheckbox_square-blue">
+                                    id="selall" type="checkbox" class="icheckbox_square-blue">
                             </th>
                             <th class="sorting_asc">ID</th>
                             <th class="sorting_desc">通知名</th>
@@ -215,12 +215,12 @@
                         <%--<canvas id="myChart"></canvas>--%>
                         <!--TODO-->
                         <!--数据列表-->
-                        <table id="dataList2"
+                        <table id="dataList"
                                class="table table-bordered table-striped table-hover dataTable">
                             <thead>
                             <tr>
                                 <th class="" style="padding-right: 0px"><input
-                                        id="selall2" type="checkbox" class="icheckbox_square-blue">
+                                        id="selall" type="checkbox" class="icheckbox_square-blue">
                                 </th>
                                 <th class="sorting_asc">ID</th>
                                 <th class="sorting_desc">工作信息</th>
@@ -333,6 +333,6 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/index.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.js"></script>
 
 </body>

@@ -1,7 +1,11 @@
 package MapperTest;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import oa.mapper.DeptMapper;
 import oa.pojo.Dept;
+import oa.pojo.EasyUIResult;
+import oa.util.SqlSessionUtil;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -71,5 +75,24 @@ public class DeptMapperTest {
         mapper.deleteDeptById(5);
         session.commit();
     }
+    @Test
+    public void testPage(){
+        DeptMapper mapper = (DeptMapper) SqlSessionUtil.getSession(DeptMapper.class);
 
+        //需要在获取列表之前
+        List<Dept> list = mapper.findAllDept();
+        for (Dept dept : list) {
+            System.out.println(dept);
+        }
+
+        PageHelper.startPage(1, 2);
+        list = mapper.findAllDept();
+        for (Dept dept : list) {
+            System.out.println(dept);
+        }
+        PageInfo<Dept> pageInfo = new PageInfo<Dept>(list);
+        System.out.println(pageInfo.getPageSize());
+        // System.out.println(list);
+        // System.out.println(new EasyUIResult(pageInfo.getTotal(), list));
+    }
 }
