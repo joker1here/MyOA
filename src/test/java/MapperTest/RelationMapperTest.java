@@ -52,40 +52,40 @@ public class RelationMapperTest {
         Relation Relation = mapper.findRelationById(1);
         System.out.println(Relation);
     }
-    @Test
-    public void save() throws IOException {
-        SqlSession session = getSession();
-        RelationMapper mapper = session.getMapper(RelationMapper.class);
-        Relation Relation = new Relation();
-        Relation.setEmployeeId(5);
-        Relation.setDeptId(1);
-        Relation.setJobId(1);
-        mapper.saveRelation(Relation);
-        session.commit();
-
-        findall();
-    }
-    @Test
-    public void update() throws IOException {
-        SqlSession session = getSession();
-        RelationMapper mapper = session.getMapper(RelationMapper.class);
-        Relation Relation = new Relation();
-        Relation = mapper.findRelationById(5);
-        Relation.setJobId(2);
-        mapper.updateRelation(Relation);
-        session.commit();
-
-        findall();
-    }
-    @Test
-    public void delete() throws IOException {
-        SqlSession session = getSession();
-        RelationMapper mapper = session.getMapper(RelationMapper.class);
-
-        mapper.deleteRelationById(5);
-        session.commit();
-
-        findall();
-    }
+    // @Test
+    // public void save() throws IOException {
+    //     SqlSession session = getSession();
+    //     RelationMapper mapper = session.getMapper(RelationMapper.class);
+    //     Relation Relation = new Relation();
+    //     Relation.setEmployeeId(5);
+    //     Relation.setDeptId(1);
+    //     Relation.setJobId(1);
+    //     mapper.saveRelation(Relation);
+    //     session.commit();
+    //
+    //     findall();
+    // }
+    // @Test
+    // public void update() throws IOException {
+    //     SqlSession session = getSession();
+    //     RelationMapper mapper = session.getMapper(RelationMapper.class);
+    //     Relation Relation = new Relation();
+    //     Relation = mapper.findRelationById(5);
+    //     Relation.setJobId(2);
+    //     mapper.updateRelation(Relation);
+    //     session.commit();
+    //
+    //     findall();
+    // }
+    // @Test
+    // public void delete() throws IOException {
+    //     SqlSession session = getSession();
+    //     RelationMapper mapper = session.getMapper(RelationMapper.class);
+    //
+    //     mapper.deleteRelationById(5);
+    //     session.commit();
+    //
+    //     findall();
+    // }
 
 }

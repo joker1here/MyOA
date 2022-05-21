@@ -40,42 +40,42 @@ public class EmployeeMapperTest {
         System.out.println(Employee);
     }
 
-    @Test
-    public void save() throws IOException {
-        SqlSession session = getSession();
-        EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
-        Employee Employee = new Employee();
-        Employee.setEmployeeName("王五");
-        Employee.setAddress("肇庆学院");
-        Date date=new Date();
-        date.setTime(System.currentTimeMillis());
-        System.out.println(date);
-        Employee.setBirthday(date);
-        Employee.setEmail("123@123.com");
-        Employee.setPhoto("null");
-        Employee.setMobile("123456789");
-        Employee.setSex(1);
-        Employee.setPwd("123");
-        mapper.saveEmployee(Employee);
-        session.commit();
-    }
-    @Test
-    public void update() throws IOException {
-        SqlSession session = getSession();
-        EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
-        Employee Employee = new Employee();
-        Employee.setEmployeeId(4);
-        Employee.setEmployeeName("李六");
-        mapper.updateEmployee(Employee);
-        session.commit();
-    }
-    @Test
-    public void delete() throws IOException {
-        SqlSession session = getSession();
-        EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
-
-        mapper.deleteEmployeeById(4);
-        session.commit();
-    }
+    // @Test
+    // public void save() throws IOException {
+    //     SqlSession session = getSession();
+    //     EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
+    //     Employee Employee = new Employee();
+    //     Employee.setEmployeeName("王五");
+    //     Employee.setAddress("肇庆学院");
+    //     Date date=new Date();
+    //     date.setTime(System.currentTimeMillis());
+    //     System.out.println(date);
+    //     Employee.setBirthday(date);
+    //     Employee.setEmail("123@123.com");
+    //     Employee.setPhoto("null");
+    //     Employee.setMobile("123456789");
+    //     Employee.setSex(1);
+    //     Employee.setPwd("123");
+    //     mapper.saveEmployee(Employee);
+    //     session.commit();
+    // }
+    // @Test
+    // public void update() throws IOException {
+    //     SqlSession session = getSession();
+    //     EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
+    //     Employee Employee = new Employee();
+    //     Employee.setEmployeeId(4);
+    //     Employee.setEmployeeName("李六");
+    //     mapper.updateEmployee(Employee);
+    //     session.commit();
+    // }
+    // @Test
+    // public void delete() throws IOException {
+    //     SqlSession session = getSession();
+    //     EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
+    //
+    //     mapper.deleteEmployeeById(4);
+    //     session.commit();
+    // }
 
 }

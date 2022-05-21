@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
   <title>滑动切换的注册登录界面</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
   <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.js"></script>
 </head>
 <body>

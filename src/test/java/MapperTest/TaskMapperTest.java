@@ -52,41 +52,41 @@ public class TaskMapperTest {
         Task Task = mapper.findTaskById(1);
         System.out.println(Task);
     }
-    @Test
-    public void save() throws IOException {
-        SqlSession session = getSession();
-        TaskMapper mapper = session.getMapper(TaskMapper.class);
-        Task Task = new Task();
-        Task.setTaskInfo("这是测试用的任务");
-        Task.setTaskName("测试任务");
-        Task.setEmployeeId(2);
-        Task.setFinishTime(getDate());
-        mapper.saveTask(Task);
-        session.commit();
-
-        findall();
-    }
-    @Test
-    public void update() throws IOException {
-        SqlSession session = getSession();
-        TaskMapper mapper = session.getMapper(TaskMapper.class);
-        Task Task = new Task();
-        Task = mapper.findTaskById(4);
-        Task.setTaskInfo("这是修改成功后的的任务");
-        mapper.updateTask(Task);
-        session.commit();
-
-        findall();
-    }
-    @Test
-    public void delete() throws IOException {
-        SqlSession session = getSession();
-        TaskMapper mapper = session.getMapper(TaskMapper.class);
-
-        mapper.deleteTaskById(4);
-        session.commit();
-
-        findall();
-    }
+    // @Test
+    // public void save() throws IOException {
+    //     SqlSession session = getSession();
+    //     TaskMapper mapper = session.getMapper(TaskMapper.class);
+    //     Task Task = new Task();
+    //     Task.setTaskInfo("这是测试用的任务");
+    //     Task.setTaskName("测试任务");
+    //     Task.setEmployeeId(2);
+    //     Task.setFinishTime(getDate());
+    //     mapper.saveTask(Task);
+    //     session.commit();
+    //
+    //     findall();
+    // }
+    // @Test
+    // public void update() throws IOException {
+    //     SqlSession session = getSession();
+    //     TaskMapper mapper = session.getMapper(TaskMapper.class);
+    //     Task Task = new Task();
+    //     Task = mapper.findTaskById(4);
+    //     Task.setTaskInfo("这是修改成功后的的任务");
+    //     mapper.updateTask(Task);
+    //     session.commit();
+    //
+    //     findall();
+    // }
+    // @Test
+    // public void delete() throws IOException {
+    //     SqlSession session = getSession();
+    //     TaskMapper mapper = session.getMapper(TaskMapper.class);
+    //
+    //     mapper.deleteTaskById(4);
+    //     session.commit();
+    //
+    //     findall();
+    // }
 
 }

@@ -44,34 +44,34 @@ public class JobMapperTest {
         Job Job = mapper.findJobById(1);
         System.out.println(Job);
     }
-    @Test
-    public void save() throws IOException {
-        SqlSession session = getSession();
-        JobMapper mapper = session.getMapper(JobMapper.class);
-        Job Job = new Job();
-        Job.setJobIntroduce("这是测试用的工作职位");
-        Job.setJobName("测试职位");
-        mapper.saveJob(Job);
-        session.commit();
-    }
-    @Test
-    public void update() throws IOException {
-        SqlSession session = getSession();
-        JobMapper mapper = session.getMapper(JobMapper.class);
-        Job Job = new Job();
-        Job.setJobId(5);
-        Job.setJobIntroduce("这是修改成功后的的职位");
-        Job.setJobName("测试职位");
-        mapper.updateJob(Job);
-        session.commit();
-    }
-    @Test
-    public void delete() throws IOException {
-        SqlSession session = getSession();
-        JobMapper mapper = session.getMapper(JobMapper.class);
-
-        mapper.deleteJobById(5);
-        session.commit();
-    }
+    // @Test
+    // public void save() throws IOException {
+    //     SqlSession session = getSession();
+    //     JobMapper mapper = session.getMapper(JobMapper.class);
+    //     Job Job = new Job();
+    //     Job.setJobIntroduce("这是测试用的工作职位");
+    //     Job.setJobName("测试职位");
+    //     mapper.saveJob(Job);
+    //     session.commit();
+    // }
+    // @Test
+    // public void update() throws IOException {
+    //     SqlSession session = getSession();
+    //     JobMapper mapper = session.getMapper(JobMapper.class);
+    //     Job Job = new Job();
+    //     Job.setJobId(5);
+    //     Job.setJobIntroduce("这是修改成功后的的职位");
+    //     Job.setJobName("测试职位");
+    //     mapper.updateJob(Job);
+    //     session.commit();
+    // }
+    // @Test
+    // public void delete() throws IOException {
+    //     SqlSession session = getSession();
+    //     JobMapper mapper = session.getMapper(JobMapper.class);
+    //
+    //     mapper.deleteJobById(5);
+    //     session.commit();
+    // }
 
 }

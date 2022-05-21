@@ -48,58 +48,58 @@ public class FileMapperTest {
         File File = mapper.findFileById(1);
         System.out.println(File);
     }
-    //获取时间
-    public Date getDate(){
-        Date date = new Date();
-        date.setTime(System.currentTimeMillis());
-        System.out.println(date);
-        return date;
-    }
-    public java.io.File getFile(){
-        java.io.File file =new java.io.File("C:\\Users\\32692\\Desktop\\路线.txt");
-        System.out.println();
-        return file;
-    }
-    //将文件存储到D:\Upload
-    @Test
-    public void test1() throws IOException {
-        java.io.File file = getFile();
-        FileInputStream fileInputStream = new FileInputStream(file);
-        MultipartFile multipartFile = new MockMultipartFile("copy"+file.getName(),file.getName(), ContentType.APPLICATION_OCTET_STREAM.toString(),fileInputStream);
-        String originalFilename = multipartFile.getOriginalFilename();
-        multipartFile.transferTo(new java.io.File("D:\\Upload\\"+originalFilename));
-        System.out.println(multipartFile.getName());
-    }
-    @Test
-    public void save() throws IOException {
-        SqlSession session = getSession();
-        FileMapper mapper = session.getMapper(FileMapper.class);
-        File file = new File();
-        file.setFileName("测试文件");
-        file.setEmployeeId(1);
-        file.setFileForm("txt");
-        file.setFileTime(getDate());
-        mapper.saveFile(file);
-        session.commit();
-    }
-    @Test
-    public void update() throws IOException {
-        SqlSession session = getSession();
-        FileMapper mapper = session.getMapper(FileMapper.class);
-        File File = new File();
-        File.setFileId(5);
-
-        File.setFileName("测试部门");
-        mapper.updateFile(File);
-        session.commit();
-    }
-    @Test
-    public void delete() throws IOException {
-        SqlSession session = getSession();
-        FileMapper mapper = session.getMapper(FileMapper.class);
-
-        mapper.deleteFileById(5);
-        session.commit();
-    }
+    // //获取时间
+    // public Date getDate(){
+    //     Date date = new Date();
+    //     date.setTime(System.currentTimeMillis());
+    //     System.out.println(date);
+    //     return date;
+    // }
+    // public java.io.File getFile(){
+    //     java.io.File file =new java.io.File("C:\\Users\\32692\\Desktop\\路线.txt");
+    //     System.out.println();
+    //     return file;
+    // }
+    // //将文件存储到D:\Upload
+    // @Test
+    // public void test1() throws IOException {
+    //     java.io.File file = getFile();
+    //     FileInputStream fileInputStream = new FileInputStream(file);
+    //     MultipartFile multipartFile = new MockMultipartFile("copy"+file.getName(),file.getName(), ContentType.APPLICATION_OCTET_STREAM.toString(),fileInputStream);
+    //     String originalFilename = multipartFile.getOriginalFilename();
+    //     multipartFile.transferTo(new java.io.File("D:\\Upload\\"+originalFilename));
+    //     System.out.println(multipartFile.getName());
+    // }
+    // @Test
+    // public void save() throws IOException {
+    //     SqlSession session = getSession();
+    //     FileMapper mapper = session.getMapper(FileMapper.class);
+    //     File file = new File();
+    //     file.setFileName("测试文件");
+    //     file.setEmployeeId(1);
+    //     file.setFileForm("txt");
+    //     file.setFileTime(getDate());
+    //     mapper.saveFile(file);
+    //     session.commit();
+    // }
+    // @Test
+    // public void update() throws IOException {
+    //     SqlSession session = getSession();
+    //     FileMapper mapper = session.getMapper(FileMapper.class);
+    //     File File = new File();
+    //     File.setFileId(5);
+    //
+    //     File.setFileName("测试部门");
+    //     mapper.updateFile(File);
+    //     session.commit();
+    // }
+    // @Test
+    // public void delete() throws IOException {
+    //     SqlSession session = getSession();
+    //     FileMapper mapper = session.getMapper(FileMapper.class);
+    //
+    //     mapper.deleteFileById(5);
+    //     session.commit();
+    // }
 
 }

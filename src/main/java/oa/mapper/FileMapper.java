@@ -32,7 +32,9 @@ public interface FileMapper {
     int CountFileNoRead(int employeeId);
 
     @Select("SELECT * FROM file WHERE FileRead=1 AND EmployeeID=#{employeeId}")
-    List<File> ShowFileRead(int employeeId);
+    List<File> ShowReceiveFileRead(int employeeId);
     @Select("SELECT * FROM file WHERE FileRead=0 AND EmployeeID=#{employeeId}")
-    List<File> ShowFileNoRead(int employeeId);
+    List<File> ShowReceiveFileNoRead(int employeeId);
+    @Select("SELECT * FROM file WHERE  FileTO=#{employeeId} ORDER BY FileRead ASC ,FileTime DESC")
+    List<File> findAllReceiveFileByEmployeeId(int employeeId);
 }

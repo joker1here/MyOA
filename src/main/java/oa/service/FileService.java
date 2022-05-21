@@ -16,11 +16,15 @@ public class FileService {
         return fileMapper.CountFileNoRead(empolyeeId);
     }
 
-    public List<File> ShowFileRead(int employeeId) {
-        return fileMapper.ShowFileRead(employeeId);
+    public List<File> ShowReceiveFileRead(int employeeId) {
+        return fileMapper.ShowReceiveFileRead(employeeId);
     }
 
-    public List<File> ShowFileNoRead(int employeeId) {
-        return fileMapper.ShowFileNoRead(employeeId);
+    public List<File> ShowReceiveFileNoRead(int employeeId) {
+        return fileMapper.ShowReceiveFileNoRead(employeeId);
+    }
+
+    public List<File> findAllFileById(int employeeId) {
+        return fileMapper.findAllReceiveFileByEmployeeId(employeeId);
     }
 }

@@ -52,41 +52,41 @@ public class NoticeMapperTest {
         Notice Notice = mapper.findNoticeById(1);
         System.out.println(Notice);
     }
-    @Test
-    public void save() throws IOException {
-        SqlSession session = getSession();
-        NoticeMapper mapper = session.getMapper(NoticeMapper.class);
-        Notice Notice = new Notice();
-        Notice.setNoticeInfo("这是测试用的通知");
-        Notice.setNoticeName("测试通知");
-        Notice.setEmployeeId(2);
-        Notice.setNoticeTime(getDate());
-        mapper.saveNotice(Notice);
-        session.commit();
-
-        findall();
-    }
-    @Test
-    public void update() throws IOException {
-        SqlSession session = getSession();
-        NoticeMapper mapper = session.getMapper(NoticeMapper.class);
-        Notice Notice = new Notice();
-        Notice = mapper.findNoticeById(4);
-        Notice.setNoticeInfo("这是修改成功后的的通知");
-        mapper.updateNotice(Notice);
-        session.commit();
-
-        findall();
-    }
-    @Test
-    public void delete() throws IOException {
-        SqlSession session = getSession();
-        NoticeMapper mapper = session.getMapper(NoticeMapper.class);
-
-        mapper.deleteNoticeById(4);
-        session.commit();
-
-        findall();
-    }
+    // @Test
+    // public void save() throws IOException {
+    //     SqlSession session = getSession();
+    //     NoticeMapper mapper = session.getMapper(NoticeMapper.class);
+    //     Notice Notice = new Notice();
+    //     Notice.setNoticeInfo("这是测试用的通知");
+    //     Notice.setNoticeName("测试通知");
+    //     Notice.setEmployeeId(2);
+    //     Notice.setNoticeTime(getDate());
+    //     mapper.saveNotice(Notice);
+    //     session.commit();
+    //
+    //     findall();
+    // }
+    // @Test
+    // public void update() throws IOException {
+    //     SqlSession session = getSession();
+    //     NoticeMapper mapper = session.getMapper(NoticeMapper.class);
+    //     Notice Notice = new Notice();
+    //     Notice = mapper.findNoticeById(4);
+    //     Notice.setNoticeInfo("这是修改成功后的的通知");
+    //     mapper.updateNotice(Notice);
+    //     session.commit();
+    //
+    //     findall();
+    // }
+    // @Test
+    // public void delete() throws IOException {
+    //     SqlSession session = getSession();
+    //     NoticeMapper mapper = session.getMapper(NoticeMapper.class);
+    //
+    //     mapper.deleteNoticeById(4);
+    //     session.commit();
+    //
+    //     findall();
+    // }
 
 }

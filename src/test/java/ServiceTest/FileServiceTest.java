@@ -16,7 +16,7 @@ public class FileServiceTest {
     @Test
     public void test(){
         System.out.println(fileService.CountFileNoRead(1));
-        System.out.println(fileService.ShowFileRead(1));
-        System.out.println(fileService.ShowFileNoRead(1));
+        System.out.println(fileService.ShowReceiveFileRead(1));
+        System.out.println(fileService.ShowReceiveFileNoRead(1));
     }
 }

@@ -52,42 +52,42 @@ public class WorkMapperTest {
         Work Work = mapper.findWorkById(1);
         System.out.println(Work);
     }
-    @Test
-    public void save() throws IOException {
-        SqlSession session = getSession();
-        WorkMapper mapper = session.getMapper(WorkMapper.class);
-        Work work = new Work();
-        work.setEmployeeId(5);
-        work.setWorkText("111");
-        work.setWorkTime(getDate());
-        work.setWorkTo(2);
-        mapper.saveWork(work);
-        session.commit();
-
-        findall();
-    }
-    @Test
-    public void update() throws IOException {
-        SqlSession session = getSession();
-        WorkMapper mapper = session.getMapper(WorkMapper.class);
-        Work work = new Work();
-        work = mapper.findWorkById(3);
-        work.setWorkText("222");
-
-        mapper.updateWork(work);
-        session.commit();
-
-        findall();
-    }
-    @Test
-    public void delete() throws IOException {
-        SqlSession session = getSession();
-        WorkMapper mapper = session.getMapper(WorkMapper.class);
-
-        mapper.deleteWorkById(4);
-        session.commit();
-
-        findall();
-    }
+    // @Test
+    // public void save() throws IOException {
+    //     SqlSession session = getSession();
+    //     WorkMapper mapper = session.getMapper(WorkMapper.class);
+    //     Work work = new Work();
+    //     work.setEmployeeId(5);
+    //     work.setWorkText("111");
+    //     work.setWorkTime(getDate());
+    //     work.setWorkTo(2);
+    //     mapper.saveWork(work);
+    //     session.commit();
+    //
+    //     findall();
+    // }
+    // @Test
+    // public void update() throws IOException {
+    //     SqlSession session = getSession();
+    //     WorkMapper mapper = session.getMapper(WorkMapper.class);
+    //     Work work = new Work();
+    //     work = mapper.findWorkById(3);
+    //     work.setWorkText("222");
+    //
+    //     mapper.updateWork(work);
+    //     session.commit();
+    //
+    //     findall();
+    // }
+    // @Test
+    // public void delete() throws IOException {
+    //     SqlSession session = getSession();
+    //     WorkMapper mapper = session.getMapper(WorkMapper.class);
+    //
+    //     mapper.deleteWorkById(4);
+    //     session.commit();
+    //
+    //     findall();
+    // }
 
 }

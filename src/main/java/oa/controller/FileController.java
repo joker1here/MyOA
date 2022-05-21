@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +37,31 @@ public class FileController {
     public String test1(String s){
         System.out.println("testing"+s);
         return s;
+    }
+    @RequestMapping("/main")
+    public ModelAndView main(HttpSession session){
+        ModelAndView modelAndView = new ModelAndView();
+        Employee employee = (Employee) session.getAttribute("employee");
+        List<oa.pojo.File> fileList = fileService.findAllFileById(employee.getEmployeeId());
+        modelAndView.addObject("fileList", fileList);
+        modelAndView.setViewName("/email/email.jsp");
+        return modelAndView;
+    }
+    @RequestMapping("/compose")
+    public ModelAndView compose(HttpSession session){
+        ModelAndView modelAndView = new ModelAndView();
+        Employee employee = (Employee) session.getAttribute("employee");
+
+        modelAndView.setViewName("/email/email_compose.jsp");
+        return modelAndView;
+    }
+    @RequestMapping("/read")
+    public ModelAndView read(HttpSession session){
+        ModelAndView modelAndView = new ModelAndView();
+        Employee employee = (Employee) session.getAttribute("employee");
+
+        modelAndView.setViewName("/email/email_read.jsp");
+        return modelAndView;
     }
     @RequestMapping("/upload")
     @ResponseBody
@@ -86,13 +112,13 @@ public class FileController {
     @ResponseBody
     public List<oa.pojo.File> ShowFileRead(HttpSession session){
         Employee employee = (Employee) session.getAttribute("employee");
-        return fileService.ShowFileRead(employee.getEmployeeId());
+        return fileService.ShowReceiveFileRead(employee.getEmployeeId());
     }
     @RequestMapping("/ShowFileNoRead")
     @ResponseBody
     public List<oa.pojo.File> ShowFileNoRead(HttpSession session){
         Employee employee = (Employee) session.getAttribute("employee");
-        return fileService.ShowFileNoRead(employee.getEmployeeId());
+        return fileService.ShowReceiveFileNoRead(employee.getEmployeeId());
     }
 
 }

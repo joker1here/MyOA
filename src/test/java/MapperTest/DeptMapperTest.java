@@ -46,53 +46,53 @@ public class DeptMapperTest {
         Dept dept = mapper.findDeptById(1);
         System.out.println(dept);
     }
-    @Test
-    public void save() throws IOException {
-        SqlSession session = getSession();
-        DeptMapper mapper = session.getMapper(DeptMapper.class);
-        Dept dept = new Dept();
-        dept.setDeptIntroduce("这是测试用的部门");
-        dept.setDeptName("测试部门");
-        mapper.saveDept(dept);
-        session.commit();
-    }
-    @Test
-    public void update() throws IOException {
-        SqlSession session = getSession();
-        DeptMapper mapper = session.getMapper(DeptMapper.class);
-        Dept dept = new Dept();
-        dept.setDeptId(5);
-        dept.setDeptIntroduce("这是修改成功后的的部门");
-        dept.setDeptName("测试部门");
-        mapper.updateDept(dept);
-        session.commit();
-    }
-    @Test
-    public void delete() throws IOException {
-        SqlSession session = getSession();
-        DeptMapper mapper = session.getMapper(DeptMapper.class);
-
-        mapper.deleteDeptById(5);
-        session.commit();
-    }
-    @Test
-    public void testPage(){
-        DeptMapper mapper = (DeptMapper) SqlSessionUtil.getSession(DeptMapper.class);
-
-        //需要在获取列表之前
-        List<Dept> list = mapper.findAllDept();
-        for (Dept dept : list) {
-            System.out.println(dept);
-        }
-
-        PageHelper.startPage(1, 2);
-        list = mapper.findAllDept();
-        for (Dept dept : list) {
-            System.out.println(dept);
-        }
-        PageInfo<Dept> pageInfo = new PageInfo<Dept>(list);
-        System.out.println(pageInfo.getPageSize());
-        // System.out.println(list);
-        // System.out.println(new EasyUIResult(pageInfo.getTotal(), list));
-    }
+    // @Test
+    // public void save() throws IOException {
+    //     SqlSession session = getSession();
+    //     DeptMapper mapper = session.getMapper(DeptMapper.class);
+    //     Dept dept = new Dept();
+    //     dept.setDeptIntroduce("这是测试用的部门");
+    //     dept.setDeptName("测试部门");
+    //     mapper.saveDept(dept);
+    //     session.commit();
+    // }
+    // @Test
+    // public void update() throws IOException {
+    //     SqlSession session = getSession();
+    //     DeptMapper mapper = session.getMapper(DeptMapper.class);
+    //     Dept dept = new Dept();
+    //     dept.setDeptId(5);
+    //     dept.setDeptIntroduce("这是修改成功后的的部门");
+    //     dept.setDeptName("测试部门");
+    //     mapper.updateDept(dept);
+    //     session.commit();
+    // }
+    // @Test
+    // public void delete() throws IOException {
+    //     SqlSession session = getSession();
+    //     DeptMapper mapper = session.getMapper(DeptMapper.class);
+    //
+    //     mapper.deleteDeptById(5);
+    //     session.commit();
+    // }
+    // @Test
+    // public void testPage(){
+    //     DeptMapper mapper = (DeptMapper) SqlSessionUtil.getSession(DeptMapper.class);
+    //
+    //     //需要在获取列表之前
+    //     List<Dept> list = mapper.findAllDept();
+    //     for (Dept dept : list) {
+    //         System.out.println(dept);
+    //     }
+    //
+    //     PageHelper.startPage(1, 2);
+    //     list = mapper.findAllDept();
+    //     for (Dept dept : list) {
+    //         System.out.println(dept);
+    //     }
+    //     PageInfo<Dept> pageInfo = new PageInfo<Dept>(list);
+    //     System.out.println(pageInfo.getPageSize());
+    //     // System.out.println(list);
+    //     // System.out.println(new EasyUIResult(pageInfo.getTotal(), list));
+    // }
 }
