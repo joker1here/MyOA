@@ -13,10 +13,10 @@ public class VisitedListener implements HttpSessionListener {
         HttpSession session=event.getSession();
         ServletContext context=session.getServletContext();
         //用set集合来存储session对象
-        HashSet<HttpSession> sessionSet=(HashSet<HttpSession>) context.getAttribute("sessionSet");
+        HashSet<HttpSession> sessionSet=(HashSet<HttpSession>) context.getAttribute("employee");
         if(sessionSet==null){
             sessionSet=new HashSet<HttpSession>();
-            context.setAttribute("sessionSet", sessionSet);
+            context.setAttribute("employee", sessionSet);
         }
         //这里主要是为了检验用户是否登录，登录的话强制移除该session，加入新session
         for(HttpSession s : sessionSet){
@@ -41,7 +41,7 @@ public class VisitedListener implements HttpSessionListener {
             context.setAttribute("lineCount", lineCount - 1);
         }
         HttpSession session = event.getSession();
-        HashSet<HttpSession> sessionSet = (HashSet<HttpSession>)context.getAttribute("sessionSet");
+        HashSet<HttpSession> sessionSet = (HashSet<HttpSession>)context.getAttribute("employee");
         if(sessionSet!=null){
             sessionSet.remove(session);
         }

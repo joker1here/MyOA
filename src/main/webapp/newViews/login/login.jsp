@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
   <title>滑动切换的注册登录界面</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
-  <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.js"></script>
+  <link rel="stylesheet" href="../../css/login.css">
+  <script src="../../js/jquery-3.6.0.js"></script>
 </head>
 <body>
 <div class="container">
@@ -190,8 +190,15 @@
   //TODO
   function employeeLogin(username,password) {
     // alert("进入登陆");
-    window.location.href='/main/login?username='+username+'&password='+password;
+    window.location.href='/employee/login?username='+username+'&password='+password;
   }
+  <%--window.addEventListener("DOMContentLoaded",wrongMessage(),false)--%>
+  <%--function wrongMessage() {--%>
+  <%--  let message=${WrongMessage}--%>
+  <%--  if(message ==  null || message.trim() == ""){--%>
+  <%--    alert(message);--%>
+  <%--  }--%>
+  <%--}--%>
 
   /**
    * 判断字符串为空

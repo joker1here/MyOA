@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +35,7 @@
                             </div>
                             <div id="collapse${Notice.noticeId}" class="collapse show" data-parent="#accordion-one">
                                 <div class="card-body">内容：${Notice.noticeInfo}</div>
+                                <div class="card-footer"><fmt:formatDate value="${Notice.noticeTime}" pattern="yyyy-MM-dd HH:mm"/></div>
                             </div>
                         </div>
                     </c:forEach>

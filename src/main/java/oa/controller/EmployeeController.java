@@ -26,7 +26,24 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+    @RequestMapping(value = "/login",produces = "text/html;charset=UTF-8")
+    public ModelAndView login(@RequestParam("username") String employeeName, String password, HttpSession session){
+        System.out.println("名字"+employeeName+"密码"+password);
+        ModelAndView modelAndView = new ModelAndView();
+        Employee employee=employeeService.login(employeeName,password);
+        if (employee!=null){
+            session.setAttribute("employee",employee);
+            //用户
+            modelAndView.addObject("employee", employee);
 
+            modelAndView.setViewName("/main.jsp");
+        }
+        else {
+            modelAndView.addObject("WrongMessage", "登陆失败，请确认账号和密码！");
+            modelAndView.setViewName("/login/login.jsp");
+        }
+        return modelAndView;
+    }
 
     @RequestMapping(value = "/register" ,produces = "text/html;charset=UTF-8")
     @ResponseBody

@@ -206,17 +206,17 @@
         <div class="nk-nav-scroll">
             <ul class="metismenu" id="menu">
                 <li class="mega-menu mega-menu-sm">
-                    <a href="index.html" aria-expanded="false" target="ifd">
+                    <a href="${pageContext.request.contextPath}/newViews/index.jsp" aria-expanded="false" target="ifd">
                         <i class="icon-speedometer menu-icon"></i><span class="nav-text">工作面板</span>
                     </a>
                 </li>
                 <li class="mega-menu mega-menu-sm">
-                    <a href="notice" aria-expanded="false" target="ifd">
+                    <a href="${pageContext.request.contextPath}/notice/noticeList" aria-expanded="false" target="ifd">
                         <i class="icon-globe-alt menu-icon"></i><span class="nav-text" >活动公告</span>
                     </a>
                 </li>
                 <li class="mega-menu mega-menu-sm" >
-                    <a href="email" aria-expanded="false" onclick="emailClick()" target="ifd">
+                    <a href="${pageContext.request.contextPath}/file/main" aria-expanded="false" onclick="emailClick()" target="ifd">
                         <i class="icon-envelope menu-icon"></i> <span class="nav-text">邮箱</span>
                     </a>
                 </li>
@@ -226,12 +226,12 @@
                 <!--                        </a>-->
                 <!--                    </li>-->
                 <li class="mega-menu mega-menu-sm">
-                    <a href="attendance" aria-expanded="false" target="ifd">
+                    <a href="${pageContext.request.contextPath}/newViews/attendance/attendance.jsp" aria-expanded="false" target="ifd">
                         <i class="icon-badge menu-icon"></i><span class="nav-text">考勤管理</span>
                     </a>
                 </li>
                 <li class="mega-menu mega-menu-sm">
-                    <a href="workItems" aria-expanded="false" target="ifd">
+                    <a href="${pageContext.request.contextPath}/work/ShowWork" aria-expanded="false" target="ifd">
                         <i class="icon-note menu-icon"></i><span class="nav-text">工作事项</span>
                     </a>
                 </li>

@@ -45,7 +45,7 @@
                                 </button>
                                 <div class="dropdown-menu">
                                     <a href="javascript: void(0);" class="dropdown-item">标为未读</a>
-                                    <a href="javascript: void(0);"class="dropdown-item">添加为重要</a>
+                                    <%--<a href="javascript: void(0);"class="dropdown-item">添加为重要</a>--%>
                                     <a href="javascript: void(0);" class="dropdown-item">删除</a>
                                 </div>
                             </div>
@@ -57,8 +57,8 @@
                                 <a href="${pageContext.request.contextPath}/file/read">
                                     <div class="col-mail col-mail-1">
                                         <div class="email-checkbox">
-                                            <input type="checkbox" id="chk2">
-                                            <label class="toggle" for="chk2"></label>
+                                            <input type="checkbox" id="chk${File.fileId}">
+                                            <label class="toggle" for="chk${File.fileId}"></label>
                                         </div><span class="star-toggle ti-star"></span>
                                     </div>
                                     <div class="col-mail col-mail-2">
