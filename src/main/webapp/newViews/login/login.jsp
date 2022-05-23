@@ -9,6 +9,7 @@
   <script src="../../js/jquery-3.6.0.js"></script>
 </head>
 <body>
+<input id="Message" type="hidden" value="${Message}">
 <div class="container">
   <div class="form-box">
     <!-- 注册 -->
@@ -192,14 +193,16 @@
     // alert("进入登陆");
     window.location.href='/employee/login?username='+username+'&password='+password;
   }
+  //TODO
   <%--window.addEventListener("DOMContentLoaded",wrongMessage(),false)--%>
-  <%--function wrongMessage() {--%>
-  <%--  let message=${WrongMessage}--%>
-  <%--  if(message ==  null || message.trim() == ""){--%>
-  <%--    alert(message);--%>
-  <%--  }--%>
-  <%--}--%>
-
+  function Message() {
+    let message=$("#Message").val();
+    //alert(message);
+    if(message !=  null && message.trim() !== ""){
+      alert(message);
+    }
+  }
+  window.onLoad=Message();
   /**
    * 判断字符串为空
    *      如果为空，返回true

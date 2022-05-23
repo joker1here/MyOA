@@ -248,7 +248,7 @@
     <!--Content body start-->
     <div class="content-body">
         <div class="container-fluid">
-            <iframe name="ifd" src="index.html" style="margin-top: 10px; overflow: hidden;" width="100%" height="100%" onload="this.height=ifd.document.body.scrollHeight" scrolling="no" frameborder="0"></iframe>
+            <iframe name="ifd" src="${pageContext.request.contextPath}/newViews/index.jsp" style="margin-top: 10px; overflow: hidden;" width="100%" height="100%" onload="this.height=ifd.document.body.scrollHeight" scrolling="no" frameborder="0"></iframe>
         </div>
     </div>
     <!--Content body end-->

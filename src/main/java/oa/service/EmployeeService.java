@@ -50,7 +50,7 @@ public class EmployeeService {
                 return "已经有该用户！请重新注册！";
             }
             employeeMapper.saveEmployee(employee);
-            return "保存成功";
+            return "注册成功";
         }catch (Exception e){
             System.out.println(e);
             return "操作异常，请刷新后操作";

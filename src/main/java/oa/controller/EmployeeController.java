@@ -39,16 +39,19 @@ public class EmployeeController {
             modelAndView.setViewName("/main.jsp");
         }
         else {
-            modelAndView.addObject("WrongMessage", "登陆失败，请确认账号和密码！");
+            modelAndView.addObject("Message", "登陆失败，请确认账号和密码！");
             modelAndView.setViewName("/login/login.jsp");
         }
         return modelAndView;
     }
 
     @RequestMapping(value = "/register" ,produces = "text/html;charset=UTF-8")
-    @ResponseBody
-    public String register(@RequestParam("username") String employeeName, String password){
-        return employeeService.register(employeeName,password);
+    public ModelAndView register(@RequestParam("username") String employeeName, String password){
+        ModelAndView modelAndView = new ModelAndView();
+        String s = employeeService.register(employeeName, password);
+        modelAndView.addObject("Message", s);
+        modelAndView.setViewName("/login/login.jsp");
+        return modelAndView;
     }
     @RequestMapping(value = "/getOnlineCount" ,produces = "text/html;charset=UTF-8")
     @ResponseBody
