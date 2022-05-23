@@ -34,4 +34,6 @@ public interface WorkMapper {
     List<Work> ShowWorkFinish(int employeeId);
     @Select("SELECT * FROM Work WHERE workFinish=0 AND workTo=#{employeeId} ORDER BY workTime DESC")
     List<Work> ShowWorkNoFinish(int employeeId);
+    @Select("SELECT * FROM Work WHERE  workTo=#{employeeId} ORDER BY workFinish ASC ,workTime DESC")
+    List<Work> ShowWork(int employeeId);
 }

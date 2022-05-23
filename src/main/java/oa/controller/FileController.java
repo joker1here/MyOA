@@ -1,6 +1,7 @@
 package oa.controller;
 
 import oa.pojo.Employee;
+import oa.service.EmployeeService;
 import oa.service.FileService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ import java.util.List;
 public class FileController {
     @Autowired
     private FileService fileService;
+
+    @Autowired
+    private EmployeeService employeeService;
 
     private String FilePath="D:\\Upload\\";
 
@@ -59,6 +63,21 @@ public class FileController {
     public ModelAndView read(HttpSession session){
         ModelAndView modelAndView = new ModelAndView();
         Employee employee = (Employee) session.getAttribute("employee");
+
+        modelAndView.setViewName("/email/email_read.jsp");
+        return modelAndView;
+    }
+    @RequestMapping("/add")
+    public ModelAndView add(HttpSession session,String fileTo,String fileText,String fileTitle,@RequestBody(required = false) MultipartFile file) throws IOException {
+        ModelAndView modelAndView = new ModelAndView();
+        Employee employee = (Employee) session.getAttribute("employee");
+
+        if (file!=null){
+            String originalFilename = file.getOriginalFilename();
+            file.transferTo(new File(FilePath+originalFilename));
+            System.out.println("文件名："+file.getOriginalFilename());
+        }
+        System.out.println("接收方："+fileTo+"，标题："+fileTitle+"，文本："+fileText);
 
         modelAndView.setViewName("/email/email_read.jsp");
         return modelAndView;

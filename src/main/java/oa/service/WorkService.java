@@ -22,4 +22,8 @@ public class WorkService {
     public int CountWorkNoFinish(int employeeId) {
         return workMapper.CountWorkNoFinish(employeeId);
     }
+
+    public List<Work> ShowWork(int employeeId) {
+        return workMapper.ShowWork(employeeId);
+    }
 }

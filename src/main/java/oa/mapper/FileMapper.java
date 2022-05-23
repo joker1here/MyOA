@@ -16,11 +16,11 @@ public interface FileMapper {
     File findFileById(int id);
 
     @Insert("insert into File VALUES" +
-            "(#{fileId},#{fileName},#{fileForm},#{fileTime},#{fileText},#{FileTo},#{employeeId},#{fileRead})")
+            "(#{fileId},#{fileTitle},#{fileName},#{fileForm},#{fileTime},#{fileText},#{FileTo},#{employeeId},#{fileRead})")
     void saveFile(File File);
 
     @Update("update File set " +
-            "fileName=#{fileName},fileForm=#{fileForm},fileTime=#{fileTime}" +
+            "fileName=#{fileName},fileTitle=#{fileTitle},fileForm=#{fileForm},fileTime=#{fileTime}" +
             ",fileText=#{fileText},FileTo=#{FileTo},employeeId=#{employeeId},fileRead=#{fileRead}" +
             "where FileId=#{FileId}")
     void updateFile(File File);
@@ -35,6 +35,6 @@ public interface FileMapper {
     List<File> ShowReceiveFileRead(int employeeId);
     @Select("SELECT * FROM file WHERE FileRead=0 AND EmployeeID=#{employeeId}")
     List<File> ShowReceiveFileNoRead(int employeeId);
-    @Select("SELECT * FROM file WHERE  FileTO=#{employeeId} ORDER BY FileRead ASC ,FileTime DESC")
+    @Select("SELECT * FROM file WHERE FileTO=#{employeeId} ORDER BY FileRead ASC ,FileTime DESC")
     List<File> findAllReceiveFileByEmployeeId(int employeeId);
 }

@@ -74,7 +74,7 @@ public class MainController {
     @RequestMapping(value = "/email",produces = "text/html;charset=UTF-8")
     public ModelAndView email(HttpSession session){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/email/email.jsp");
+        modelAndView.setViewName("../file/main");
         return modelAndView;
     }
     @RequestMapping(value = "/file",produces = "text/html;charset=UTF-8")
@@ -86,7 +86,7 @@ public class MainController {
     @RequestMapping(value = "/notice",produces = "text/html;charset=UTF-8")
     public ModelAndView notice(HttpSession session){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/notice/notice.jsp");
+        modelAndView.setViewName("../notice/noticeList");
         return modelAndView;
     }
     @RequestMapping(value = "/schedule",produces = "text/html;charset=UTF-8")
@@ -98,7 +98,7 @@ public class MainController {
     @RequestMapping(value = "/workItems",produces = "text/html;charset=UTF-8")
     public ModelAndView workItems(HttpSession session){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/workItems/workItems.jsp");
+        modelAndView.setViewName("../work/ShowWork");
         return modelAndView;
     }
 }

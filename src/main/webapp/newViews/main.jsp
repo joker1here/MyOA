@@ -216,7 +216,7 @@
                     </a>
                 </li>
                 <li class="mega-menu mega-menu-sm" >
-                    <a href="../file/main" aria-expanded="false" onclick="emailClick()" target="ifd">
+                    <a href="email" aria-expanded="false" onclick="emailClick()" target="ifd">
                         <i class="icon-envelope menu-icon"></i> <span class="nav-text">邮箱</span>
                     </a>
                 </li>

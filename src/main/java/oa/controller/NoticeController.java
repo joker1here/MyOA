@@ -18,9 +18,10 @@ public class NoticeController {
     @RequestMapping(value = "/noticeList" ,produces = "text/html;charset=UTF-8")
     public ModelAndView noticeList(){
         ModelAndView modelAndView=new ModelAndView();
-        modelAndView.setViewName("/Notice/Notice.jsp");
+        modelAndView.setViewName("/notice/notice.jsp");
         List<Notice> noticeList=noticeService.findAllNotice();
         modelAndView.addObject("noticeList", noticeList);
+        System.out.println(noticeList);
         return modelAndView;
     }
 }
