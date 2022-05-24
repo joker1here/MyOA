@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="../../css/bootstrap-icons.css">
 </head>
 <body>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
@@ -25,8 +24,14 @@
                 <div class="card-body">
                     <div class="email-left-box">
                         <a href="${pageContext.request.contextPath}/file/compose" class="btn btn-primary btn-block">写邮件</a>
-                        <div class="mail-list mt-4"><a href="${pageContext.request.contextPath}/file/main" class="list-group-item border-0 text-primary p-r-0"><i class="fa fa-inbox font-18 align-middle mr-2"></i> <b>收件箱</b> <span class="badge badge-primary badge-sm float-right m-t-5">198</span> </a>
-                            <a href="#" class="list-group-item border-0 p-r-0"><i class="fa fa-paper-plane font-18 align-middle mr-2"></i>已发送</a>
+                        <div class="mail-list mt-4">
+                            <a href="${pageContext.request.contextPath}/file/main" class="list-group-item border-0 text-primary p-r-0">
+                                <i class="fa fa-inbox font-18 align-middle mr-2"></i> <b>收件箱</b>
+                                <%--<span class="badge badge-primary badge-sm float-right m-t-5">198</span> --%>
+                            </a>
+                            <a href="${pageContext.request.contextPath}/file/fileListTo" class="list-group-item border-0 text-primary p-r-0">
+                                <i class="fa fa-paper-plane font-18 align-middle mr-2"></i>已发送
+                            </a>
                             <%--<a href="#" class="list-group-item border-0 p-r-0"><i class="fa fa-star-o font-18 align-middle mr-2"></i>重要 <span class="badge badge-danger badge-sm float-right m-t-5">47</span> </a>--%>
                             <%--<a href="#" class="list-group-item border-0 p-r-0"><i class="fa fa-trash font-18 align-middle mr-2"></i>回收站</a>--%>
                         </div>
@@ -54,7 +59,7 @@
                             <%--TODO--%>
                             <c:forEach items="${fileList}" var="File">
                             <div class="message">
-                                <a href="${pageContext.request.contextPath}/file/read">
+                                <a href="${pageContext.request.contextPath}/file/read?fileId=${File.fileId}">
                                     <div class="col-mail col-mail-1">
                                         <div class="email-checkbox">
                                             <input type="checkbox" id="chk${File.fileId}">
@@ -62,7 +67,7 @@
                                         </div><span class="star-toggle ti-star"></span>
                                     </div>
                                     <div class="col-mail col-mail-2">
-                                        <div class="subject">${File.fileText}</div>
+                                        <div class="subject">${File.fileTitle}</div>
                                         <%--<div class="date">${File.fileTime}</div>--%>
                                         <div class="date">
                                             <fmt:formatDate value="${File.fileTime}" pattern="yyyy-MM-dd HH:mm"/>

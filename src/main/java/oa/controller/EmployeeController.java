@@ -35,7 +35,6 @@ public class EmployeeController {
             session.setAttribute("employee",employee);
             //用户
             modelAndView.addObject("employee", employee);
-
             modelAndView.setViewName("/main.jsp");
         }
         else {

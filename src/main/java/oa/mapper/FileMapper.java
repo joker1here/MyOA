@@ -28,13 +28,23 @@ public interface FileMapper {
     @Delete("DELETE FROM File WHERE FileId = #{id}")
     void deleteFileById(int id);
 
+    //计数未读邮件
     @Select("SELECT COUNT(1) FROM file WHERE FileRead=0 AND EmployeeID=#{employeeId}")
     int CountFileNoRead(int employeeId);
 
+    //返回已读文件列表
     @Select("SELECT * FROM file WHERE FileRead=1 AND EmployeeID=#{employeeId}")
     List<File> ShowReceiveFileRead(int employeeId);
+
+    //返回未读邮件列表
     @Select("SELECT * FROM file WHERE FileRead=0 AND EmployeeID=#{employeeId}")
     List<File> ShowReceiveFileNoRead(int employeeId);
-    @Select("SELECT * FROM file WHERE FileTO=#{employeeId} ORDER BY FileRead ASC ,FileTime DESC")
+
+    //返回收件箱
+    @Select("SELECT * FROM file WHERE FileTO=#{employeeId} ORDER BY FileTime DESC")
     List<File> findAllReceiveFileByEmployeeId(int employeeId);
+
+    //返回发件箱
+    @Select("SELECT * FROM file WHERE EmployeeID =#{employeeId} ORDER BY FileTime DESC")
+    List<File> findAllSentByEmployeeId(int employeeId);
 }

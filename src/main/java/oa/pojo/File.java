@@ -10,8 +10,26 @@ public class File {
     private Date fileTime;
     private String fileText;
     private int FileTo;
+    private Employee ToEmployee;
     private int employeeId;
+    private Employee EmployeeTo;
     private int fileRead;
+
+    public Employee getToEmployee() {
+        return ToEmployee;
+    }
+
+    public void setToEmployee(Employee toEmployee) {
+        ToEmployee = toEmployee;
+    }
+
+    public Employee getEmployeeTo() {
+        return EmployeeTo;
+    }
+
+    public void setEmployeeTo(Employee employeeTo) {
+        EmployeeTo = employeeTo;
+    }
 
     public String getFileTitle() {
         return fileTitle;
@@ -95,7 +113,9 @@ public class File {
                 ", fileTime=" + fileTime +
                 ", fileText='" + fileText + '\'' +
                 ", FileTo=" + FileTo +
+                ", ToEmployee=" + ToEmployee +
                 ", employeeId=" + employeeId +
+                ", EmployeeTo=" + EmployeeTo +
                 ", fileRead=" + fileRead +
                 '}';
     }

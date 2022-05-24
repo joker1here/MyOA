@@ -28,4 +28,6 @@ public interface EmployeeMapper {
 
     @Select("SELECT * FROM employee where EmployeeName=#{employeeName} AND Pwd=#{pwd}")
     Employee findEmployeeByNameAndPwd(@Param("employeeName") String employeeName, @Param("pwd") String pwd);
+    @Select("SELECT * FROM employee where EmployeeName=#{Name}")
+    Employee findEmployeeByName(@Param("Name") String Name);
 }

@@ -46,14 +46,18 @@ public class EmployeeService {
         employee.setEmployeeName(employeeName);
         employee.setPwd(password);
         try {
-            if (employeeMapper.findEmployeeByNameAndPwd(employeeName,password)!=null){
+            if (employeeMapper.findEmployeeByName(employeeName)!=null){
                 return "已经有该用户！请重新注册！";
             }
             employeeMapper.saveEmployee(employee);
             return "注册成功";
         }catch (Exception e){
-            System.out.println(e);
+            System.out.println("注册异常："+e);
             return "操作异常，请刷新后操作";
         }
+    }
+
+    public Employee findEmployeeByName(String Name) {
+        return employeeMapper.findEmployeeByName(Name);
     }
 }

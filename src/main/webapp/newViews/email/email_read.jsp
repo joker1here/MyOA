@@ -20,19 +20,26 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="email-left-box"><a href="email_compose.html" class="btn btn-primary btn-block">写邮件</a>
-                        <div class="mail-list mt-4"><a href="email.html" class="list-group-item border-0 text-primary p-r-0"><i class="fa fa-inbox font-18 align-middle mr-2"></i> <b>收件箱</b> <span class="badge badge-primary badge-sm float-right m-t-5">198</span> </a>
-                            <a href="#" class="list-group-item border-0 p-r-0"><i class="fa fa-paper-plane font-18 align-middle mr-2"></i>已发送</a>
-                            <a href="#" class="list-group-item border-0 p-r-0"><i class="fa fa-star-o font-18 align-middle mr-2"></i>重要 <span class="badge badge-danger badge-sm float-right m-t-5">47</span> </a>
-                            <a href="#" class="list-group-item border-0 p-r-0"><i class="fa fa-trash font-18 align-middle mr-2"></i>回收站</a>
+                    <div class="email-left-box">
+                        <a href="${pageContext.request.contextPath}/file/compose" class="btn btn-primary btn-block">写邮件</a>
+                        <div class="mail-list mt-4">
+                            <a href="${pageContext.request.contextPath}/file/main" class="list-group-item border-0 text-primary p-r-0">
+                                <i class="fa fa-inbox font-18 align-middle mr-2"></i> <b>收件箱</b>
+                                <%--<span class="badge badge-primary badge-sm float-right m-t-5">198</span> --%>
+                            </a>
+                            <a href="${pageContext.request.contextPath}/file/fileListTo" class="list-group-item border-0 text-primary p-r-0">
+                                <i class="fa fa-paper-plane font-18 align-middle mr-2"></i>已发送
+                            </a>
+                            <%--<a href="#" class="list-group-item border-0 p-r-0"><i class="fa fa-star-o font-18 align-middle mr-2"></i>重要 <span class="badge badge-danger badge-sm float-right m-t-5">47</span> </a>--%>
+                            <%--<a href="#" class="list-group-item border-0 p-r-0"><i class="fa fa-trash font-18 align-middle mr-2"></i>回收站</a>--%>
                         </div>
-                        <h5 class="mt-5 m-b-10">邮件类别</h5>
-                        <div class="list-group mail-list"><a href="#" class="list-group-item border-0">
-                            <span class="fa fa-briefcase f-s-14 mr-2"></span>工作</a>
-                            <a href="#" class="list-group-item border-0"><span class="fa fa-sellsy f-s-14 mr-2"></span>私人</a>
-                            <a href="#" class="list-group-item border-0"><span class="fa fa-tags f-s-14 mr-2"></span>社交</a>
-                            <a href="#" class="list-group-item border-0"><span class="fa fa-ticket f-s-14 mr-2"></span>未分类</a>
-                        </div>
+                        <%--<h5 class="mt-5 m-b-10">邮件类别</h5>--%>
+                        <%--<div class="list-group mail-list"><a href="#" class="list-group-item border-0">--%>
+                        <%--    <span class="fa fa-briefcase f-s-14 mr-2"></span>工作</a>--%>
+                        <%--    <a href="#" class="list-group-item border-0"><span class="fa fa-sellsy f-s-14 mr-2"></span>私人</a>--%>
+                        <%--    <a href="#" class="list-group-item border-0"><span class="fa fa-tags f-s-14 mr-2"></span>社交</a>--%>
+                        <%--    <a href="#" class="list-group-item border-0"><span class="fa fa-ticket f-s-14 mr-2"></span>未分类</a>--%>
+                        <%--</div>--%>
                     </div>
                     <div class="email-right-box">
                         <div class="toolbar" role="toolbar">
@@ -70,36 +77,35 @@
                             <div class="media pt-5">
                                 <img class="mr-3 rounded-circle" src="../../images/avatar/1.jpg">
                                 <div class="media-body">
-                                    <h5 class="m-b-3">Ingredia Nutrisha</h5>
-                                    <p class="m-b-2">20 May 2018</p>
+                                    <h5 class="m-b-3">${file.employeeTo.employeeName}</h5>
+                                    <p class="m-b-2"><fmt:formatDate value="${file.fileTime}" pattern="yyyy-MM-dd"/></p>
                                 </div>
 
                             </div>
                             <hr>
                             <div class="media mb-4 mt-1">
-                                <div class="media-body"><span class="float-right">07:23 AM</span>
-                                    <h4 class="m-0 text-primary">A collection of textile samples lay spread</h4><small class="text-muted">To:Me,invernessmckenzie@example.com</small>
+                                <div class="media-body"><span class="float-right"><fmt:formatDate value="${file.fileTime}" pattern="HH:mm"/></span>
+                                    <h4 class="m-0 text-primary">${file.fileTitle}</h4><small class="text-muted">To:Me,invernessmckenzie@example.com</small>
                                 </div>
                             </div>
-                            <h5 class="m-b-15">Hi,Ingredia,</h5>
-                            <p><strong>Ingredia Nutrisha,</strong> A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture</p>
-                            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of
-                                Grammar.
+                            <h5 class="m-b-15">Hi,${file.toEmployee.employeeName},</h5>
+                            <%--<p><strong>Ingredia Nutrisha,</strong> A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture</p>--%>
+                            <p>${file.fileText}
                             </p>
-                            <p>Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.
-                                Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero,
-                                sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar,</p>
-                            <h5 class="m-b-5 p-t-15">Kind Regards</h5>
-                            <p>Mr Smith</p>
+                            <%--<p>Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.--%>
+                            <%--    Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero,--%>
+                            <%--    sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar,</p>--%>
+                            <h5 class="m-b-5 p-t-15">${file.employeeTo.employeeName}</h5>
+                            <%--<p>Mr Smith</p>--%>
                             <hr>
                             <h6 class="p-t-15"><i class="fa fa-download mb-2"></i> Attachments <span>(3)</span></h6>
                             <div class="row m-b-30">
-                                <div class="col-auto"><a href="#" class="text-muted">My-Photo.png</a>
+                                <div class="col-auto"><a href="${pageContext.request.contextPath}/file/download?fileName=${file.fileName}&fileForm=${file.fileForm}" class="text-muted">${file.fileName}.${file.fileForm}</a>
                                 </div>
-                                <div class="col-auto"><a href="#" class="text-muted">My-File.docx</a>
-                                </div>
-                                <div class="col-auto"><a href="#" class="text-muted">My-Resume.pdf</a>
-                                </div>
+                                <%--<div class="col-auto"><a href="#" class="text-muted">My-File.docx</a>--%>
+                                <%--</div>--%>
+                                <%--<div class="col-auto"><a href="#" class="text-muted">My-Resume.pdf</a>--%>
+                                <%--</div>--%>
                             </div>
                             <hr>
                             <div class="form-group p-t-15">

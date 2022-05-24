@@ -9,6 +9,7 @@
   <script src="../../js/jquery-3.6.0.js"></script>
 </head>
 <body>
+<%--TODO--%>
 <input id="Message" type="hidden" value="${Message}">
 <div class="container">
   <div class="form-box">
@@ -194,7 +195,6 @@
     window.location.href='/employee/login?username='+username+'&password='+password;
   }
   //TODO
-  <%--window.addEventListener("DOMContentLoaded",wrongMessage(),false)--%>
   function Message() {
     let message=$("#Message").val();
     //alert(message);

@@ -12,16 +12,25 @@
     <link href="../../css/style.css" rel="stylesheet">
     <!--bootstrap图标库-->
     <link rel="stylesheet" href="../../css/bootstrap-icons.css">
+    <script src="../../js/jquery-3.6.0.js"></script>
 </head>
 <body>
+<%--TODO--%>
+<input id="Message" type="hidden" value="${Message}">
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
                     <div class="email-left-box"><a href="${pageContext.request.contextPath}/file/compose" class="btn btn-primary btn-block">写邮件</a>
-                        <div class="mail-list mt-4"><a href="${pageContext.request.contextPath}/file/main" class="list-group-item border-0 text-primary p-r-0"><i class="fa fa-inbox font-18 align-middle mr-2"></i> <b>收件箱</b> <span class="badge badge-primary badge-sm float-right m-t-5">198</span> </a>
-                            <a href="#" class="list-group-item border-0 p-r-0"><i class="fa fa-paper-plane font-18 align-middle mr-2"></i>已发送</a>
+                        <div class="mail-list mt-4">
+                            <a href="${pageContext.request.contextPath}/file/main" class="list-group-item border-0 text-primary p-r-0">
+                                <i class="fa fa-inbox font-18 align-middle mr-2"></i> <b>收件箱</b>
+                                <%--<span class="badge badge-primary badge-sm float-right m-t-5">198</span> --%>
+                            </a>
+                            <a href="${pageContext.request.contextPath}/file/fileListTo" class="list-group-item border-0 text-primary p-r-0">
+                                <i class="fa fa-paper-plane font-18 align-middle mr-2"></i>已发送
+                            </a>
                             <%--<a href="#" class="list-group-item border-0 p-r-0"><i class="fa fa-star-o font-18 align-middle mr-2"></i>重要 <span class="badge badge-danger badge-sm float-right m-t-5">47</span> </a>--%>
                             <%--<a href="#" class="list-group-item border-0 p-r-0"><i class="fa fa-trash font-18 align-middle mr-2"></i>回收站</a>--%>
                         </div>
@@ -68,7 +77,7 @@
                         <div class="compose-content mt-5">
                             <form action="${pageContext.request.contextPath}/file/add" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <input type="text" class="form-control bg-transparent" placeholder=" 发送给谁？" name="fileTo">
+                                    <input type="text" class="form-control bg-transparent" placeholder=" 发送给谁？" name="fileToName">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control bg-transparent" placeholder=" 标题" name="fileTitle">
@@ -78,7 +87,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="fallback">
-                                        <input class="l-border-1" name="file" type="file" multiple="multiple">
+                                        <input class="l-border-1" name="file" type="file">
                                     </div>
                                 </div>
                                 <div class="text-left m-t-15">
@@ -107,6 +116,16 @@
 </div>
 <!-- #/ container -->
 <!--Content body end-->
-
+<script>
+    //TODO
+    function Message() {
+        let message=$("#Message").val();
+        //alert(message);
+        if(message !=  null && message.trim() !== ""){
+            alert(message);
+        }
+    }
+    window.onLoad=Message();
+</script>
 </body>
 </html>
