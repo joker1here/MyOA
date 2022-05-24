@@ -48,13 +48,13 @@ public class FileMapperTest {
         File File = mapper.findFileById(1);
         System.out.println(File);
     }
-    // //获取时间
-    // public Date getDate(){
-    //     Date date = new Date();
-    //     date.setTime(System.currentTimeMillis());
-    //     System.out.println(date);
-    //     return date;
-    // }
+    //获取时间
+    public Date getDate(){
+        Date date = new Date();
+        date.setTime(System.currentTimeMillis());
+        System.out.println(date);
+        return date;
+    }
     // public java.io.File getFile(){
     //     java.io.File file =new java.io.File("C:\\Users\\32692\\Desktop\\路线.txt");
     //     System.out.println();
@@ -87,8 +87,9 @@ public class FileMapperTest {
     //     SqlSession session = getSession();
     //     FileMapper mapper = session.getMapper(FileMapper.class);
     //     File File = new File();
-    //     File.setFileId(5);
+    //     File =mapper.findFileById(4);
     //
+    //     System.out.println(File);
     //     File.setFileName("测试部门");
     //     mapper.updateFile(File);
     //     session.commit();

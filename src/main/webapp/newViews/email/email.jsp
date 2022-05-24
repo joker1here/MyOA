@@ -15,8 +15,18 @@
     <link href="../../css/style.css" rel="stylesheet">
     <!--<!-bootstrap图标库&ndash;&gt;-->
     <link rel="stylesheet" href="../../css/bootstrap-icons.css">
+    <script src="../../js/jquery-3.6.0.js"></script>
+    <script>
+        //TODO
+        function Message() {
+
+        }
+
+        window.onLoad=Message();
+    </script>
 </head>
 <body>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
@@ -27,7 +37,9 @@
                         <div class="mail-list mt-4">
                             <a href="${pageContext.request.contextPath}/file/main" class="list-group-item border-0 text-primary p-r-0">
                                 <i class="fa fa-inbox font-18 align-middle mr-2"></i> <b>收件箱</b>
-                                <%--<span class="badge badge-primary badge-sm float-right m-t-5">198</span> --%>
+                                <c:if test="${countFileNoRead>0}">
+                                    <span class="badge badge-primary badge-sm float-right m-t-5">${countFileNoRead}</span>
+                                </c:if>
                             </a>
                             <a href="${pageContext.request.contextPath}/file/fileListTo" class="list-group-item border-0 text-primary p-r-0">
                                 <i class="fa fa-paper-plane font-18 align-middle mr-2"></i>已发送
@@ -64,7 +76,11 @@
                                         <div class="email-checkbox">
                                             <input type="checkbox" id="chk${File.fileId}">
                                             <label class="toggle" for="chk${File.fileId}"></label>
-                                        </div><span class="star-toggle ti-star"></span>
+                                        </div>
+                                        <c:if test="${File.fileRead==1}">
+                                            <span class="star-toggle ti-star" ></span>
+                                        </c:if>
+
                                     </div>
                                     <div class="col-mail col-mail-2">
                                         <div class="subject">${File.fileTitle}</div>
@@ -81,7 +97,7 @@
                         <!-- panel -->
                         <div class="row">
                             <div class="col-7">
-                                <div class="text-left">1 - 20 of 568</div>
+                                <div class="text-left">1 - 20 of ${fileList.size()}</div>
                             </div>
                             <div class="col-5">
                                 <div class="btn-group float-right">

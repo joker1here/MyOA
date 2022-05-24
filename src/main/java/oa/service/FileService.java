@@ -62,4 +62,8 @@ public class FileService {
         List<File> fileList = fileMapper.findAllSentByEmployeeId(employeeId);
         return AutoAddEmployee(fileList);
     }
+
+    public void updateFile(File file) {
+        fileMapper.updateFile(file);
+    }
 }

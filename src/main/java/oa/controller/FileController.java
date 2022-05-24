@@ -36,8 +36,11 @@ public class FileController {
     public ModelAndView main(HttpSession session){
         ModelAndView modelAndView = new ModelAndView();
         Employee employee = (Employee) session.getAttribute("employee");
+        int countFileNoRead = fileService.CountFileNoRead(employee.getEmployeeId());
+        modelAndView.addObject("countFileNoRead", countFileNoRead);
         List<oa.pojo.File> fileList = fileService.findAllReceiveFileByEmployeeId(employee.getEmployeeId());
         modelAndView.addObject("fileList", fileList);
+
         modelAndView.setViewName("/email/email.jsp");
         return modelAndView;
     }
@@ -45,6 +48,8 @@ public class FileController {
     public ModelAndView fileListTo(HttpSession session){
         ModelAndView modelAndView = new ModelAndView();
         Employee employee = (Employee) session.getAttribute("employee");
+        int countFileNoRead = fileService.CountFileNoRead(employee.getEmployeeId());
+        modelAndView.addObject("countFileNoRead", countFileNoRead);
         List<oa.pojo.File> fileList = fileService.findAllSentByEmployeeId(employee.getEmployeeId());
         modelAndView.addObject("fileList", fileList);
         modelAndView.setViewName("/email/email.jsp");
@@ -54,14 +59,29 @@ public class FileController {
     public ModelAndView compose(HttpSession session){
         ModelAndView modelAndView = new ModelAndView();
         Employee employee = (Employee) session.getAttribute("employee");
-
+        int countFileNoRead = fileService.CountFileNoRead(employee.getEmployeeId());
+        modelAndView.addObject("countFileNoRead", countFileNoRead);
         modelAndView.setViewName("/email/email_compose.jsp");
         return modelAndView;
     }
     @RequestMapping("/read")
-    public ModelAndView read(int fileId){
+    public ModelAndView read(HttpSession session,int fileId){
         ModelAndView modelAndView = new ModelAndView();
+        Employee employee = (Employee) session.getAttribute("employee");
         oa.pojo.File file = fileService.findFileById(fileId);
+        file.setFileRead(1);
+        System.out.println(file);
+        try{
+            fileService.updateFile(file);
+            System.out.println(file);
+            System.out.println("更新成功");
+        }catch (Exception e){
+            System.out.println("错误");
+            modelAndView.addObject("Message", "数据库错误");
+        }
+
+        int countFileNoRead = fileService.CountFileNoRead(employee.getEmployeeId());
+        modelAndView.addObject("countFileNoRead", countFileNoRead);
         modelAndView.addObject("file", file);
         modelAndView.setViewName("/email/email_read.jsp");
         return modelAndView;
@@ -70,6 +90,8 @@ public class FileController {
     public ModelAndView add(HttpSession session,String fileToName,String fileText,String fileTitle,@RequestBody(required = false) MultipartFile file)  {
         ModelAndView modelAndView = new ModelAndView();
         Employee employee = (Employee) session.getAttribute("employee");
+        int countFileNoRead = fileService.CountFileNoRead(employee.getEmployeeId());
+        modelAndView.addObject("countFileNoRead", countFileNoRead);
         Employee ToEmployee = employeeService.findEmployeeByName(fileToName);
         oa.pojo.File newFile = new oa.pojo.File();
         if (ToEmployee==null){

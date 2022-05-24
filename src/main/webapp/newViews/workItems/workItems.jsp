@@ -48,7 +48,14 @@
                                     <td><fmt:formatDate value="${Work.workTime}" pattern="yyyy-MM-dd HH:mm"/></td>
                                     <td><span class="label gradient-1 btn-rounded">70%</span>
                                     </td>
-                                    <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="汇报进度"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                                    <td>
+                                        <span>
+                                            <a href="#" data-toggle="tooltip" data-placement="top" title="汇报进度">
+                                                <i class="fa fa-pencil color-muted m-r-5"></i>
+                                            </a>
+                                            <a href="#" data-toggle="tooltip" data-placement="top" title="Close">
+                                                <i class="fa fa-close color-danger"></i>
+                                            </a></span>
                                     </td>
                                 </tr>
                             </c:forEach>

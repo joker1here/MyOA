@@ -21,23 +21,23 @@ public interface FileMapper {
 
     @Update("update File set " +
             "fileName=#{fileName},fileTitle=#{fileTitle},fileForm=#{fileForm},fileTime=#{fileTime}" +
-            ",fileText=#{fileText},FileTo=#{FileTo},employeeId=#{employeeId},fileRead=#{fileRead}" +
-            "where FileId=#{FileId}")
+            ",fileText=#{fileText},FileTo=#{FileTo},employeeId=#{employeeId},fileRead=#{fileRead} " +
+            "where FileId=#{fileId}")
     void updateFile(File File);
 
     @Delete("DELETE FROM File WHERE FileId = #{id}")
     void deleteFileById(int id);
 
     //计数未读邮件
-    @Select("SELECT COUNT(1) FROM file WHERE FileRead=0 AND EmployeeID=#{employeeId}")
+    @Select("SELECT COUNT(1) FROM file WHERE FileRead=0 AND FileTO=#{employeeId}")
     int CountFileNoRead(int employeeId);
 
     //返回已读文件列表
-    @Select("SELECT * FROM file WHERE FileRead=1 AND EmployeeID=#{employeeId}")
+    @Select("SELECT * FROM file WHERE FileRead=1 AND FileTO=#{employeeId}")
     List<File> ShowReceiveFileRead(int employeeId);
 
     //返回未读邮件列表
-    @Select("SELECT * FROM file WHERE FileRead=0 AND EmployeeID=#{employeeId}")
+    @Select("SELECT * FROM file WHERE FileRead=0 AND FileTO=#{employeeId}")
     List<File> ShowReceiveFileNoRead(int employeeId);
 
     //返回收件箱

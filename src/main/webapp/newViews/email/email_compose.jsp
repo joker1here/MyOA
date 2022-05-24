@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +27,9 @@
                         <div class="mail-list mt-4">
                             <a href="${pageContext.request.contextPath}/file/main" class="list-group-item border-0 text-primary p-r-0">
                                 <i class="fa fa-inbox font-18 align-middle mr-2"></i> <b>收件箱</b>
-                                <%--<span class="badge badge-primary badge-sm float-right m-t-5">198</span> --%>
+                                <c:if test="${countFileNoRead>0}">
+                                    <span class="badge badge-primary badge-sm float-right m-t-5">${countFileNoRead}</span>
+                                </c:if>
                             </a>
                             <a href="${pageContext.request.contextPath}/file/fileListTo" class="list-group-item border-0 text-primary p-r-0">
                                 <i class="fa fa-paper-plane font-18 align-middle mr-2"></i>已发送
@@ -123,6 +126,9 @@
         //alert(message);
         if(message !=  null && message.trim() !== ""){
             alert(message);
+            //return;
+            //$("#number").css("display","none")
+            $("#number").text(1)
         }
     }
     window.onLoad=Message();
