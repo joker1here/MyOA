@@ -4,7 +4,8 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
-  <title>滑动切换的注册登录界面</title>
+  <title>OA登录界面</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon.png">
   <link rel="stylesheet" href="../../css/login.css">
   <script src="../../js/jquery-3.6.0.js"></script>
 </head>

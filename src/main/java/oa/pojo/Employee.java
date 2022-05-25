@@ -14,7 +14,9 @@ public class Employee {
     private int sex;
     private int userLevel;
 
+    private int deptId;
     private Dept dept;
+    private int jobId;
     private Job job;
 
     public int getEmployeeId() {
@@ -97,12 +99,28 @@ public class Employee {
         this.userLevel = userLevel;
     }
 
+    public int getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(int deptId) {
+        this.deptId = deptId;
+    }
+
     public Dept getDept() {
         return dept;
     }
 
     public void setDept(Dept dept) {
         this.dept = dept;
+    }
+
+    public int getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(int jobId) {
+        this.jobId = jobId;
     }
 
     public Job getJob() {
@@ -126,7 +144,9 @@ public class Employee {
                 ", photo='" + photo + '\'' +
                 ", sex=" + sex +
                 ", userLevel=" + userLevel +
+                ", deptId=" + deptId +
                 ", dept=" + dept +
+                ", jobId=" + jobId +
                 ", job=" + job +
                 '}';
     }

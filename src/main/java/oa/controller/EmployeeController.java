@@ -26,6 +26,10 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private FileService fileService;
+    @Autowired
+    private WorkService workService;
     @RequestMapping(value = "/login",produces = "text/html;charset=UTF-8")
     public ModelAndView login(@RequestParam("username") String employeeName, String password, HttpSession session){
         System.out.println("名字"+employeeName+"密码"+password);
@@ -35,6 +39,11 @@ public class EmployeeController {
             session.setAttribute("employee",employee);
             //用户
             modelAndView.addObject("employee", employee);
+            //未读邮件数量
+            int countFileNoRead = fileService.CountFileNoRead(employee.getEmployeeId());
+            modelAndView.addObject("countFileNoRead", countFileNoRead);
+            int countWorkNoFinish = workService.CountWorkNoFinish(employee.getEmployeeId());
+            modelAndView.addObject("countWorkNoFinish", countWorkNoFinish);
             modelAndView.setViewName("/main.jsp");
         }
         else {

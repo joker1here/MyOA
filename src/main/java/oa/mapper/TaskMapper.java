@@ -9,21 +9,21 @@ import org.apache.ibatis.annotations.Update;
 import java.util.List;
 
 public interface TaskMapper {
-    @Select("SELECT * FROM Task")
+    @Select("SELECT * FROM task")
     List<Task> findAllTask();
 
-    @Select("SELECT * FROM Task WHERE TaskId = #{id}")
+    @Select("SELECT * FROM task WHERE TaskId = #{id}")
     Task findTaskById(int id);
 
-    @Insert("insert into Task VALUES" +
+    @Insert("insert into task VALUES" +
             "(#{taskId},#{taskInfo},#{taskName},#{employeeId},#{finishTime})")
     void saveTask(Task Task);
 
-    @Update("update Task set taskInfo=#{taskInfo},taskName=#{taskName}," +
+    @Update("update task set taskInfo=#{taskInfo},taskName=#{taskName}," +
             "employeeId=#{employeeId},finishTime=#{finishTime} " +
             "where TaskId=#{taskId}")
     void updateTask(Task Task);
 
-    @Delete("DELETE FROM Task WHERE TaskId = #{id}")
+    @Delete("DELETE FROM task WHERE TaskId = #{id}")
     void deleteTaskById(int id);
 }

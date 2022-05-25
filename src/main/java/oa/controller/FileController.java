@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class FileController {
 
     private String FilePath="D:\\Upload\\";
 
+    //收件箱
     @RequestMapping("/main")
     public ModelAndView main(HttpSession session){
         ModelAndView modelAndView = new ModelAndView();
@@ -44,6 +46,7 @@ public class FileController {
         modelAndView.setViewName("/email/email.jsp");
         return modelAndView;
     }
+    //发件箱
     @RequestMapping("/fileListTo")
     public ModelAndView fileListTo(HttpSession session){
         ModelAndView modelAndView = new ModelAndView();
@@ -55,6 +58,7 @@ public class FileController {
         modelAndView.setViewName("/email/email.jsp");
         return modelAndView;
     }
+    //添加界面
     @RequestMapping("/compose")
     public ModelAndView compose(HttpSession session){
         ModelAndView modelAndView = new ModelAndView();
@@ -64,13 +68,14 @@ public class FileController {
         modelAndView.setViewName("/email/email_compose.jsp");
         return modelAndView;
     }
+    //阅读界面
     @RequestMapping("/read")
     public ModelAndView read(HttpSession session,int fileId){
         ModelAndView modelAndView = new ModelAndView();
         Employee employee = (Employee) session.getAttribute("employee");
         oa.pojo.File file = fileService.findFileById(fileId);
         file.setFileRead(1);
-        System.out.println(file);
+        //System.out.println(file);
         try{
             fileService.updateFile(file);
             System.out.println(file);
@@ -86,6 +91,55 @@ public class FileController {
         modelAndView.setViewName("/email/email_read.jsp");
         return modelAndView;
     }
+    //设为未读
+    @RequestMapping("/noRead")
+    public ModelAndView noRead(HttpSession session,String check){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("Message", "操作成功");
+        Employee employee = (Employee) session.getAttribute("employee");
+        String[] list = check.split(",");
+        for (String id : list) {
+            oa.pojo.File file = fileService.findFileById(Integer.parseInt(id));
+            file.setFileRead(0);
+            System.out.println(file);
+            try{
+                fileService.updateFile(file);
+                System.out.println(file);
+                System.out.println("更新成功");
+            }catch (Exception e){
+                System.out.println("错误");
+                modelAndView.addObject("Message", "数据库错误");
+            }
+        }
+        int countFileNoRead = fileService.CountFileNoRead(employee.getEmployeeId());
+        modelAndView.addObject("countFileNoRead", countFileNoRead);
+        modelAndView.addObject("fileList", fileService.findAllReceiveFileByEmployeeId(employee.getEmployeeId()));
+        modelAndView.setViewName("/email/email.jsp");
+        return modelAndView;
+    }
+    //删除邮件
+    @RequestMapping("/deleteEmail")
+    public ModelAndView deleteEmail(HttpSession session,String check){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("Message", "操作成功");
+        Employee employee = (Employee) session.getAttribute("employee");
+        String[] list = check.split(",");
+        for (String id : list) {
+            try{
+                fileService.deleteFile(Integer.parseInt(id));
+                System.out.println("删除成功");
+            }catch (Exception e){
+                System.out.println("错误");
+                modelAndView.addObject("Message", "数据库错误");
+            }
+        }
+        int countFileNoRead = fileService.CountFileNoRead(employee.getEmployeeId());
+        modelAndView.addObject("countFileNoRead", countFileNoRead);
+        modelAndView.addObject("fileList", fileService.findAllReceiveFileByEmployeeId(employee.getEmployeeId()));
+        modelAndView.setViewName("/email/email.jsp");
+        return modelAndView;
+    }
+    //发送
     @RequestMapping("/add")
     public ModelAndView add(HttpSession session,String fileToName,String fileText,String fileTitle,@RequestBody(required = false) MultipartFile file)  {
         ModelAndView modelAndView = new ModelAndView();
@@ -151,6 +205,7 @@ public class FileController {
     //     }
     //     return "失败";
     // }
+    //下载
     @RequestMapping("/download")
     public void download(HttpServletRequest request, HttpServletResponse response ,String fileName,String fileForm) throws IOException {
         request.setCharacterEncoding("UTF-8");

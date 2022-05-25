@@ -66,4 +66,8 @@ public class FileService {
     public void updateFile(File file) {
         fileMapper.updateFile(file);
     }
+
+    public void deleteFile(int fileId) {
+        fileMapper.deleteFileById(fileId);
+    }
 }

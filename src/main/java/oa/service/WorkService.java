@@ -26,4 +26,12 @@ public class WorkService {
     public List<Work> ShowWork(int employeeId) {
         return workMapper.ShowWork(employeeId);
     }
+
+    public void updateWork(Work work) {
+        workMapper.updateWork(work);
+    }
+
+    public Work findWorkById(int workId) {
+        return workMapper.findWorkById(workId);
+    }
 }

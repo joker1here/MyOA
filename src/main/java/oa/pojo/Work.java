@@ -8,7 +8,7 @@ public class Work {
     private int employeeId;
     private int workTo;
     private String workText;
-    private int workFinish;
+    private float workFinish;
 
     public Date getWorkTime() {
         return workTime;
@@ -50,11 +50,11 @@ public class Work {
         this.workText = workText;
     }
 
-    public int getWorkFinish() {
+    public float getWorkFinish() {
         return workFinish;
     }
 
-    public void setWorkFinish(int workFinish) {
+    public void setWorkFinish(float workFinish) {
         this.workFinish = workFinish;
     }
 

@@ -16,17 +16,10 @@
     <!--<!-bootstrap图标库&ndash;&gt;-->
     <link rel="stylesheet" href="../../css/bootstrap-icons.css">
     <script src="../../js/jquery-3.6.0.js"></script>
-    <script>
-        //TODO
-        function Message() {
-
-        }
-
-        window.onLoad=Message();
-    </script>
 </head>
 <body>
-
+<%--TODO--%>
+<input id="Message" type="hidden" value="${Message}">
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
@@ -61,9 +54,9 @@
                                 <button aria-expanded="false" data-toggle="dropdown" class="btn btn-dark dropdown-toggle" type="button">操作 <span class="caret m-l-5"></span>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a href="javascript: void(0);" class="dropdown-item">标为未读</a>
+                                    <a href="javascript: NoRead(0);" class="dropdown-item">标为未读</a>
                                     <%--<a href="javascript: void(0);"class="dropdown-item">添加为重要</a>--%>
-                                    <a href="javascript: void(0);" class="dropdown-item">删除</a>
+                                    <a href="javascript: DeleteEmail(0);" class="dropdown-item">删除</a>
                                 </div>
                             </div>
                         </div>
@@ -74,8 +67,8 @@
                                 <a href="${pageContext.request.contextPath}/file/read?fileId=${File.fileId}">
                                     <div class="col-mail col-mail-1">
                                         <div class="email-checkbox">
-                                            <input type="checkbox" id="chk${File.fileId}">
-                                            <label class="toggle" for="chk${File.fileId}"></label>
+                                            <input type="checkbox" id="${File.fileId}" name="checkbox" value="${File.fileId}">
+                                            <label class="toggle" for="${File.fileId}"></label>
                                         </div>
                                         <c:if test="${File.fileRead==1}">
                                             <span class="star-toggle ti-star" ></span>
@@ -116,7 +109,52 @@
 </div>
 <!-- #/ container -->
 <!--Content body end-->
+<script>
+    // $('input:checkbox:checked').each(function(){
+    //     id = $('input[type=checkbox]:checked').closest('tr').find('td:eq(2)').map(function(){return this.innerHTML}).get().join();
+    //     school = $('input[type=checkbox]:checked').closest('tr').find('td:eq(6)').map(function(){return this.innerHTML}).get().join();
+    // });
+    function NoRead() {
+        var array = $("input[name=checkbox]:checked");
+        if(array.length==0){
+            window.alert("请选择记录");
+        }else{
+            var str = "";
+            for(var i=0;i<array.length;i++){
+                str += $(array[i]).val();
+                if(i<array.length-1){
+                    str += ",";
+                }
+            }
+            window.location.href='${pageContext.request.contextPath}/file/noRead?check='+str;
+        }
+    }
+    function DeleteEmail() {
+        var array = $("input[name=checkbox]:checked");
+        if(array.length==0){
+            window.alert("请选择记录");
+        }else{
+            var str = "";
+            for(var i=0;i<array.length;i++){
+                str += $(array[i]).val();
+                if(i<array.length-1){
+                    str += ",";
+                }
+            }
+            window.location.href='${pageContext.request.contextPath}/file/deleteEmail?check='+str;
+        }
+    }
 
+    //TODO
+    function Message() {
+        let message=$("#Message").val();
+        //alert(message);
+        if(message !=  null && message.trim() !== ""){
+            alert(message);
+        }
+    }
+    window.onLoad=Message();
+</script>
 <!--Scripts-->
 <script src="../../plugins/common/common.min.js"></script>
 <script src="../../js/custom.min.js"></script>

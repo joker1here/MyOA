@@ -10,20 +10,20 @@ import java.util.List;
 
 
 public interface DeptMapper {
-    @Select("SELECT * FROM Dept")
+    @Select("SELECT * FROM dept")
     List<Dept> findAllDept();
 
-    @Select("SELECT * FROM Dept WHERE deptId = #{id}")
+    @Select("SELECT * FROM dept WHERE deptId = #{id}")
     Dept findDeptById(int id);
 
-    @Insert("insert into Dept VALUES" +
+    @Insert("insert into dept VALUES" +
             "(#{deptId},#{deptIntroduce},#{deptName})")
     void saveDept(Dept dept);
 
-    @Update("update Dept set deptIntroduce=#{deptIntroduce},deptName=#{deptName} " +
+    @Update("update dept set deptIntroduce=#{deptIntroduce},deptName=#{deptName} " +
             "where deptId=#{deptId}")
     void updateDept(Dept dept);
 
-    @Delete("DELETE FROM Dept WHERE deptId = #{id}")
+    @Delete("DELETE FROM dept WHERE deptId = #{id}")
     void deleteDeptById(int id);
 }

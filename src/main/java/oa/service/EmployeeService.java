@@ -3,10 +3,8 @@ package oa.service;
 import oa.mapper.DeptMapper;
 import oa.mapper.EmployeeMapper;
 import oa.mapper.JobMapper;
-import oa.mapper.RelationMapper;
 import oa.pojo.Employee;
 import oa.pojo.Job;
-import oa.pojo.Relation;
 import oa.util.SqlSessionUtil;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +16,7 @@ public class EmployeeService {
     private EmployeeMapper employeeMapper= (EmployeeMapper) SqlSessionUtil.getSession(EmployeeMapper.class);
     private DeptMapper deptMapper= (DeptMapper) SqlSessionUtil.getSession(DeptMapper.class);
     private JobMapper jobMapper= (JobMapper) SqlSessionUtil.getSession(JobMapper.class);
-    private RelationMapper relationMapper= (RelationMapper) SqlSessionUtil.getSession(RelationMapper.class);
+
 
     public static void main(String[] args) {
         System.out.println(new EmployeeService().employeeMapper.findAllEmployee());
@@ -28,11 +26,11 @@ public class EmployeeService {
         Employee employee = employeeMapper.findEmployeeByNameAndPwd(employeeName, password);
         System.out.println(employee);
         if (employee!=null){
-            int id = employee.getEmployeeId();
-            Relation relation = relationMapper.findRelationById(id);
-            if (relation!=null) {
-                employee.setDept(deptMapper.findDeptById(relation.getDeptId()));
-                employee.setJob(jobMapper.findJobById(relation.getJobId()));
+            if (employee.getDeptId()!=0) {
+                employee.setDept(deptMapper.findDeptById(employee.getDeptId()));
+            }
+            if (employee.getJobId()!=0){
+                employee.setJob(jobMapper.findJobById(employee.getJobId()));
             }
             //TODO
 
@@ -58,6 +56,24 @@ public class EmployeeService {
     }
 
     public Employee findEmployeeByName(String Name) {
-        return employeeMapper.findEmployeeByName(Name);
+        Employee employee= employeeMapper.findEmployeeByName(Name);
+        if (employee.getDeptId()!=0) {
+            employee.setDept(deptMapper.findDeptById(employee.getDeptId()));
+        }
+        if (employee.getJobId()!=0){
+            employee.setJob(jobMapper.findJobById(employee.getJobId()));
+        }
+        return employee;
+    }
+
+    public Employee findEmployeeById(int attendanceEmployee) {
+        Employee employee = employeeMapper.findEmployeeById(attendanceEmployee);
+        if (employee.getDeptId()!=0) {
+            employee.setDept(deptMapper.findDeptById(employee.getDeptId()));
+        }
+        if (employee.getJobId()!=0){
+            employee.setJob(jobMapper.findJobById(employee.getJobId()));
+        }
+        return employee;
     }
 }

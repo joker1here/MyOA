@@ -9,21 +9,21 @@ import org.apache.ibatis.annotations.Update;
 import java.util.List;
 
 public interface NoticeMapper {
-    @Select("SELECT * FROM Notice ORDER BY NoticeTime DESC")
+    @Select("SELECT * FROM notice ORDER BY NoticeTime DESC")
     List<Notice> findAllNotice();
 
-    @Select("SELECT * FROM Notice WHERE NoticeId = #{id}")
+    @Select("SELECT * FROM notice WHERE NoticeId = #{id}")
     Notice findNoticeById(int id);
 
-    @Insert("insert into Notice VALUES " +
+    @Insert("insert into notice VALUES " +
             "(#{noticeId},#{noticeName},#{noticeInfo},#{noticeTime},#{employeeId})")
     void saveNotice(Notice Notice);
 
-    @Update("update Notice set noticeName=#{noticeName},noticeInfo=#{noticeInfo}," +
+    @Update("update notice set noticeName=#{noticeName},noticeInfo=#{noticeInfo}," +
             "noticeTime=#{noticeTime},employeeId=#{employeeId} " +
             "where noticeId=#{noticeId}")
     void updateNotice(Notice Notice);
 
-    @Delete("DELETE FROM Notice WHERE NoticeId = #{id}")
+    @Delete("DELETE FROM notice WHERE NoticeId = #{id}")
     void deleteNoticeById(int id);
 }

@@ -9,23 +9,23 @@ import org.apache.ibatis.annotations.Update;
 import java.util.List;
 
 public interface FileMapper {
-    @Select("SELECT * FROM File")
+    @Select("SELECT * FROM file")
     List<File> findAllFile();
 
-    @Select("SELECT * FROM File WHERE FileId = #{id}")
+    @Select("SELECT * FROM file WHERE FileId = #{id}")
     File findFileById(int id);
 
-    @Insert("insert into File VALUES" +
+    @Insert("insert into file VALUES" +
             "(#{fileId},#{fileTitle},#{fileName},#{fileForm},#{fileTime},#{fileText},#{FileTo},#{employeeId},#{fileRead})")
     void saveFile(File File);
 
-    @Update("update File set " +
+    @Update("update file set " +
             "fileName=#{fileName},fileTitle=#{fileTitle},fileForm=#{fileForm},fileTime=#{fileTime}" +
             ",fileText=#{fileText},FileTo=#{FileTo},employeeId=#{employeeId},fileRead=#{fileRead} " +
             "where FileId=#{fileId}")
     void updateFile(File File);
 
-    @Delete("DELETE FROM File WHERE FileId = #{id}")
+    @Delete("DELETE FROM file WHERE FileId = #{id}")
     void deleteFileById(int id);
 
     //计数未读邮件

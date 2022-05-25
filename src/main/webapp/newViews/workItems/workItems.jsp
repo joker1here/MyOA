@@ -18,6 +18,8 @@
     <link href="../../plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body>
+<%--TODO--%>
+<input id="Message" type="hidden" value="${Message}">
 <div class="row">
     <div class="col-lg-6">
         <div class="card">
@@ -41,21 +43,28 @@
                                     <td>${Work.workText}</td>
                                     <td>
                                         <div class="progress" style="height: 10px">
-                                            <div class="progress-bar gradient-1" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
+                                            <div class="progress-bar gradient-<fmt:formatNumber value="${Work.workFinish/40+1}" maxFractionDigits="0"/>" style="width: ${Work.workFinish}%;" role="progressbar">
+                                                <span class="sr-only">
+                                                        <fmt:formatNumber value="${Work.workFinish}" maxFractionDigits="2"/>% Complete
+                                                </span>
                                             </div>
                                         </div>
                                     </td>
                                     <td><fmt:formatDate value="${Work.workTime}" pattern="yyyy-MM-dd HH:mm"/></td>
-                                    <td><span class="label gradient-1 btn-rounded">70%</span>
+                                    <td>
+                                        <span class="label gradient-1 btn-rounded">
+                                            <fmt:formatNumber value="${Work.workFinish}" maxFractionDigits="2"/>%
+                                        </span>
                                     </td>
                                     <td>
                                         <span>
-                                            <a href="#" data-toggle="tooltip" data-placement="top" title="汇报进度">
+                                            <a href="javascript:reportWork(${Work.workId});" data-toggle="tooltip" data-placement="top" title="汇报进度">
                                                 <i class="fa fa-pencil color-muted m-r-5"></i>
                                             </a>
-                                            <a href="#" data-toggle="tooltip" data-placement="top" title="Close">
-                                                <i class="fa fa-close color-danger"></i>
-                                            </a></span>
+                                            <%--<a href="#" data-toggle="tooltip" data-placement="top" title="Close">--%>
+                                            <%--    <i class="fa fa-close color-danger"></i>--%>
+                                            <%--</a>--%>
+                                        </span>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -69,6 +78,24 @@
 <!--**********************************
 Scripts
 ***********************************-->
+<script>
+    function reportWork(workId) {
+        var str = prompt("请输入0-100表示你的进度");
+        if (str==null) return;
+        if (str>=0&&str<=100){
+            window.location.href='${pageContext.request.contextPath}/work/updateFinish?finish='+str+"&workId="+workId;
+        }else alert("输入数据出错！")
+    }
+    //TODO
+    function Message() {
+        let message=$("#Message").val();
+        //alert(message);
+        if(message !=  null && message.trim() !== ""){
+            alert(message);
+        }
+    }
+    window.onLoad=Message();
+</script>
 <script src="../../plugins/common/common.min.js"></script>
 <script src="../../js/custom.min.js"></script>
 <script src="../../js/settings.js"></script>
@@ -78,5 +105,6 @@ Scripts
 <script src="../../plugins/tables/js/jquery.dataTables.min.js"></script>
 <script src="../../plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+<script src="../../js/jquery-3.6.0.js"></script>
 </body>
 </html>

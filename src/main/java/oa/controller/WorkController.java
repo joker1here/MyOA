@@ -6,6 +6,7 @@ import oa.service.WorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,6 +23,25 @@ public class WorkController {
     public ModelAndView ShowWork(HttpSession session){
         ModelAndView modelAndView = new ModelAndView();
         Employee employee = (Employee) session.getAttribute("employee");
+        List<Work> workList = workService.ShowWork(employee.getEmployeeId());
+        modelAndView.addObject("workList", workList);
+        System.out.println(workList);
+        modelAndView.setViewName("/workItems/workItems.jsp");
+        return modelAndView;
+    }
+    @RequestMapping("/updateFinish")
+    public ModelAndView updateFinish(HttpSession session, @RequestParam(required = false) float finish, int workId){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("Message", "操作成功");
+        Employee employee = (Employee) session.getAttribute("employee");
+        Work work = workService.findWorkById(workId);
+        work.setWorkFinish(finish);
+        try{
+            workService.updateWork(work);
+        }catch (Exception e){
+            modelAndView.addObject("Message", "错误！");
+        }
+
         List<Work> workList = workService.ShowWork(employee.getEmployeeId());
         modelAndView.addObject("workList", workList);
         System.out.println(workList);

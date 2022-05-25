@@ -11,8 +11,9 @@
         <typeAlias type="oa.pojo.File" alias="file"/>
         <typeAlias type="oa.pojo.Job" alias="job"/>
         <typeAlias type="oa.pojo.Notice" alias="notice"/>
-        <typeAlias type="oa.pojo.Relation" alias="relation"/>
+        <typeAlias type="oa.pojo.Work" alias="work"/>
         <typeAlias type="oa.pojo.Task" alias="task"/>
+        <typeAlias type="oa.pojo.Attendance" alias="attendance"/>
     </typeAliases>
     <plugins>
         <plugin interceptor="com.github.pagehelper.PageHelper">
