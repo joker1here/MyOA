@@ -70,7 +70,7 @@
                                             <input type="checkbox" id="${File.fileId}" name="checkbox" value="${File.fileId}">
                                             <label class="toggle" for="${File.fileId}"></label>
                                         </div>
-                                        <c:if test="${File.fileRead==1}">
+                                        <c:if test="${File.fileRead==0}">
                                             <span class="star-toggle ti-star" ></span>
                                         </c:if>
 

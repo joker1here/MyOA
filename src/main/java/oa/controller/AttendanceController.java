@@ -24,4 +24,14 @@ public class AttendanceController {
         modelAndView.setViewName("/attendance/attendance.jsp");
         return modelAndView;
     }
+
+    @RequestMapping("signUp")
+    public ModelAndView signUp(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<Attendance> attendanceList = attendanceService.findAllAttendance();
+        System.out.println(attendanceList);
+        modelAndView.addObject("attendanceList", attendanceList);
+        modelAndView.setViewName("/attendance/attendance.jsp");
+        return modelAndView;
+    }
 }

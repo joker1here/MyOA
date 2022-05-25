@@ -98,8 +98,11 @@ public class FileController {
         modelAndView.addObject("Message", "操作成功");
         Employee employee = (Employee) session.getAttribute("employee");
         String[] list = check.split(",");
+        System.out.println(list);
         for (String id : list) {
+            System.out.println(id);
             oa.pojo.File file = fileService.findFileById(Integer.parseInt(id));
+            System.out.println(id);
             file.setFileRead(0);
             System.out.println(file);
             try{

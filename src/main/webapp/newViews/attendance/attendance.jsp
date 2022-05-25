@@ -1,12 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: 32692
-  Date: 2022/5/21
-  Time: 14:49
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,8 +24,8 @@
         <div class="card">
             <div class="card-body">
                 <div class="general-button">
-                    <button type="button" class="btn mb-1 btn-success" id="toastr-success-top-right">上班打卡</button>
-                    <button type="button" class="btn mb-1 btn-warning" id="toastr-info-top-right" >打卡签退</button>
+                    <button type="button" class="btn mb-1 btn-success" id="toastr-success-top-right" onclick="signUp();">上班打卡</button>
+                    <button type="button" class="btn mb-1 btn-warning" id="toastr-info-top-right" onclick="signBack();">打卡签退</button>
                 </div>
             </div>
         </div>
@@ -77,7 +70,8 @@
                                     <td>${Attendance.employee.employeeName}</td>
                                     <td><fmt:formatDate value="${Attendance.signUpTime}" pattern="yyyy-MM-dd HH:mm"/></td>
                                     <td><fmt:formatDate value="${Attendance.signBackTime}" pattern="yyyy-MM-dd HH:mm"/></td>
-                                    <td><fmt:formatDate value="${Attendance.signBackTime}" pattern="HH:mm"/></td>
+                                    <td><%--@elvariable id="Math" type="java.lang.Math"--%>
+                                    <fmt:formatNumber value="${Math.floor(Attendance.min/60)}" />小时 ${Attendance.min%60}分钟</td>
                                 </tr>
                             </c:forEach>
                         </tbody>
@@ -105,6 +99,16 @@
 <!--**********************************
 Scripts
 ***********************************-->
+<script>
+    function signUp() {
+        $.post(
+            "/attendance/"
+        )
+    }
+    function signBack() {
+
+    }
+</script>
 <script src="../../plugins/common/common.min.js"></script>
 <script src="../../js/custom.min.js"></script>
 <script src="../../js/settings.js"></script>

@@ -8,6 +8,15 @@ public class Attendance {
     private Employee employee;
     private Date SignUpTime;
     private Date SignBackTime;
+    private int min;
+
+    public int getMin() {
+        return min;
+    }
+
+    public void setMin(int min) {
+        this.min = min;
+    }
 
     public int getAttendanceId() {
         return AttendanceId;
@@ -57,6 +66,7 @@ public class Attendance {
                 ", employee=" + employee +
                 ", SignUpTime=" + SignUpTime +
                 ", SignBackTime=" + SignBackTime +
+                ", min=" + min +
                 '}';
     }
 }
