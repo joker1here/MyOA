@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
@@ -50,6 +51,13 @@ public class EmployeeController {
             modelAndView.addObject("Message", "登陆失败，请确认账号和密码！");
             modelAndView.setViewName("/login/login.jsp");
         }
+        return modelAndView;
+    }
+    @RequestMapping(value = "/logout",produces = "text/html;charset=UTF-8")
+    public ModelAndView logout(HttpSession session){
+        ModelAndView modelAndView = new ModelAndView();
+        session.removeAttribute("employee");
+        modelAndView.setViewName("/login/login.jsp");
         return modelAndView;
     }
 

@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,6 +19,8 @@
     <link href="../../plugins/toastr/css/toastr.min.css" rel="stylesheet">
 </head>
 <body>
+<%--TODO--%>
+<input id="Message" type="hidden" value="${Message}">
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -26,6 +28,8 @@
                 <div class="general-button">
                     <button type="button" class="btn mb-1 btn-success" id="toastr-success-top-right" onclick="signUp();">上班打卡</button>
                     <button type="button" class="btn mb-1 btn-warning" id="toastr-info-top-right" onclick="signBack();">打卡签退</button>
+                    <%--<button type="button" class="btn mb-1 btn-success" onclick="signUp();">上班打卡</button>--%>
+                    <%--<button type="button" class="btn mb-1 btn-warning" onclick="signBack();">打卡签退</button>--%>
                 </div>
             </div>
         </div>
@@ -92,22 +96,27 @@
     </div>
 </div>
 <!-- #/ container -->
-<!--**********************************
-    Content body end
-***********************************-->
+<%--Content body end--%>
 
-<!--**********************************
-Scripts
-***********************************-->
+<%--Scripts--%>
 <script>
     function signUp() {
-        $.post(
-            "/attendance/"
-        )
+        console.log("signUp");
+        window.location.href = '${pageContext.request.contextPath}/attendance/signUp';
     }
     function signBack() {
-
+        console.log("signBack");
+        window.location.href = '${pageContext.request.contextPath}/attendance/signBack';
     }
+    function Message() {
+        let message = document.getElementById("Message").value;
+        //let message=$("#Message").val();
+        // console.log("success");
+        if(message !=  null && message.trim() !== ""){
+            alert(message);
+        }
+    }
+    window.onLoad=Message();
 </script>
 <script src="../../plugins/common/common.min.js"></script>
 <script src="../../js/custom.min.js"></script>
@@ -121,5 +130,7 @@ Scripts
 <!-- Toastr -->
 <script src="../../plugins/toastr/js/toastr.min.js"></script>
 <script src="../../plugins/toastr/js/toastr.init.js"></script>
+<%--<script src="../../js/jquery-3.6.0.js"></script>--%>
+
 </body>
 </html>

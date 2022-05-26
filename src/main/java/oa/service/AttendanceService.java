@@ -41,4 +41,32 @@ public class AttendanceService {
         //算上当天
         return Math.abs(Integer.parseInt(String.valueOf((time2 - time1) / 60000L)) + 1);
     }
+
+    public boolean alreadySignUp(int employeeId) {
+        Attendance attendance=attendanceMapper.alreadySignUp(employeeId);
+        return attendance != null;
+        //不为空，表示已经签到
+    }
+
+    public void signUp(int employeeId) {
+        Date date = getDate();
+        Attendance attendance = new Attendance();
+        attendance.setAttendanceEmployee(employeeId);
+        attendance.setSignUpTime(date);
+        attendanceMapper.saveAttendance(attendance);
+    }
+
+    public void signBack(int employeeId) {
+        Date date = getDate();
+        Attendance attendance=attendanceMapper.alreadySignUp(employeeId);
+        attendance.setSignBackTime(date);
+        attendanceMapper.updateAttendance(attendance);
+    }
+    //获取当前时间
+    public Date getDate(){
+        Date date = new Date();
+        date.setTime(System.currentTimeMillis());
+        System.out.println(date);
+        return date;
+    }
 }

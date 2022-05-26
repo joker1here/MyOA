@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Update;
 import java.util.List;
 
 public interface AttendanceMapper {
-    @Select("SELECT * FROM attendance")
+    @Select("SELECT * FROM attendance ORDER BY SignUpTime DESC")
     List<Attendance> findAllAttendance();
 
     @Select("SELECT * FROM attendance WHERE AttendanceId = #{id}")
@@ -25,4 +25,7 @@ public interface AttendanceMapper {
 
     @Delete("DELETE FROM attendance WHERE AttendanceId = #{id}")
     void deleteAttendanceById(int id);
+
+    @Select("SELECT * FROM attendance WHERE AttendanceEmployee=#{employeeId} AND SignBackTime is null AND SignUpTime is not null")
+    Attendance alreadySignUp(int employeeId);
 }
