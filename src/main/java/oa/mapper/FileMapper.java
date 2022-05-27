@@ -45,6 +45,6 @@ public interface FileMapper {
     List<File> findAllReceiveFileByEmployeeId(int employeeId);
 
     //返回发件箱
-    @Select("SELECT * FROM file WHERE EmployeeID =#{employeeId} ORDER BY FileTime DESC")
+    @Select("SELECT * FROM file WHERE EmployeeID =#{employeeId} ORDER BY FileRead ASC, FileTime DESC")
     List<File> findAllSentByEmployeeId(int employeeId);
 }

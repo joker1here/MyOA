@@ -31,7 +31,7 @@ public class FileController {
     @Autowired
     private EmployeeService employeeService;
 
-    private String FilePath="D:\\Upload\\";
+    //private String FilePath=request.getSession().getServletContext().getRealPath("/");
 
     //收件箱
     @RequestMapping("/main")
@@ -144,7 +144,7 @@ public class FileController {
     }
     //发送
     @RequestMapping("/add")
-    public ModelAndView add(HttpSession session,String fileToName,String fileText,String fileTitle,@RequestBody(required = false) MultipartFile file)  {
+    public ModelAndView add(HttpServletRequest request,HttpSession session,String fileToName,String fileText,String fileTitle,@RequestBody(required = false) MultipartFile file)  {
         ModelAndView modelAndView = new ModelAndView();
         Employee employee = (Employee) session.getAttribute("employee");
         int countFileNoRead = fileService.CountFileNoRead(employee.getEmployeeId());
@@ -160,6 +160,8 @@ public class FileController {
         System.out.println(file);
         if (!file.isEmpty()){
             try {
+                //保存路径
+                String FilePath=request.getSession().getServletContext().getRealPath("/");
                 //全名
                 String originalFilename = file.getOriginalFilename();
                 //后缀
@@ -214,6 +216,7 @@ public class FileController {
         request.setCharacterEncoding("UTF-8");
         String fileNAF = fileName + "." + fileForm;
 
+        String FilePath=request.getSession().getServletContext().getRealPath("/");
         System.out.println(FilePath+fileNAF);
         File file = new File(FilePath+fileNAF);
         //创建输入流读文件
