@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: 32692
-  Date: 2022/5/21
-  Time: 14:36
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="zh">
@@ -65,24 +58,24 @@
             </div>
             <div class="header-right">
                 <ul class="clearfix">
-                    <li class="icons dropdown">
-                        <a href="${pageContext.request.contextPath}/file/main" aria-expanded="false" target="ifd">
-                            <i class="mdi mdi-email-outline"></i>
-                            <!--邮箱消息-->
-                            <c:if  test="${countFileNoRead>0}">
-                                <span class="badge gradient-1 badge-pill badge-primary">${countFileNoRead}</span>
-                            </c:if>
-                        </a>
-                    </li>
-                    <li class="icons dropdown">
-                        <a href="${pageContext.request.contextPath}/work/ShowWork" aria-expanded="false" target="ifd">
-                            <i class="mdi mdi-bell-outline"></i>
-                            <!--消息提醒-->
-                            <c:if  test="${countWorkNoFinish>0}">
-                                <span class="badge badge-pill gradient-2 badge-primary">${countWorkNoFinish}</span>
-                            </c:if>
-                        </a>
-                    </li>
+                    <%--<li class="icons dropdown">--%>
+                    <%--    <a href="${pageContext.request.contextPath}/file/main" aria-expanded="false" target="ifd">--%>
+                    <%--        <i class="mdi mdi-email-outline"></i>--%>
+                    <%--        <!--邮箱消息-->--%>
+                    <%--        <c:if  test="${countFileNoRead>0}">--%>
+                    <%--            <span class="badge gradient-1 badge-pill badge-primary">${countFileNoRead}</span>--%>
+                    <%--        </c:if>--%>
+                    <%--    </a>--%>
+                    <%--</li>--%>
+                    <%--<li class="icons dropdown">--%>
+                    <%--    <a href="${pageContext.request.contextPath}/work/ShowWork" aria-expanded="false" target="ifd">--%>
+                    <%--        <i class="mdi mdi-bell-outline"></i>--%>
+                    <%--        <!--消息提醒-->--%>
+                    <%--        <c:if  test="${countWorkNoFinish>0}">--%>
+                    <%--            <span class="badge badge-pill gradient-2 badge-primary">${countWorkNoFinish}</span>--%>
+                    <%--        </c:if>--%>
+                    <%--    </a>--%>
+                    <%--</li>--%>
 
                     <li class="icons dropdown">
                         <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
@@ -116,7 +109,7 @@
         <div class="nk-nav-scroll">
             <ul class="metismenu" id="menu">
                 <li class="mega-menu mega-menu-sm">
-                    <a href="${pageContext.request.contextPath}/newViews/index.jsp" aria-expanded="false" target="ifd">
+                    <a href="${pageContext.request.contextPath}/todo/index" aria-expanded="false" target="ifd">
                         <i class="icon-speedometer menu-icon"></i><span class="nav-text">工作面板</span>
                     </a>
                 </li>
@@ -145,11 +138,13 @@
                         <i class="icon-note menu-icon"></i><span class="nav-text">工作事项</span>
                     </a>
                 </li>
-                <%--<<li class="mega-menu mega-menu-sm">--%>
-                <%--    <a href="schedule.html" aria-expanded="false">--%>
-                <%--        <i class="icon-notebook menu-icon"></i><span class="nav-text">计划表</span>--%>
-                <%--   </a>-->--%>
-                <%--</li>--%>
+                <c:if test="${employee.userLevel>=1}">
+                    <li class="mega-menu mega-menu-sm">
+                        <a href="${pageContext.request.contextPath}/employee/manage" aria-expanded="false" target="ifd">
+                            <i class="icon-notebook menu-icon"></i><span class="nav-text">管理</span>
+                        </a>
+                    </li>
+                </c:if>
             </ul>
         </div>
     </div>
@@ -158,7 +153,7 @@
     <!--Content body start-->
     <div class="content-body">
         <div class="container-fluid">
-            <iframe name="ifd" src="${pageContext.request.contextPath}/newViews/index.jsp" style="margin-top: 10px; overflow: hidden;" width="100%" height="100%" onload="this.height=ifd.document.body.scrollHeight" scrolling="no" frameborder="0"></iframe>
+            <iframe name="ifd" src="${pageContext.request.contextPath}/todo/index" style="margin-top: 10px; overflow: hidden;" width="100%" height="100%" onload="this.height=ifd.document.body.scrollHeight" scrolling="yes" frameborder="0"></iframe>
         </div>
     </div>
     <!--Content body end-->

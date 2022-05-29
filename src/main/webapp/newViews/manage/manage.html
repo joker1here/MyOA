@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon.png">
+    <!-- Custom Stylesheet -->
+    <link href="../../plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body" >
+                    <h4 class="card-title"  style="text-align: center; font-weight: bold">部门管理</h4>
+                    <div class="table-responsive">
+                        <table id="mytable" class="table table-hover">
+                         <thead>
+                            <tr  align="center" valign="center"  class="font-weight: bold">
+                                <th>员工</th>
+                                <th>部门</th>
+                                <th>职位</th>
+                                <th>用户等级</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr align="center" valign="center" class="danger">
+                                <td>刘恒斌</td>
+                                <td>19软件1班</td>
+                                <td>打工仔</td>
+                                <td>1</td>
+                                <td><button name="eitBtn" class="btn btn-primary" data-toggle="modal" data-target="#basicModal">修改</button>
+                                <button name="delBtn" class="btn  btn-danger" onclick="del()">删除</button></td>
+                            </tr>
+                            <tr align="center" valign="center" class="danger">
+                                <td>关恒斌</td>
+                                <td>19软件1班</td>
+                                <td>打工仔</td>
+                                <td>1</td>
+                                <td><button name="eitBtn" class="btn btn-primary" data-toggle="modal" data-target="#basicModal">修改</button>
+                                    <button name="delBtn" class="btn  btn-danger" onclick="del()">删除</button></td>
+                            </tr>
+                            <tr align="center" valign="center" class="danger">
+                                <td>张恒斌</td>
+                                <td>19软件1班</td>
+                                <td>打工仔</td>
+                                <td>1</td>
+                                <td><button name="eitBtn" class="btn btn-primary" data-toggle="modal" data-target="#basicModal">修改</button>
+                                    <button name="delBtn" class="btn  btn-danger" onclick="del()">删除</button></td>
+                            </tr>
+                            <tr align="center" valign="center" class="danger">
+                                <td>梁恒斌</td>
+                                <td>19软件1班</td>
+                                <td>打工仔</td>
+                                <td>1</td>
+                                <td><button name="eitBtn" class="btn btn-primary" data-toggle="modal" data-target="#basicModal">修改</button>
+                                    <button name="delBtn" class="btn  btn-danger" onclick="del()">删除</button></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--修改信息模态框-->
+<div class="modal fade" id="basicModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">修改信息</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                </button><!--关闭-->
+            </div>
+            <div class="modal-body">
+                    <form id="xixi" class="form-valide" action="#" method="post">
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label" for="val-user">员工<span class="text-danger">*</span>
+                            </label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="val-user" name="val-user" placeholder="请输入员工姓名">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label" for="val-department">部门<span class="text-danger">*</span>
+                            </label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="val-department" name="val-department" placeholder="请输入部门名称">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label" for="val-position">职位<span class="text-danger">*</span>
+                            </label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="val-position" name="val-position" placeholder="请输入部门职位.">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label" for="val-level">用户等级<span class="text-danger">*</span>
+                            </label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" id="val-level" name="val-level" placeholder="请输入用户等级">
+                            </div>
+                        </div>
+
+                        <div class="form-group row" >
+                            <div class="col-lg-8" style="text-align: right">
+                                <button type="submit" class="btn btn-primary">提交</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--**********************************
+    Scripts
+***********************************-->
+<script src="../../plugins/common/common.min.js"></script>
+<script src="../../js/custom.min.js"></script>
+<script src="../../js/settings.js"></script>
+<script src="../../js/gleek.js"></script>
+<script src="../../js/styleSwitcher.js"></script>
+
+<script src="../../plugins/tables/js/jquery.dataTables.min.js"></script>
+<script src="../../plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
+<script src="../../plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+<!--删除成功提示-->
+<script>
+    function del(){
+        alert("删除成功");
+    }
+</script>
+<script src="../../plugins/validation/jquery.validate.min.js"></script>
+<!--只定义校验-->
+<script>
+    jQuery(".form-valide").validate({
+        ignore: [],
+        errorClass: "invalid-feedback animated fadeInDown",
+        errorElement: "div",
+        errorPlacement: function(e, a) {
+            jQuery(a).parents(".form-group > div").append(e)
+        },
+        highlight: function(e) {
+            jQuery(e).closest(".form-group").removeClass("is-invalid").addClass("is-invalid")
+        },
+        success: function(e) {
+            jQuery(e).closest(".form-group").removeClass("is-invalid")
+                jQuery(e).remove()
+        },
+        rules: {
+            "val-user": {
+                required: !0,
+                minlength: 3
+            },
+            "val-department": {
+                required: !0,
+                minlength: 3
+            },
+            "val-position": {
+                required: !0,
+                minlength: 3
+            },
+            "val-level": {
+                required: !0,
+                minlength: 3
+            },
+        },
+        messages: {
+            "val-user": {
+                required: "请输入员工姓名",
+                minlength: "请至少输入三个字符"
+            },
+            "val-department": {
+                required: "请输入部门名称",
+                minlength: "请至少输入三个字符"
+            },
+            "val-position": {
+                required: "请输入部门职位",
+                minlength: "请至少输入三个字符"
+            },
+            "val-level": {
+                required: "请输入用户等级",
+                minlength: "请至少输入三个字符"
+            },
+        }
+    });
+</script>
+<!--模态框清数据-->
+<script>
+    $('#basicModal').on('hide.bs.modal', function () {
+        // 踩过的坑555...
+        // $('.modal').modal('hide')
+        // $(this).removeData('bs.modal');
+        // $(this).find('.modal-body').empty();
+        // $('.modal-body').html("")
+        // 找到 modal-body下面的form表单，并且重置
+        $('#xixi').data('bootstrapValidator').resetForm();
+    });
+</script>
+</body>
+</html>

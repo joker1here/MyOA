@@ -14,6 +14,8 @@
         <typeAlias type="oa.pojo.Work" alias="work"/>
         <typeAlias type="oa.pojo.Task" alias="task"/>
         <typeAlias type="oa.pojo.Attendance" alias="attendance"/>
+        <typeAlias type="oa.pojo.Todo" alias="todo"/>
+        <typeAlias type="java.io.InputStream" alias="InputStream"/>
     </typeAliases>
     <plugins>
         <plugin interceptor="com.github.pagehelper.PageHelper">

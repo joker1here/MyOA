@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.support.ModelAndViewContainer;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
@@ -31,6 +32,7 @@ public class EmployeeController {
     private FileService fileService;
     @Autowired
     private WorkService workService;
+
     @RequestMapping(value = "/login",produces = "text/html;charset=UTF-8")
     public ModelAndView login(@RequestParam("username") String employeeName, String password, HttpSession session){
         System.out.println("名字"+employeeName+"密码"+password);
@@ -57,6 +59,40 @@ public class EmployeeController {
     public ModelAndView logout(HttpSession session){
         ModelAndView modelAndView = new ModelAndView();
         session.removeAttribute("employee");
+        modelAndView.setViewName("/login/login.jsp");
+        return modelAndView;
+    }
+    @RequestMapping(value = "/manage",produces = "text/html;charset=UTF-8")
+    public ModelAndView manage(HttpSession session){
+        ModelAndView modelAndView = new ModelAndView();
+        Employee employee = (Employee) session.getAttribute("employee");
+        modelAndView.addObject("employee", employee);
+        //先判断权限
+        if (employee.getUserLevel()==0){
+            modelAndView.addObject("Message","权限不足！");
+            modelAndView.setViewName("/index/index.jsp");
+            return modelAndView;
+        }
+
+        List<Employee> employeeList=employeeService.findAllEmployee();
+        modelAndView.addObject("employeeList", employeeList);
+        modelAndView.setViewName("/manage/manage.jsp");
+        return modelAndView;
+    }
+    @RequestMapping(value = "/photo",produces = "text/html;charset=UTF-8")
+    public ModelAndView photo(HttpSession session,@RequestBody(required = false) MultipartFile file) throws IOException {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("Message", "更新成功");
+        Employee employee = (Employee) session.getAttribute("employee");
+        if (!file.isEmpty()){
+            employee.setPhoto(file.getInputStream());
+            try {
+                employeeService.update(employee);
+            }catch (Exception e){
+                modelAndView.addObject("Message", "数据库更新失败");
+            }
+        }
+
         modelAndView.setViewName("/login/login.jsp");
         return modelAndView;
     }

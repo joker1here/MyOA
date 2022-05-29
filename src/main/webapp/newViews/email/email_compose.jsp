@@ -123,11 +123,8 @@
     //TODO
     function Message() {
         let message=$("#Message").val();
-        //alert(message);
         if(message !=  null && message.trim() !== ""){
             alert(message);
-            //return;
-            //$("#number").css("display","none")
             $("#number").text(1)
         }
     }

@@ -1,5 +1,6 @@
 package oa.pojo;
 
+import java.io.InputStream;
 import java.util.Date;
 
 public class Employee {
@@ -10,7 +11,7 @@ public class Employee {
     private Date birthday;
     private String email;
     private String mobile;
-    private String photo;
+    private InputStream photo;
     private int sex;
     private int userLevel;
 
@@ -75,11 +76,11 @@ public class Employee {
         this.mobile = mobile;
     }
 
-    public String getPhoto() {
+    public InputStream getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(InputStream photo) {
         this.photo = photo;
     }
 
@@ -141,7 +142,7 @@ public class Employee {
                 ", birthday=" + birthday +
                 ", email='" + email + '\'' +
                 ", mobile='" + mobile + '\'' +
-                ", photo='" + photo + '\'' +
+                ", photo=" + photo +
                 ", sex=" + sex +
                 ", userLevel=" + userLevel +
                 ", deptId=" + deptId +

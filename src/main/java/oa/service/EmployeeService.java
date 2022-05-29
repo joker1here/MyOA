@@ -9,6 +9,7 @@ import oa.util.SqlSessionUtil;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @Service
@@ -17,14 +18,8 @@ public class EmployeeService {
     private DeptMapper deptMapper= (DeptMapper) SqlSessionUtil.getSession(DeptMapper.class);
     private JobMapper jobMapper= (JobMapper) SqlSessionUtil.getSession(JobMapper.class);
 
-
-    public static void main(String[] args) {
-        System.out.println(new EmployeeService().employeeMapper.findAllEmployee());
-    }
-
-    public Employee login(String employeeName, String password) {
-        Employee employee = employeeMapper.findEmployeeByNameAndPwd(employeeName, password);
-        System.out.println(employee);
+    //为员工添加部门和职位
+    public Employee DeptAndJob(Employee employee){
         if (employee!=null){
             if (employee.getDeptId()!=0) {
                 employee.setDept(deptMapper.findDeptById(employee.getDeptId()));
@@ -37,6 +32,12 @@ public class EmployeeService {
             return employee;
         }
         return null;
+    }
+
+    public Employee login(String employeeName, String password) {
+        Employee employee = employeeMapper.findEmployeeByNameAndPwd(employeeName, password);
+        System.out.println(employee);
+        return DeptAndJob(employee);
     }
 
     public String register(String employeeName, String password) {
@@ -57,23 +58,23 @@ public class EmployeeService {
 
     public Employee findEmployeeByName(String Name) {
         Employee employee= employeeMapper.findEmployeeByName(Name);
-        if (employee.getDeptId()!=0) {
-            employee.setDept(deptMapper.findDeptById(employee.getDeptId()));
-        }
-        if (employee.getJobId()!=0){
-            employee.setJob(jobMapper.findJobById(employee.getJobId()));
-        }
-        return employee;
+        return DeptAndJob(employee);
     }
 
     public Employee findEmployeeById(int attendanceEmployee) {
         Employee employee = employeeMapper.findEmployeeById(attendanceEmployee);
-        if (employee.getDeptId()!=0) {
-            employee.setDept(deptMapper.findDeptById(employee.getDeptId()));
+        return DeptAndJob(employee);
+    }
+
+    public void update(Employee employee) {
+        employeeMapper.updateEmployee(employee);
+    }
+
+    public List<Employee> findAllEmployee() {
+        List<Employee> employeeList = employeeMapper.findAllEmployee();
+        for (Employee employee : employeeList) {
+            employee = DeptAndJob(employee);
         }
-        if (employee.getJobId()!=0){
-            employee.setJob(jobMapper.findJobById(employee.getJobId()));
-        }
-        return employee;
+        return employeeList;
     }
 }
