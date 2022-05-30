@@ -86,7 +86,7 @@
                             <div class="dropdown-content-body">
                                 <ul>
                                     <li>
-                                        <a href="app-profile.html"><i class="icon-user"></i> <span>个人中心</span></a>
+                                        <a href="${pageContext.request.contextPath}/employee/profile" target="ifd"><i class="icon-user"></i> <span>个人中心</span></a>
                                     </li>
 
                                     <hr class="my-2">
@@ -130,7 +130,7 @@
                 <!--                    </li>-->
                 <li class="mega-menu mega-menu-sm">
                     <a href="${pageContext.request.contextPath}/attendance/attendanceList" aria-expanded="false" target="ifd">
-                        <i class="icon-badge menu-icon"></i><span class="nav-text">考勤管理</span>
+                        <i class="fa fa-calendar"></i><span class="nav-text">考勤管理</span>
                     </a>
                 </li>
                 <li class="mega-menu mega-menu-sm">
@@ -138,7 +138,7 @@
                         <i class="icon-note menu-icon"></i><span class="nav-text">工作事项</span>
                     </a>
                 </li>
-                <c:if test="${employee.userLevel>=1}">
+                <c:if test="${employee.userLevel>=3}">
                     <li class="mega-menu mega-menu-sm">
                         <a href="${pageContext.request.contextPath}/employee/manage" aria-expanded="false" target="ifd">
                             <i class="icon-notebook menu-icon"></i><span class="nav-text">管理</span>

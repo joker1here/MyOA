@@ -132,7 +132,7 @@
 
     // window.alert("用户名：" + une2 + "\n密码：" + upd2 + "\n确认密码：" + upd3);
     employeeRegister(une2,upd2);
-  })
+  });
 
   //登录按钮事件
   //用户名以字母开头，允许5-16之间，只能包含字母、数字、下划线组成
@@ -197,8 +197,8 @@
   }
   //TODO
   function Message() {
-    let message=$("#Message").val();
-    //alert(message);
+    let message=document.getElementById("Message").value;
+    console.log(message);
     if(message !=  null && message.trim() !== ""){
       alert(message);
     }

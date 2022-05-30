@@ -6,6 +6,7 @@ import oa.service.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -18,57 +19,46 @@ public class AttendanceController {
     @Autowired
     private AttendanceService attendanceService;
     @RequestMapping("attendanceList")
-    public ModelAndView attendanceList(){
+    public ModelAndView attendanceList(@RequestParam(required = false)String Message){
         ModelAndView modelAndView = new ModelAndView();
         List<Attendance> attendanceList = attendanceService.findAllAttendance();
         System.out.println(attendanceList);
         modelAndView.addObject("attendanceList", attendanceList);
+        modelAndView.addObject("Message", Message);
         modelAndView.setViewName("/attendance/attendance.jsp");
         return modelAndView;
     }
 
     @RequestMapping("signUp")
     public ModelAndView signUp(HttpSession session){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("Message", "签到成功！");
+        String Message="Successful Sign In!";
         Employee employee= (Employee) session.getAttribute("employee");
         if (attendanceService.alreadySignUp(employee.getEmployeeId())){
-            modelAndView.addObject("Message", "已经签到了，请签退！");
+            Message= "Already Signed In!";
         }
         else {
             try {
                 attendanceService.signUp(employee.getEmployeeId());
-                //modelAndView.addObject("Message", "签到成功");
             }catch (Exception e){
-                modelAndView.addObject("Message", "系统错误！");
+                Message= "DataBase Wrong!";
             }
         }
-        List<Attendance> attendanceList = attendanceService.findAllAttendance();
-        //System.out.println(attendanceList);
-        modelAndView.addObject("attendanceList", attendanceList);
-        modelAndView.setViewName("/attendance/attendance.jsp");
-        return modelAndView;
+        return new ModelAndView("redirect:/attendance/attendanceList?Message="+Message);
     }
     @RequestMapping("signBack")
     public ModelAndView signBack(HttpSession session){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("Message", "签退成功！");
+        String Message="Successful Sign Back!";
         Employee employee= (Employee) session.getAttribute("employee");
         if (!attendanceService.alreadySignUp(employee.getEmployeeId())){
-            modelAndView.addObject("Message", "请先签到！");
+           Message="Please Signed In！";
         }
         else {
             try {
                 attendanceService.signBack(employee.getEmployeeId());
-                //modelAndView.addObject("Message", "签退成功");
             }catch (Exception e){
-                modelAndView.addObject("Message", "系统错误！");
+                Message="DataBase Wrong!";
             }
         }
-        List<Attendance> attendanceList = attendanceService.findAllAttendance();
-        //System.out.println(attendanceList);
-        modelAndView.addObject("attendanceList", attendanceList);
-        modelAndView.setViewName("/attendance/attendance.jsp");
-        return modelAndView;
+        return new ModelAndView("redirect:/attendance/attendanceList?Message="+Message);
     }
 }

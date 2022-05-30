@@ -26,4 +26,7 @@ public interface NoticeMapper {
 
     @Delete("DELETE FROM notice WHERE NoticeId = #{id}")
     void deleteNoticeById(int id);
+
+    @Select("SELECT COUNT(1) FROM notice")
+    int countNotice();
 }

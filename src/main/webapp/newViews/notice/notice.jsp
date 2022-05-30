@@ -31,6 +31,9 @@
                             <div class="card-header">
                                 <h5 class="mb-0" data-toggle="collapse" data-target="#collapse${Notice.noticeId}" aria-expanded="true" aria-controls="collapseOne">
                                     <i class="fa" aria-hidden="true"></i> 标题：${Notice.noticeName}
+                                    <c:if test="${employee.userLevel>=3}">
+                                        <a href='${pageContext.request.contextPath}/notice/delete?noticeId=${Notice.noticeId}' class="ti-trash"></a>
+                                    </c:if>
                                 </h5>
                             </div>
                             <div id="collapse${Notice.noticeId}" class="collapse show" data-parent="#accordion-one">
@@ -43,7 +46,29 @@
             </div>
         </div>
     </div>
+    <c:if test="${employee.userLevel>=3}">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">发布通知</h4>
+                    <div class="compose-content mt-5">
+                        <form action="/notice/add" method="post">
+                            <div class="form-group">
+                                <input type="text" name="title" class="form-control bg-transparent" placeholder=" 标题">
+                            </div>
+                            <div class="form-group">
+                                <textarea name="text" class="textarea_editor form-control bg-light" rows="15" placeholder="输入文本......"></textarea>
+                            </div>
+                            <div class="text-left m-t-15">
+                                <button class="btn btn-primary m-b-30 m-t-15 f-s-14 p-l-20 p-r-20 m-r-10" type="submit"><i class="fa fa-paper-plane m-r-5"></i> 发布</button>
+                            </div>
+                        </form>
+                    </div>
 
+                </div>
+            </div>
+        </div>
+    </c:if>
 </div>
 <!-- #/ container -->
 <!--    Content body end-->

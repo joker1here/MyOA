@@ -26,4 +26,7 @@ public interface DeptMapper {
 
     @Delete("DELETE FROM dept WHERE deptId = #{id}")
     void deleteDeptById(int id);
+
+    @Select("SELECT * FROM dept WHERE deptName = #{deptName}")
+    Dept findDeptByDeptName(String deptName);
 }

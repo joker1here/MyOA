@@ -25,4 +25,7 @@ public interface JobMapper {
 
     @Delete("DELETE FROM job WHERE JobId = #{id}")
     void deleteJobById(int id);
+
+    @Select("SELECT * FROM job WHERE jobName = #{jobName}")
+    Job findJobByJobName(String jobName);
 }

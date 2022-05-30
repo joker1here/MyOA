@@ -71,7 +71,7 @@
                                             <label class="toggle" for="${File.fileId}"></label>
                                         </div>
                                         <c:if test="${File.fileRead==0}">
-                                            <span class="star-toggle ti-star" ></span>
+                                            <i class="fa fa-envelope" aria-hidden="true"></i>
                                         </c:if>
 
                                     </div>
@@ -147,8 +147,8 @@
 
     //TODO
     function Message() {
-        let message=$("#Message").val();
-        //alert(message);
+        let message=document.getElementById("Message").value;
+        console.log(message);
         if(message !=  null && message.trim() !== ""){
             alert(message);
         }

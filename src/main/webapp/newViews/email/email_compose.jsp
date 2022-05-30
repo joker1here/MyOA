@@ -122,10 +122,10 @@
 <script>
     //TODO
     function Message() {
-        let message=$("#Message").val();
+        let message=document.getElementById("Message").value;
+        console.log(message);
         if(message !=  null && message.trim() !== ""){
             alert(message);
-            $("#number").text(1)
         }
     }
     window.onLoad=Message();

@@ -19,8 +19,47 @@
 </head>
 <body>
 <%--TODO--%>
-<input id="Message" type="hidden" value="${Message}">
+<input id="Message" type="hidden" value="${Message}"/>
 <div class="row">
+    <c:if test="${employee.userLevel>=3}">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">分配任务</h4>
+                    <div class="compose-content mt-5">
+                        <form action="#">
+                            <div class="form-group">
+                                <label>任务名称：</label>
+                                <input type="text" class="form-control bg-transparent">
+                            </div>
+                            <div class="form-group">
+                                <label>目前进度：</label>
+                                <input type="text" class="form-control bg-transparent">
+                            </div>
+                            <div class="form-group">
+                                <label>最后期限：</label>
+                                <input type="text" class="form-control" placeholder="2000-01-01" id="mdate">
+                            </div>
+                            <div class="form-group">
+                                <label>分配给：</label>
+                                <div>
+                                    <select class="form-control" id="val-sex" name="val-sex">
+                                        <option value="">请选择</option>
+                                        <c:forEach items="${employeeList}" var="Employee">
+                                            <option value="${Employee.employeeId}">${Employee.employeeName}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="text-left m-t-15">
+                        <button class="btn btn-primary m-b-30 m-t-15 f-s-14 p-l-20 p-r-20 m-r-10" type="button"> 立即分配</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c:if>
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
@@ -74,6 +113,62 @@
             </div>
         </div>
     </div>
+    <c:if test="${employee.userLevel>=3}">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">您已分配的任务如下：</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped verticle-middle">
+                            <thead>
+                            <tr>
+                                <th scope="col">任务</th>
+                                <th scope="col">进度</th>
+                                <th scope="col">最后期限</th>
+                                <th scope="col">标志</th>
+                                <th scope="col">员工</th>
+                                <th scope="col">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Air Conditioner</td>
+                                <td>
+                                    <div class="progress" style="height: 10px">
+                                        <div class="progress-bar gradient-1" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Apr 20,2018</td>
+                                <td><span class="label gradient-1 btn-rounded">70%</span>
+                                </td>
+                                <td> </td>
+                                <td><span></a><a href="#" data-toggle="tooltip" data-placement="top" title="撤销任务"><i class="fa fa-close color-danger"></i></a></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Textiles</td>
+                                <td>
+                                    <div class="progress" style="height: 10px">
+                                        <div class="progress-bar gradient-2" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>May 27,2018</td>
+                                <td><span class="label gradient-2 btn-rounded">70%</span>
+                                </td>
+                                <td> </td>
+                                <td><span></a><a href="#" data-toggle="tooltip" data-placement="top" title="撤销任务"><i class="fa fa-close color-danger"></i></a></span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c:if>
+
 </div>
 <!--**********************************
 Scripts
@@ -88,8 +183,8 @@ Scripts
     }
     //TODO
     function Message() {
-        let message=$("#Message").val();
-        //alert(message);
+        let message=document.getElementById("Message").value;
+        console.log(message);
         if(message !=  null && message.trim() !== ""){
             alert(message);
         }

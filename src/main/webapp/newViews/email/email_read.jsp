@@ -17,13 +17,10 @@
     <script>
         //TODO
         function Message() {
-            let message=$("#Message").val();
-            //alert(message);
+            let message=document.getElementById("Message").value;
+            console.log(message);
             if(message !=  null && message.trim() !== ""){
                 alert(message);
-                //return;
-                //$("#number").css("display","none")
-                $("#number").text(1)
             }
         }
         window.onLoad=Message();

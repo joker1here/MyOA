@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 public interface EmployeeMapper {
-    @Select("select * from employee")
+    @Select("select * from employee ORDER BY userLevel DESC")
     List<Employee> findAllEmployee();
 
     @Select("SELECT * FROM employee WHERE EmployeeId = #{id}")
@@ -17,9 +17,9 @@ public interface EmployeeMapper {
             "#{mobile},#{photo},#{sex},#{userLevel},#{deptId},#{jobId})")
     void saveEmployee(Employee Employee);
 
-    @Update("update employee set" +
-            "address=#{address},birthday=#{birthday},email=#{email},employeeName=#{employeeName}" +
-            ",mobile=#{mobile},photo=#{photo},pwd=#{pwd},sex=#{sex},userLevel=#{userLevel},deptId=#{deptId},jobId=#{jobId}" +
+    @Update("update employee set " +
+            "employeeName=#{employeeName},pwd=#{pwd},address=#{address},birthday=#{birthday}" +
+            ",email=#{email},mobile=#{mobile},photo=#{photo},sex=#{sex},userLevel=#{userLevel},deptId=#{deptId},jobId=#{jobId} " +
             "where employeeId=#{employeeId}")
     void updateEmployee(Employee Employee);
 
@@ -30,4 +30,7 @@ public interface EmployeeMapper {
     Employee findEmployeeByNameAndPwd(@Param("employeeName") String employeeName, @Param("pwd") String pwd);
     @Select("SELECT * FROM employee where EmployeeName=#{Name}")
     Employee findEmployeeByName(@Param("Name") String Name);
+
+    @Select("select * from employee where userLevel< #{userLevel} ORDER BY userLevel DESC")
+    List<Employee> findEmployeeUnderLevel(int userLevel);
 }

@@ -35,7 +35,7 @@
                 <div class="card-body">
                     <h3 class="card-title text-white">任务</h3>
                     <div class="d-inline-block">
-                        <h2 class="text-white">5</h2>
+                        <h2 class="text-white">${countNoFinishWork}</h2>
                         <p class="text-white mb-0">Best wishes</p>
                     </div>
                     <span class="float-right display-5 opacity-5"><i class="icon-note menu-icon"></i></span>
@@ -43,17 +43,17 @@
             </div>
         </a>
     </div>
-    <!--签到-->
+    <!--通知-->
     <div class="col-lg-3 col-sm-6">
-        <a href="${pageContext.request.contextPath}/attendance/attendanceList">
+        <a href="${pageContext.request.contextPath}/notice/noticeList">
             <div class="card gradient-2">
                 <div class="card-body">
-                    <h3 class="card-title text-white">签到</h3>
+                    <h3 class="card-title text-white">通知</h3>
                     <div class="d-inline-block">
-                        <h2 class="text-white">99</h2>
+                        <h2 class="text-white">${countNotice}</h2>
                         <p class="text-white mb-0">Best wishes</p>
                     </div>
-                    <span class="float-right display-5 opacity-5"><i class="icon-badge menu-icon"></i></span>
+                    <span class="float-right display-5 opacity-5"><i class="icon-globe-alt menu-icon"></i></span>
                 </div>
             </div>
         </a>
@@ -65,7 +65,7 @@
                 <div class="card-body">
                     <h3 class="card-title text-white">邮件</h3>
                     <div class="d-inline-block">
-                        <h2 class="text-white">4565</h2>
+                        <h2 class="text-white">${countNoReadFile}</h2>
                         <p class="text-white mb-0">Best wishes</p>
                     </div>
                     <span class="float-right display-5 opacity-5"><i class="fa fa-envelope"></i></span>
@@ -73,18 +73,20 @@
             </div>
         </a>
     </div>
-    <!--时间-->
+    <!--考勤-->
     <div class="col-lg-3 col-sm-6">
-        <div class="card gradient-4">
-            <div class="card-body">
-                <h3 class="card-title text-white">时间</h3>
-                <div class="d-inline-block">
-                    <h2 class="text-white" id="time"></h2>
-                    <p class="text-white mb-0" id="time1"></p>
+        <a href="${pageContext.request.contextPath}/attendance/attendanceList">
+            <div class="card gradient-4">
+                <div class="card-body">
+                    <h3 class="card-title text-white">考勤</h3>
+                    <div class="d-inline-block">
+                        <h2 class="text-white" id="time"></h2>
+                        <p class="text-white mb-0" id="time1"></p>
+                    </div>
+                    <span class="float-right display-5 opacity-5"><i class="fa fa-calendar"></i></span>
                 </div>
-                <span class="float-right display-5 opacity-5"><i class="fa fa-calendar"></i></span>
             </div>
-        </div>
+        </a>
     </div>
 
 </div>

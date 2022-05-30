@@ -36,7 +36,7 @@ public class EmployeeService {
 
     public Employee login(String employeeName, String password) {
         Employee employee = employeeMapper.findEmployeeByNameAndPwd(employeeName, password);
-        System.out.println(employee);
+        // System.out.println(employee);
         return DeptAndJob(employee);
     }
 
@@ -46,13 +46,13 @@ public class EmployeeService {
         employee.setPwd(password);
         try {
             if (employeeMapper.findEmployeeByName(employeeName)!=null){
-                return "已经有该用户！请重新注册！";
+                return "Already Exist！";
             }
             employeeMapper.saveEmployee(employee);
-            return "注册成功";
+            return "Success！";
         }catch (Exception e){
             System.out.println("注册异常："+e);
-            return "操作异常，请刷新后操作";
+            return "DataBase Wrong！";
         }
     }
 
@@ -76,5 +76,17 @@ public class EmployeeService {
             employee = DeptAndJob(employee);
         }
         return employeeList;
+    }
+
+    public List<Employee> findEmployeeUnderLevel(int userLevel) {
+        List<Employee> employeeList = employeeMapper.findEmployeeUnderLevel(userLevel);
+        for (Employee employee : employeeList) {
+            employee = DeptAndJob(employee);
+        }
+        return employeeList;
+    }
+
+    public void deleteEmployeeById(int employeeId) {
+        employeeMapper.deleteEmployeeById(employeeId);
     }
 }

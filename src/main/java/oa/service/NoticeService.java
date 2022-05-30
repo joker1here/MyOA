@@ -14,4 +14,16 @@ public class NoticeService {
     public List<Notice> findAllNotice() {
         return noticeMapper.findAllNotice();
     }
+
+    public void deleteNoticeById(int noticeId) {
+        noticeMapper.deleteNoticeById(noticeId);
+    }
+
+    public void addNotice(Notice notice) {
+        noticeMapper.saveNotice(notice);
+    }
+
+    public int countNotice() {
+        return noticeMapper.countNotice();
+    }
 }

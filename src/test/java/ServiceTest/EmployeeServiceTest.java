@@ -25,6 +25,6 @@ public class EmployeeServiceTest {
     }
     @Test
     public void testregister(){
-        System.out.println(employeeService.register("张三","123"));
+        System.out.println(employeeService.register("wenshaojie","wenshaojie"));
     }
 }
