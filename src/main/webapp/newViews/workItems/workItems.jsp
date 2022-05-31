@@ -27,23 +27,23 @@
                 <div class="card-body">
                     <h4 class="card-title">分配任务</h4>
                     <div class="compose-content mt-5">
-                        <form action="#">
+                        <form action="${pageContext.request.contextPath}/work/add">
                             <div class="form-group">
                                 <label>任务名称：</label>
-                                <input type="text" class="form-control bg-transparent">
+                                <input type="text" class="form-control bg-transparent" name="workText">
                             </div>
                             <div class="form-group">
                                 <label>目前进度：</label>
-                                <input type="text" class="form-control bg-transparent">
+                                <input type="text" class="form-control bg-transparent" name="workFinish">
                             </div>
                             <div class="form-group">
                                 <label>最后期限：</label>
-                                <input type="text" class="form-control" placeholder="2000-01-01" id="mdate">
+                                <input type="text" class="form-control" placeholder="2000-01-01" id="mdate" name="workDate">
                             </div>
                             <div class="form-group">
                                 <label>分配给：</label>
                                 <div>
-                                    <select class="form-control" id="val-sex" name="val-sex">
+                                    <select class="form-control" id="val-sex" name="workTo">
                                         <option value="">请选择</option>
                                         <c:forEach items="${employeeList}" var="Employee">
                                             <option value="${Employee.employeeId}">${Employee.employeeName}</option>
@@ -51,10 +51,10 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="text-left m-t-15">
+                                <button class="btn btn-primary m-b-30 m-t-15 f-s-14 p-l-20 p-r-20 m-r-10" type="submit"> 立即分配</button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="text-left m-t-15">
-                        <button class="btn btn-primary m-b-30 m-t-15 f-s-14 p-l-20 p-r-20 m-r-10" type="button"> 立即分配</button>
                     </div>
                 </div>
             </div>
@@ -72,6 +72,7 @@
                             <th scope="col">进度</th>
                             <th scope="col">最后期限</th>
                             <th scope="col">标志</th>
+                            <th scope="col">发布人</th>
                             <th scope="col">操作</th>
                         </tr>
                         </thead>
@@ -89,12 +90,13 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td><fmt:formatDate value="${Work.workTime}" pattern="yyyy-MM-dd HH:mm"/></td>
+                                    <td><fmt:formatDate value="${Work.workTime}" pattern="yyyy-MM-dd"/></td>
                                     <td>
                                         <span class="label gradient-1 btn-rounded">
                                             <fmt:formatNumber value="${Work.workFinish}" maxFractionDigits="2"/>%
                                         </span>
                                     </td>
+                                    <td>${Work.employee.employeeName}</td>
                                     <td>
                                         <span>
                                             <a href="javascript:reportWork(${Work.workId});" data-toggle="tooltip" data-placement="top" title="汇报进度">
@@ -131,36 +133,38 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Air Conditioner</td>
-                                <td>
-                                    <div class="progress" style="height: 10px">
-                                        <div class="progress-bar gradient-1" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>Apr 20,2018</td>
-                                <td><span class="label gradient-1 btn-rounded">70%</span>
-                                </td>
-                                <td> </td>
-                                <td><span></a><a href="#" data-toggle="tooltip" data-placement="top" title="撤销任务"><i class="fa fa-close color-danger"></i></a></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Textiles</td>
-                                <td>
-                                    <div class="progress" style="height: 10px">
-                                        <div class="progress-bar gradient-2" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>May 27,2018</td>
-                                <td><span class="label gradient-2 btn-rounded">70%</span>
-                                </td>
-                                <td> </td>
-                                <td><span></a><a href="#" data-toggle="tooltip" data-placement="top" title="撤销任务"><i class="fa fa-close color-danger"></i></a></span>
-                                </td>
-                            </tr>
+                                <%--TODO--%>
+                                <c:forEach items="${workListTo}" var="Work">
+                                    <tr>
+                                        <td>${Work.workText}</td>
+                                        <td>
+                                            <div class="progress" style="height: 10px">
+                                                <div class="progress-bar gradient-<fmt:formatNumber value="${Work.workFinish/40+1}" maxFractionDigits="0"/>" style="width: ${Work.workFinish}%;" role="progressbar">
+                                                <span class="sr-only">
+                                                        <fmt:formatNumber value="${Work.workFinish}" maxFractionDigits="2"/>% Complete
+                                                </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><fmt:formatDate value="${Work.workTime}" pattern="yyyy-MM-dd"/></td>
+                                        <td>
+                                        <span class="label gradient-1 btn-rounded">
+                                            <fmt:formatNumber value="${Work.workFinish}" maxFractionDigits="2"/>%
+                                        </span>
+                                        </td>
+                                        <td>${Work.workToEmployee.employeeName}</td>
+                                        <td>
+                                        <span>
+                                            <a href="javascript:reportWork(${Work.workId});" data-toggle="tooltip" data-placement="top" title="汇报进度">
+                                                <i class="fa fa-pencil color-muted m-r-5"></i>
+                                            </a>
+                                            <a href="javascript:del(${Work.workId});" data-toggle="tooltip" data-placement="top" title="删除">
+                                                <i class="fa fa-close color-danger"></i>
+                                            </a>
+                                        </span>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -180,6 +184,12 @@ Scripts
         if (str>=0&&str<=100){
             window.location.href='${pageContext.request.contextPath}/work/updateFinish?finish='+str+"&workId="+workId;
         }else alert("输入数据出错！")
+    }
+    function del(workId) {
+        var c=confirm("确认删除吗？请先确保工作已完成！")
+        if(c==true){
+            window.location.href='${pageContext.request.contextPath}/work/delete?workId='+workId;
+        }
     }
     //TODO
     function Message() {

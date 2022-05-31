@@ -116,7 +116,7 @@
                             <hr>
                             <h6 class="p-t-15"><i class="fa fa-download mb-2"></i> Attachments <span>(3)</span></h6>
                             <div class="row m-b-30">
-                                <div class="col-auto"><a href="${pageContext.request.contextPath}/file/download?fileName=${file.fileName}&fileForm=${file.fileForm}" class="text-muted">${file.fileName}.${file.fileForm}</a>
+                                <div class="col-auto"><a href="${pageContext.request.contextPath}/file/download?fileId=${file.fileId}" class="text-muted">${file.fileName}.${file.fileForm}</a>
                                 </div>
                                 <%--<div class="col-auto"><a href="#" class="text-muted">My-File.docx</a>--%>
                                 <%--</div>--%>

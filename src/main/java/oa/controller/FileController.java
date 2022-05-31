@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -160,8 +161,10 @@ public class FileController {
         System.out.println(file);
         if (!file.isEmpty()){
             try {
-                //保存路径
-                String FilePath=request.getSession().getServletContext().getRealPath("/");
+                //TODO保存路径
+                String FilePath=request.getSession().getServletContext().getRealPath("/")+getDate()+"/";
+                //创建文件夹
+                creatPath(FilePath);
                 //全名
                 String originalFilename = file.getOriginalFilename();
                 //后缀
@@ -196,27 +199,34 @@ public class FileController {
         modelAndView.setViewName("/email/email_compose.jsp");
         return modelAndView;
     }
-    // @RequestMapping("/upload")
-    // @ResponseBody
-    // public String save22(String username, MultipartFile uploadFile) throws IOException {
-    //     System.out.println(username);
-    //     System.out.println(uploadFile);
     //
-    //     //保存文件
-    //     if (uploadFile!=null){
-    //         String originalFilename = uploadFile.getOriginalFilename();
-    //         uploadFile.transferTo(new File("D:\\Upload\\"+originalFilename));
-    //         return "保存成功";
-    //     }
-    //     return "失败";
-    // }
+    public String getDate(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        date.setTime(System.currentTimeMillis());
+        return simpleDateFormat.format(date);
+    }
+    //
+    public void creatPath(String filePath){
+        String s = filePath + "text.txt";
+        File file = new File(s);
+        if (!file.getParentFile().exists()) {
+            System.out.println("Path not exists");
+            //创建上级目录
+            file.getParentFile().mkdirs();
+        }
+    }
     //下载
     @RequestMapping("/download")
-    public void download(HttpServletRequest request, HttpServletResponse response ,String fileName,String fileForm) throws IOException {
+    public void download(HttpServletRequest request, HttpServletResponse response ,String fileId) throws IOException {
+        oa.pojo.File downloadFile = fileService.findFileById(Integer.parseInt(fileId));
+        String fileName = downloadFile.getFileName();
+        String fileForm = downloadFile.getFileForm();
         request.setCharacterEncoding("UTF-8");
         String fileNAF = fileName + "." + fileForm;
 
-        String FilePath=request.getSession().getServletContext().getRealPath("/");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String FilePath=request.getSession().getServletContext().getRealPath("/")+simpleDateFormat.format(downloadFile.getFileTime())+"/";
         System.out.println(FilePath+fileNAF);
         File file = new File(FilePath+fileNAF);
         //创建输入流读文件
@@ -224,7 +234,7 @@ public class FileController {
         //设置响应头ContentType指定响应内容的类型
         response.setHeader("Content-type",fileForm);
         //设置响应头Content-Disposition 指定以附件形式保存响应的信息
-        response.setHeader("Content-Disposition","attachment;filename="+(URLEncoder.encode(fileName, "utf-8")));
+        response.setHeader("Content-Disposition","attachment;filename="+(URLEncoder.encode(fileNAF, "utf-8")));
         ServletOutputStream out = response.getOutputStream();
         //实现文件的读写
         IOUtils.copy(in,out);

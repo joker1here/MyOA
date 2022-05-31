@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -27,8 +30,10 @@ public class WorkController {
         ModelAndView modelAndView = new ModelAndView();
         Employee employee = (Employee) session.getAttribute("employee");
         List<Work> workList = workService.ShowWork(employee.getEmployeeId());
+        List<Work> workListTo = workService.ShowWorkTo(employee.getEmployeeId());
         List<Employee> employeeList = employeeService.findEmployeeUnderLevel(employee.getUserLevel());
         modelAndView.addObject("workList", workList);
+        modelAndView.addObject("workListTo", workListTo);
         modelAndView.addObject("employee", employee);
         modelAndView.addObject("Message", Message);
         modelAndView.addObject("employeeList", employeeList);
@@ -49,8 +54,37 @@ public class WorkController {
         return new ModelAndView("redirect:/work/ShowWork?Message="+Message);
     }
 
+    @RequestMapping("add")
+    public ModelAndView add(HttpSession session,String workText,String workFinish,String workDate,String workTo) throws ParseException {
+        Employee employee = (Employee) session.getAttribute("employee");
+        Work work = new Work();
+        work.setWorkFinish(Integer.parseInt(workFinish));
+        work.setWorkText(workText);
+        work.setWorkTo(Integer.parseInt(workTo));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = simpleDateFormat.parse(workDate);
+        work.setWorkTime(date);
+        work.setEmployeeId(employee.getEmployeeId());
 
+        String Message = "Success!";
+        try{
+            workService.addWork(work);
+        }catch (Exception e){
+            Message = "DataBase Wrong!";
+        }
+        return new ModelAndView("redirect:/work/ShowWork?Message="+Message);
+    }
 
+    @RequestMapping("delete")
+    public ModelAndView delete(String workId){
+        String Message = "Success!";
+        try{
+            workService.deleteWork(Integer.parseInt(workId));
+        }catch (Exception e){
+            Message = "DataBase Wrong!";
+        }
+        return new ModelAndView("redirect:/work/ShowWork?Message="+Message);
+    }
 
 
 

@@ -82,7 +82,6 @@
                                 </label>
                                 <div class="col-lg-6">
                                     <select class="form-control" id="val-sex" name="sex">
-
                                         <option value="">请选择</option>
                                         <option value="1" <c:if test="${employee.sex==1}">selected</c:if>>男</option>
                                         <option value="0" <c:if test="${employee.sex==0}">selected</c:if>>女</option>

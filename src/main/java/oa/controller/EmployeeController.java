@@ -16,6 +16,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,8 +35,9 @@ public class EmployeeController {
 
     //转到登陆界面 TODO 有bug
     @RequestMapping("toLogin")
-    public ModelAndView toLogin(@RequestParam(required = false)String Message){
-        System.out.println("toLogin is Running");
+    public ModelAndView toLogin(@RequestParam(required = false)String Message) throws UnsupportedEncodingException {
+        if (Message!=null) URLDecoder.decode(Message, "UTF-8");
+        System.out.println("Login:"+Message);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("Message", Message);
         modelAndView.setViewName("/login/login.jsp");
@@ -42,8 +45,9 @@ public class EmployeeController {
     }
     //转到主界面
     @RequestMapping("toMain")
-    public ModelAndView toMain(@RequestParam(required = false)String Message,HttpSession session){
-        System.out.println("toMain is running");
+    public ModelAndView toMain(@RequestParam(required = false)String Message,HttpSession session) throws UnsupportedEncodingException {
+        if (Message!=null) URLDecoder.decode(Message, "UTF-8");
+        System.out.println("Main:"+Message);
         ModelAndView modelAndView = new ModelAndView();
         Employee employee = (Employee) session.getAttribute("employee");
         modelAndView.addObject("Message", Message);
@@ -62,7 +66,7 @@ public class EmployeeController {
             return new ModelAndView("redirect:/employee/toMain");
         }
         else {
-            String Message= "Please confirm your account and password！";
+            String Message= "请确认用户名和密码！";
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.addObject("Message", Message);
             modelAndView.setViewName("/login/login.jsp");
@@ -133,15 +137,14 @@ public class EmployeeController {
     public ModelAndView update(HttpSession session,String EmployeeID,String username,
                                String password,String address,String Birthday,String email,
                                String sex,String userLevel,String DeptId,String JobId) throws ParseException {
-        String Message = null;
+        String Message = "Success!";
         Employee employee = new Employee();
         employee.setEmployeeId(Integer.parseInt(EmployeeID));
         employee.setEmployeeName(username);
         employee.setPwd(password);
         employee.setAddress(address);
-        Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        date = simpleDateFormat.parse(Birthday);
+        Date date = simpleDateFormat.parse(Birthday);
         employee.setBirthday(date);
         employee.setEmail(email);
         employee.setSex(Integer.parseInt(sex));
@@ -157,7 +160,11 @@ public class EmployeeController {
                 employee.setJobId(job.getJobId());
                 employee.setJob(job);
                 //更新操作
-                employeeService.update(employee);
+                try {
+                    employeeService.update(employee);
+                }catch (Exception e){
+                    Message = "DataBase Wrong!";
+                }
             }
         }
 
@@ -172,10 +179,9 @@ public class EmployeeController {
 
     @RequestMapping("delete")
     public ModelAndView delete(String employeeId){
-        String Message = null;
+        String Message = "Success!";
         try {
             employeeService.deleteEmployeeById(Integer.parseInt(employeeId));
-            Message = "Success!";
         }catch (Exception e){
             Message = "Wrong!";
         }

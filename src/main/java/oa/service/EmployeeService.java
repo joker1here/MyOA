@@ -46,13 +46,13 @@ public class EmployeeService {
         employee.setPwd(password);
         try {
             if (employeeMapper.findEmployeeByName(employeeName)!=null){
-                return "Already Exist！";
+                return "已经存在该账户！";
             }
             employeeMapper.saveEmployee(employee);
             return "Success！";
         }catch (Exception e){
             System.out.println("注册异常："+e);
-            return "DataBase Wrong！";
+            return "数据库异常！";
         }
     }
 

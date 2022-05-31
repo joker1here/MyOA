@@ -85,7 +85,7 @@
         let message = document.getElementById("Message").value;
         //let message=$("#Message").val();
         // console.log("success");
-        if(message !=  null && message.trim() !== ""){
+        if(message !=  null && message.trim() !== "" &&message!=="null"){
             alert(message);
         }
     }

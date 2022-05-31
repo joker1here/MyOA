@@ -10,6 +10,25 @@ public class Work {
     private String workText;
     private float workFinish;
 
+    private Employee employee;
+    private Employee workToEmployee;
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Employee getWorkToEmployee() {
+        return workToEmployee;
+    }
+
+    public void setWorkToEmployee(Employee workToEmployee) {
+        this.workToEmployee = workToEmployee;
+    }
+
     public Date getWorkTime() {
         return workTime;
     }
@@ -67,6 +86,8 @@ public class Work {
                 ", workTo=" + workTo +
                 ", workText='" + workText + '\'' +
                 ", workFinish=" + workFinish +
+                ", employee=" + employee +
+                ", workToEmployee=" + workToEmployee +
                 '}';
     }
 }
