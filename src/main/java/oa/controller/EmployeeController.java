@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -95,17 +94,11 @@ public class EmployeeController {
         ModelAndView modelAndView = new ModelAndView();
         Employee employee = (Employee) session.getAttribute("employee");
         modelAndView.addObject("employee", employee);
-        //先判断权限
-        if (employee.getUserLevel()==0){
-            modelAndView.addObject("Message","权限不足！");
-            modelAndView.setViewName("/index/index.jsp");
-            return modelAndView;
-        }
 
         List<Employee> employeeList=employeeService.findAllEmployee();
         modelAndView.addObject("employeeList", employeeList);
         modelAndView.addObject("Message", Message);
-        modelAndView.setViewName("/manage/manage.jsp");
+        modelAndView.setViewName("manage/employeeManage.jsp");
         return modelAndView;
     }
     //个人中心
@@ -124,67 +117,116 @@ public class EmployeeController {
         ModelAndView modelAndView = new ModelAndView();
         Employee employee = employeeService.findEmployeeById(Integer.parseInt(employeeId));
         //TODO可添加下拉选项
-        // List<Dept> deptList=deptService.findAllDept();
-        // List<Job> jobList = jobService.findAllJob();
-        // modelAndView.addObject("deptList", deptList);
-        // modelAndView.addObject("jobList", jobList);
+        List<Dept> deptList=deptService.findAllDept();
+        List<Job> jobList = jobService.findAllJob();
+        modelAndView.addObject("deptList", deptList);
+        modelAndView.addObject("jobList", jobList);
         modelAndView.addObject("employee", employee);
         modelAndView.addObject("Message", Message);
-        modelAndView.setViewName("/manage/profileChange.jsp");
+        modelAndView.setViewName("manage/employeeChange.jsp");
+        return modelAndView;
+    }//添加员工界面
+    @RequestMapping(value = "/addEmployee")
+    public ModelAndView addEmployee(HttpSession session,@RequestParam(required = false)String Message){
+        ModelAndView modelAndView = new ModelAndView();
+        //TODO可添加下拉选项
+        List<Dept> deptList=deptService.findAllDept();
+        List<Job> jobList = jobService.findAllJob();
+        modelAndView.addObject("deptList", deptList);
+        modelAndView.addObject("jobList", jobList);
+        modelAndView.addObject("Message", Message);
+        modelAndView.setViewName("manage/employeeAdd.jsp");
         return modelAndView;
     }
+    //更新个人信息
     @RequestMapping("update")
     public ModelAndView update(HttpSession session,String EmployeeID,String username,
-                               String password,String address,String Birthday,String email,
+                               String password,String address,@RequestParam(required = false) String Birthday,String email,
                                String sex,String userLevel,String DeptId,String JobId) throws ParseException {
         String Message = "Success!";
+        Employee employeeOnline = (Employee) session.getAttribute("employee");
         Employee employee = new Employee();
-        employee.setEmployeeId(Integer.parseInt(EmployeeID));
+        //ID
+        if (EmployeeID!=null&&!EmployeeID.equals(""))
+            employee.setEmployeeId(Integer.parseInt(EmployeeID));
+        //员工名称
         employee.setEmployeeName(username);
+        //密码
         employee.setPwd(password);
+        //地址
         employee.setAddress(address);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = simpleDateFormat.parse(Birthday);
-        employee.setBirthday(date);
+        if (Birthday!=null) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date;
+            try {
+                date = simpleDateFormat.parse(Birthday);
+            }catch (Exception e){
+                date = null;
+            }
+            employee.setBirthday(date);
+        }
+        //邮箱
         employee.setEmail(email);
+        //性别
         employee.setSex(Integer.parseInt(sex));
-        employee.setUserLevel(Integer.parseInt(userLevel));
-        Dept dept=deptService.findDeptByDeptName(DeptId);
-        if (dept==null) Message = "DeptName Wrong!";
+        //等级
+        if (userLevel!=null&&!userLevel.equals(""))
+            employee.setUserLevel(Integer.parseInt(userLevel));
+        //部门
+        Dept dept = deptService.findDeptByDeptName(DeptId);
+        if (DeptId!=null&&!DeptId.equals("")&&dept==null) Message = "DeptName Wrong!";
         else {
-            employee.setDeptId(dept.getDeptId());
-            employee.setDept(dept);
+            if (DeptId!=null&&!DeptId.equals("")) {
+                employee.setDeptId(dept.getDeptId());
+                employee.setDept(dept);
+            }
+            //职位
             Job job = jobService.findJobByJobName(JobId);
-            if (job==null) Message = "JobName Wrong!";
+            if (JobId!=null&&!JobId.equals("")&&job==null) Message = "JobName Wrong!";
             else {
-                employee.setJobId(job.getJobId());
-                employee.setJob(job);
-                //更新操作
-                try {
-                    employeeService.update(employee);
-                }catch (Exception e){
-                    Message = "DataBase Wrong!";
+                if (JobId!=null&&!JobId.equals("")) {
+                    employee.setJobId(job.getJobId());
+                    employee.setJob(job);
+                }
+                //全部输入判断完毕
+                //如果是本人操作
+                if (employeeOnline.getEmployeeId()==employee.getEmployeeId()){
+                    //更新操作
+                    try {
+                        employeeService.update(employee);
+                    }catch (Exception e){
+                        Message = "DataBase Wrong!";
+                    }
+                    session.setAttribute("employee",employee);
+                    return new ModelAndView("redirect:/employee/profile?Message="+Message);
+                }else {//非本人
+                    //如果目标用户等级过高
+                    if (employeeOnline.getUserLevel()<=employee.getUserLevel()){
+                        Message="Your UserLevel is Insufficient!";
+                        return new ModelAndView("redirect:/employee/change?employeeId="+employee.getEmployeeId()+"&Message="+Message);
+                    }else {
+                        //更新操作
+                        if (employee.getEmployeeId()!=0) {
+                            try {
+                                employeeService.update(employee);
+                            } catch (Exception e) {
+                                Message = "DataBase Wrong!";
+                            }
+                            return new ModelAndView("redirect:/employee/change?employeeId=" + employee.getEmployeeId() + "&Message=" + Message);
+                        }else {
+                            Message = employeeService.save(employee);
+                            return new ModelAndView("redirect:/employee/manage?Message=" + Message);
+                        }
+                    }
                 }
             }
         }
-
-        //如果是当前用户则更新当前用户数据
-        Employee employeeOnline = (Employee) session.getAttribute("employee");
-        if (employeeOnline.getEmployeeId()==employee.getEmployeeId()){
-            session.setAttribute("employee",employee);
-            return new ModelAndView("redirect:/employee/profile?Message="+Message);
-        }
         return new ModelAndView("redirect:/employee/change?employeeId="+employee.getEmployeeId()+"&Message="+Message);
     }
-
+    //删除用户界面
     @RequestMapping("delete")
     public ModelAndView delete(String employeeId){
-        String Message = "Success!";
-        try {
-            employeeService.deleteEmployeeById(Integer.parseInt(employeeId));
-        }catch (Exception e){
-            Message = "Wrong!";
-        }
+        String Message = employeeService.deleteEmployeeById(Integer.parseInt(employeeId));
         return new ModelAndView("redirect:/employee/manage?Message="+Message);
     }
 

@@ -8,14 +8,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>工作事项</title>
-    <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon.png">
     <!-- Custom Stylesheet -->
+    <link href="../../plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
+    <!-- Page plugins css -->
+    <link href="../../plugins/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet">
+    <!-- Color picker plugins css -->
+    <link href="../../plugins/jquery-asColorPicker-master/css/asColorPicker.css" rel="stylesheet">
+    <!-- Date picker plugins css -->
+    <link href="../../plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
+    <!-- Daterange picker plugins css -->
+    <link href="../../plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+    <link href="../../plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
     <link href="../../css/style.css" rel="stylesheet">
-    <!-- bootstrap图标库-->
-    <link rel="stylesheet" href="../../css/bootstrap-icons.css">
-    <!-- Custom Stylesheet -->
-    <link href="../../plugins/tables/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body>
 <%--TODO--%>
@@ -34,11 +40,11 @@
                             </div>
                             <div class="form-group">
                                 <label>目前进度：</label>
-                                <input type="text" class="form-control bg-transparent" name="workFinish">
+                                <input type="text" class="form-control bg-transparent" placeholder="请输入1-100的数" name="workFinish">
                             </div>
                             <div class="form-group">
                                 <label>最后期限：</label>
-                                <input type="text" class="form-control" placeholder="2000-01-01" id="mdate" name="workDate">
+                                <input type="text" class="form-control" placeholder="2022-05-01" id="mdate" name="workDate">
                             </div>
                             <div class="form-group">
                                 <label>分配给：</label>
@@ -186,7 +192,7 @@ Scripts
         }else alert("输入数据出错！")
     }
     function del(workId) {
-        var c=confirm("确认删除吗？请先确保工作已完成！")
+        var c = confirm("确认删除吗？请先确保工作已完成！");
         if(c==true){
             window.location.href='${pageContext.request.contextPath}/work/delete?workId='+workId;
         }
@@ -201,16 +207,31 @@ Scripts
     }
     window.onLoad=Message();
 </script>
+<script src="../../js/jquery-3.6.0.js"></script>
 <script src="../../plugins/common/common.min.js"></script>
 <script src="../../js/custom.min.js"></script>
 <script src="../../js/settings.js"></script>
 <script src="../../js/gleek.js"></script>
 <script src="../../js/styleSwitcher.js"></script>
-<script src="../../js/jquery-3.6.0.js"></script>
 
-<script src="../../plugins/tables/js/jquery.dataTables.min.js"></script>
-<script src="../../plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
-<script src="../../plugins/tables/js/datatable-init/datatable-basic.min.js"></script>
+<script src="../../plugins/validation/jquery.validate.min.js"></script>
+<script src="../../plugins/validation/jquery.validate-init.js"></script>
+
+<script src="../../plugins/moment/moment.js"></script>
+<script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+<!-- Clock Plugin JavaScript -->
+<script src="../../plugins/clockpicker/dist/jquery-clockpicker.min.js"></script>
+<!-- Color Picker Plugin JavaScript -->
+<script src="../../plugins/jquery-asColorPicker-master/libs/jquery-asColor.js"></script>
+<script src="../../plugins/jquery-asColorPicker-master/libs/jquery-asGradient.js"></script>
+<script src="../../plugins/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js"></script>
+<!-- Date Picker Plugin JavaScript -->
+<script src="../../plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<!-- Date range Plugin JavaScript -->
+<script src="../../plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<script src="../../plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+<script src="../../js/plugins-init/form-pickers-init.js"></script>
 
 </body>
 </html>

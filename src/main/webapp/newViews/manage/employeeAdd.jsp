@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>更改个人中心</title>
+    <title>添加新用户</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon.png">
     <!-- Custom Stylesheet -->
@@ -32,32 +32,32 @@
                 <div class="card-body">
                     <div class="form-validation">
                         <form class="form-valide" action="${pageContext.request.contextPath}/employee/update" method="post">
-                            <div class="form-group row">
-                                <label class="col-lg-4 col-form-label" for="EmployeeID">员工编号 <span class="text-danger">*</span>
-                                </label>
-                                <div class="col-lg-6">
-                                    <input type="text" class="form-control" id="EmployeeID" name="EmployeeID" readonly unselectable="on" value="${employee.employeeId}">
-                                </div>
-                            </div>
+                            <%--<div class="form-group row">--%>
+                            <%--    <label class="col-lg-4 col-form-label" for="EmployeeID">员工编号 <span class="text-danger">*</span>--%>
+                            <%--    </label>--%>
+                            <%--    <div class="col-lg-6">--%>
+                            <%--        <input type="text" class="form-control" id="EmployeeID" name="EmployeeID" readonly unselectable="on" value="${employee.employeeId}">--%>
+                            <%--    </div>--%>
+                            <%--</div>--%>
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label" for="val-username">姓名 <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" id="val-username" name="username" value="${employee.employeeName}">
+                                    <input type="text" class="form-control" id="val-username" name="username" value="">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label" for="val-password">登录密码 <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="password" class="form-control" id="val-password" name="password" value="${employee.pwd}">
+                                    <input type="password" class="form-control" id="val-password" name="password" value="">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label" for="address">住址 <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" id="address" name="address" value="${employee.address}">
+                                    <input type="text" class="form-control" id="address" name="address" value="">
                                 </div>
                             </div>
 
@@ -65,7 +65,7 @@
                                 <label class="col-lg-4 col-form-label">生日 <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" value="<fmt:formatDate value="${employee.birthday}" pattern="yyyy-MM-dd"/>" id="mdate" name="Birthday">
+                                    <input type="text" class="form-control" value="" id="mdate" name="Birthday">
                                 </div>
                             </div>
 
@@ -73,7 +73,7 @@
                                 <label class="col-lg-4 col-form-label" for="val-email">邮箱 <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" id="val-email" name="email" value="${employee.email}">
+                                    <input type="text" class="form-control" id="val-email" name="email" value="">
                                 </div>
                             </div>
 
@@ -82,9 +82,9 @@
                                 </label>
                                 <div class="col-lg-6">
                                     <select class="form-control" id="val-sex" name="sex">
-                                        <option value="">请选择</option>
-                                        <option value="1" <c:if test="${employee.sex==1}">selected</c:if>>男</option>
-                                        <option value="0" <c:if test="${employee.sex==0}">selected</c:if>>女</option>
+                                        <option value="0">请选择</option>
+                                        <option value="1" >男</option>
+                                        <option value="0" >女</option>
                                     </select>
                                 </div>
                             </div>
@@ -92,26 +92,40 @@
                                 <label class="col-lg-4 col-form-label" for="userLevel">用户等级 <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" id="userLevel" name="userLevel" unselectable="on" value="${employee.userLevel}">
+                                    <input type="text" class="form-control" id="userLevel" name="userLevel" unselectable="on" value="">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label" for="DeptId">部门 <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" id="DeptId" name="DeptId" unselectable="on" value="${employee.dept.deptName}">
+                                    <select class="form-control" id="DeptId" name="DeptId">
+                                        <%--<option value="">请选择</option>--%>
+                                        <option value="" selected></option>
+                                        <c:forEach items="${deptList}" var="Dept">
+                                            <option value="${Dept.deptName}" >${Dept.deptName}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <%--<input type="text" class="form-control" id="DeptId" name="DeptId" unselectable="on" value="${employee.dept.deptName}">--%>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label" for="JobId">职位 <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" id="JobId" name="JobId" unselectable="on" value="${employee.job.jobName}">
+                                    <select class="form-control" id="JobId" name="JobId">
+                                        <%--<option value="">请选择</option>--%>
+                                        <option value="" selected></option>
+                                        <c:forEach items="${jobList}" var="Job">
+                                            <option value="${Job.jobName}" >${Job.jobName}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <%--<input type="text" class="form-control" id="JobId" name="JobId" unselectable="on" value="${employee.job.jobName}">--%>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-8 ml-auto">
-                                    <button type="submit" class="btn btn-primary">修改</button>
+                                    <button type="submit" class="btn btn-primary">添加</button>
                                 </div>
                             </div>
                         </form>

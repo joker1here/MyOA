@@ -52,7 +52,7 @@
                 <div class="card-body">
                     <h4 class="card-title">发布通知</h4>
                     <div class="compose-content mt-5">
-                        <form action="/notice/add" method="post">
+                        <form action="${pageContext.request.contextPath}/notice/add" method="post">
                             <div class="form-group">
                                 <input type="text" name="title" class="form-control bg-transparent" placeholder=" 标题">
                             </div>

@@ -228,18 +228,22 @@ public class FileController {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String FilePath=request.getSession().getServletContext().getRealPath("/")+simpleDateFormat.format(downloadFile.getFileTime())+"/";
         System.out.println(FilePath+fileNAF);
-        File file = new File(FilePath+fileNAF);
-        //创建输入流读文件
-        FileInputStream in = new FileInputStream(file);
-        //设置响应头ContentType指定响应内容的类型
-        response.setHeader("Content-type",fileForm);
-        //设置响应头Content-Disposition 指定以附件形式保存响应的信息
-        response.setHeader("Content-Disposition","attachment;filename="+(URLEncoder.encode(fileNAF, "utf-8")));
-        ServletOutputStream out = response.getOutputStream();
-        //实现文件的读写
-        IOUtils.copy(in,out);
-        if(in!=null){
-            in.close();
+        try {
+            File file = new File(FilePath + fileNAF);
+            //创建输入流读文件
+            FileInputStream in = new FileInputStream(file);
+            //设置响应头ContentType指定响应内容的类型
+            response.setHeader("Content-type", fileForm);
+            //设置响应头Content-Disposition 指定以附件形式保存响应的信息
+            response.setHeader("Content-Disposition", "attachment;filename=" + (URLEncoder.encode(fileNAF, "utf-8")));
+            ServletOutputStream out = response.getOutputStream();
+            //实现文件的读写
+            IOUtils.copy(in, out);
+            if (in != null) {
+                in.close();
+            }
+        }catch (Exception e){
+
         }
     }
     @RequestMapping("/CountFileNoRead")

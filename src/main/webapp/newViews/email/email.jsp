@@ -134,14 +134,17 @@
         if(array.length==0){
             window.alert("请选择记录");
         }else{
-            var str = "";
-            for(var i=0;i<array.length;i++){
-                str += $(array[i]).val();
-                if(i<array.length-1){
-                    str += ",";
+            var c = confirm("确认要删除吗？");
+            if (c==true){
+                var str = "";
+                for(var i=0;i<array.length;i++){
+                    str += $(array[i]).val();
+                    if(i<array.length-1){
+                        str += ",";
+                    }
                 }
+                window.location.href='${pageContext.request.contextPath}/file/deleteEmail?check='+str;
             }
-            window.location.href='${pageContext.request.contextPath}/file/deleteEmail?check='+str;
         }
     }
 

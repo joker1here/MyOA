@@ -86,7 +86,26 @@ public class EmployeeService {
         return employeeList;
     }
 
-    public void deleteEmployeeById(int employeeId) {
-        employeeMapper.deleteEmployeeById(employeeId);
+    public String deleteEmployeeById(int employeeId) {
+        try {
+            employeeMapper.deleteEmployeeById(employeeId);
+        }catch (Exception e){
+            return "DataBase Wrong";
+        }
+        return "Success!";
+    }
+
+    public String save(Employee employee) {
+        String employeeName = employee.getEmployeeName();
+        try {
+            if (employeeMapper.findEmployeeByName(employeeName)!=null){
+                return "Exist Employee!";
+            }
+            employeeMapper.saveEmployee(employee);
+            return "Success！";
+        }catch (Exception e){
+            System.out.println("注册异常："+e);
+            return "DataBase Wrong!";
+        }
     }
 }

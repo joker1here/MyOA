@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>考勤管理</title>
+    <title>职位管理</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon.png">
     <!-- Custom Stylesheet -->
@@ -25,33 +25,28 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">部门管理</h4>
+                    <h4 class="card-title" onclick="add()">职位管理</h4>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
                             <tr>
-                                <th>员工</th>
-                                <th>部门</th>
-                                <th>职位</th>
-                                <th>用户等级</th>
+                                <th>部门名称</th>
+                                <th>部门描述</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${employeeList}" var="Employee">
+                            <c:forEach items="${jobList}" var="Job">
+                                <c:if test="${Job.jobId>0}">
                                 <tr>
-                                    <td align="center" valign="center">${Employee.employeeName}</td>
-                                    <td align="center" valign="center">${Employee.dept.deptName}</td>
-                                    <td align="center" valign="center">${Employee.job.jobName}</td>
-                                    <td align="center" valign="center">${Employee.userLevel}</td>
+                                    <td align="center" valign="center">${Job.jobName}</td>
+                                    <td align="center" valign="center">${Job.jobIntroduce}</td>
                                     <td align="center" valign="center">
-                                        <c:if test="${Employee.userLevel<employee.userLevel}">
-                                            <button name="eitBtn" class="btn btn-primary" data-toggle="modal" data-target="#basicModal" onclick="change(${Employee.employeeId})">修改</button>
-                                            <button name="delBtn" class="btn  btn-danger" onclick="del(${Employee.employeeId})">删除</button>
-                                        </c:if>
-                                        <c:if test="${Employee.userLevel>=employee.userLevel}">权限不足！</c:if>
+                                        <button name="eitBtn" class="btn btn-primary" data-toggle="modal" data-target="#basicModal" onclick="change(${Job.jobId})">修改</button>
+                                        <button name="delBtn" class="btn  btn-danger" onclick="del(${Job.jobId})">删除</button>
                                     </td>
                                 </tr>
+                                </c:if>
                             </c:forEach>
                             </tbody>
                         </table>
@@ -67,19 +62,17 @@
 
 <%--Scripts--%>
 <script>
-    function signUp() {
-        console.log("signUp");
-        window.location.href = '${pageContext.request.contextPath}/attendance/signUp';
+    function change(Id) {
+        window.location.href = '${pageContext.request.contextPath}/job/change?Id='+Id;
     }
-    function signBack() {
-        console.log("signBack");
-        window.location.href = '${pageContext.request.contextPath}/attendance/signBack';
+    function del(Id) {
+        var c = confirm("确认删除该用户吗？请先确保他的工作已完成！");
+        if(c==true){
+            window.location.href = '${pageContext.request.contextPath}/job/delete?Id='+Id;
+        }
     }
-    function change(employeeId) {
-        window.location.href = '${pageContext.request.contextPath}/employee/change?employeeId='+employeeId;
-    }
-    function del(employeeId) {
-        window.location.href = '${pageContext.request.contextPath}/employee/delete?employeeId='+employeeId;
+    function add() {
+        window.location.href = '${pageContext.request.contextPath}/job/add';
     }
     function Message() {
         let message = document.getElementById("Message").value;

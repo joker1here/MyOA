@@ -115,7 +115,7 @@
                 </li>
                 <li class="mega-menu mega-menu-sm">
                     <a href="${pageContext.request.contextPath}/notice/noticeList" aria-expanded="false" target="ifd">
-                        <i class="icon-globe-alt menu-icon"></i><span class="nav-text" >活动公告</span>
+                        <i class="icon-globe-alt menu-icon"></i><span class="nav-text" >通知</span>
                     </a>
                 </li>
                 <li class="mega-menu mega-menu-sm" >
@@ -130,7 +130,7 @@
                 <!--                    </li>-->
                 <li class="mega-menu mega-menu-sm">
                     <a href="${pageContext.request.contextPath}/attendance/attendanceList" aria-expanded="false" target="ifd">
-                        <i class="fa fa-calendar"></i><span class="nav-text">考勤管理</span>
+                        <i class="fa fa-calendar"></i><span class="nav-text">考勤</span>
                     </a>
                 </li>
                 <li class="mega-menu mega-menu-sm">
@@ -141,7 +141,21 @@
                 <c:if test="${employee.userLevel>=3}">
                     <li class="mega-menu mega-menu-sm">
                         <a href="${pageContext.request.contextPath}/employee/manage" aria-expanded="false" target="ifd">
-                            <i class="icon-notebook menu-icon"></i><span class="nav-text">管理</span>
+                            <i class="icon-notebook menu-icon"></i><span class="nav-text">员工管理</span>
+                        </a>
+                    </li>
+                </c:if>
+                <c:if test="${employee.userLevel>=4}">
+                    <li class="mega-menu mega-menu-sm">
+                        <a href="${pageContext.request.contextPath}/dept/manage" aria-expanded="false" target="ifd">
+                            <i class="icon-notebook menu-icon"></i><span class="nav-text">部门管理</span>
+                        </a>
+                    </li>
+                </c:if>
+                <c:if test="${employee.userLevel>=4}">
+                    <li class="mega-menu mega-menu-sm">
+                        <a href="${pageContext.request.contextPath}/job/manage" aria-expanded="false" target="ifd">
+                            <i class="icon-notebook menu-icon"></i><span class="nav-text">职位管理</span>
                         </a>
                     </li>
                 </c:if>

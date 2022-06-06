@@ -17,6 +17,13 @@
         <property name="jdbcUrl" value="${jdbc.url}"/>
         <property name="user" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
+        <!--<property name="idleConnectionTestPeriod" value="0" />-->
+        <!--&lt;!&ndash; 连接池中未使用的链接最大存活时间，单位是分，默认值：60，如果要永远存活设置为0 &ndash;&gt;-->
+        <!--<property name="idleMaxAge" value="30" />-->
+        <!--&lt;!&ndash; 每个分区最大的连接数 &ndash;&gt;-->
+        <!--<property name="maxConnectionsPerPartition" value="150" />-->
+        <!--&lt;!&ndash; 每个分区最小的连接数 &ndash;&gt;-->
+        <!--<property name="minConnectionsPerPartition" value="5" />-->
     </bean>
 
     <!--配置注解扫描com包-->

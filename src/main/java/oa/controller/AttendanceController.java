@@ -21,18 +21,18 @@ public class AttendanceController {
 
     @Autowired
     private AttendanceService attendanceService;
+    //考勤列表
     @RequestMapping(value = "attendanceList")
     public ModelAndView attendanceList(@RequestParam(required = false)String Message) throws UnsupportedEncodingException {
         if (Message!=null) URLDecoder.decode(Message, "UTF-8");
         ModelAndView modelAndView = new ModelAndView();
         List<Attendance> attendanceList = attendanceService.findAllAttendance();
-        // System.out.println(attendanceList);
         modelAndView.addObject("attendanceList", attendanceList);
         modelAndView.addObject("Message", Message);
         modelAndView.setViewName("/attendance/attendance.jsp");
         return modelAndView;
     }
-
+    //签到
     @RequestMapping("signUp")
     public ModelAndView signUp(HttpSession session) throws UnsupportedEncodingException {
         String Message="成功签到！";
@@ -49,6 +49,7 @@ public class AttendanceController {
         }
         return new ModelAndView("redirect:/attendance/attendanceList?Message="+ URLEncoder.encode(Message,"UTF-8"));
     }
+    // 签退
     @RequestMapping("signBack")
     public ModelAndView signBack(HttpSession session) throws UnsupportedEncodingException {
         String Message="成功签退！";

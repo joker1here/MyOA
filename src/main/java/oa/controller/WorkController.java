@@ -56,17 +56,22 @@ public class WorkController {
 
     @RequestMapping("add")
     public ModelAndView add(HttpSession session,String workText,String workFinish,String workDate,String workTo) throws ParseException {
-        Employee employee = (Employee) session.getAttribute("employee");
-        Work work = new Work();
-        work.setWorkFinish(Integer.parseInt(workFinish));
-        work.setWorkText(workText);
-        work.setWorkTo(Integer.parseInt(workTo));
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = simpleDateFormat.parse(workDate);
-        work.setWorkTime(date);
-        work.setEmployeeId(employee.getEmployeeId());
-
         String Message = "Success!";
+        Work work = new Work();
+        Employee employee = (Employee) session.getAttribute("employee");
+        try {
+            work.setWorkFinish(Integer.parseInt(workFinish));
+            work.setWorkText(workText);
+            work.setWorkTo(Integer.parseInt(workTo));
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = simpleDateFormat.parse(workDate);
+            work.setWorkTime(date);
+            work.setEmployeeId(employee.getEmployeeId());
+        }catch (Exception e){
+            Message = "DataFormat is Wrong!";
+            return new ModelAndView("redirect:/work/ShowWork?Message="+Message);
+        }
+
         try{
             workService.addWork(work);
         }catch (Exception e){
