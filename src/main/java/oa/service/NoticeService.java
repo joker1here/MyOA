@@ -15,12 +15,22 @@ public class NoticeService {
         return noticeMapper.findAllNotice();
     }
 
-    public void deleteNoticeById(int noticeId) {
-        noticeMapper.deleteNoticeById(noticeId);
+    public String deleteNoticeById(int noticeId) {
+        try {
+            noticeMapper.deleteNoticeById(noticeId);
+        }catch (Exception e){
+            return "数据库错误";
+        }
+        return "删除成功！";
     }
 
-    public void addNotice(Notice notice) {
-        noticeMapper.saveNotice(notice);
+    public String addNotice(Notice notice) {
+        try {
+            noticeMapper.saveNotice(notice);
+        }catch (Exception e){
+            return "数据库错误";
+        }
+        return "成功添加！";
     }
 
     public int countNotice() {

@@ -42,16 +42,26 @@ public class WorkService {
         return workList;
     }
 
-    public void updateWork(Work work) {
-        workMapper.updateWork(work);
+    public String updateWork(Work work) {
+        try {
+            workMapper.updateWork(work);
+        }catch (Exception e){
+            return "数据库错误";
+        }
+        return "操作成功";
     }
 
     public Work findWorkById(int workId) {
         return workMapper.findWorkById(workId);
     }
 
-    public void addWork(Work work) {
-        workMapper.saveWork(work);
+    public String addWork(Work work) {
+        try {
+            workMapper.saveWork(work);
+        }catch (Exception e){
+            return "数据库错误";
+        }
+        return "成功添加";
     }
 
     public List<Work> ShowWorkTo(int employeeId) {
@@ -62,7 +72,12 @@ public class WorkService {
         return workList;
     }
 
-    public void deleteWork(int workId) {
-        workMapper.deleteWorkById(workId);
+    public String deleteWork(int workId) {
+        try {
+            workMapper.deleteWorkById(workId);
+        }catch (Exception e){
+            return "数据库错误";
+        }
+        return "成功删除";
     }
 }

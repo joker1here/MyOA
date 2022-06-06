@@ -49,13 +49,13 @@ public class DeptController {
         dept.setDeptName(name);
         dept.setDeptIntroduce(Introduce);
         String Message = deptService.update(dept);
-        return new ModelAndView("redirect:/dept/manage?Message=" + Message);
+        return new ModelAndView("redirect:/dept/manage","Message",Message);
     }
     //删除操作
     @RequestMapping("delete")
     public ModelAndView delete(String Id){
         String Message = deptService.delete(Integer.parseInt(Id));
-        return new ModelAndView("redirect:/dept/manage?Message=" + Message);
+        return new ModelAndView("redirect:/dept/manage","Message",Message);
     }
     //跳转到添加页面
     @RequestMapping("add")

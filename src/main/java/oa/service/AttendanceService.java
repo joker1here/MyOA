@@ -48,19 +48,39 @@ public class AttendanceService {
         //不为空，表示已经签到
     }
 
-    public void signUp(int employeeId) {
-        Date date = getDate();
-        Attendance attendance = new Attendance();
-        attendance.setAttendanceEmployee(employeeId);
-        attendance.setSignUpTime(date);
-        attendanceMapper.saveAttendance(attendance);
+    public String signUp(int employeeId) {
+        if (alreadySignUp(employeeId)){
+            return "签到失败！已经签到了！";
+        }
+        else {
+            try {
+                Date date = getDate();
+                Attendance attendance = new Attendance();
+                attendance.setAttendanceEmployee(employeeId);
+                attendance.setSignUpTime(date);
+                attendanceMapper.saveAttendance(attendance);
+            } catch (Exception e) {
+                return "数据库错误";
+            }
+        }
+        return "签到成功";
     }
 
-    public void signBack(int employeeId) {
-        Date date = getDate();
-        Attendance attendance=attendanceMapper.alreadySignUp(employeeId);
-        attendance.setSignBackTime(date);
-        attendanceMapper.updateAttendance(attendance);
+    public String signBack(int employeeId) {
+        if (!alreadySignUp(employeeId)){
+            return "请先签到！";
+        }
+        else {
+            try {
+                Date date = getDate();
+                Attendance attendance = attendanceMapper.alreadySignUp(employeeId);
+                attendance.setSignBackTime(date);
+                attendanceMapper.updateAttendance(attendance);
+            } catch (Exception e) {
+                return "数据库错误！";
+            }
+        }
+        return "签退成功";
     }
     //获取当前时间
     public Date getDate(){

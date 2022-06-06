@@ -48,13 +48,13 @@ public class JobController {
         job.setJobName(name);
         job.setJobIntroduce(Introduce);
         String Message = jobService.update(job);
-        return new ModelAndView("redirect:/job/manage?Message=" + Message);
+        return new ModelAndView("redirect:/job/manage", "Message", Message);
     }
     //删除操作
     @RequestMapping("delete")
     public ModelAndView delete(String Id){
         String Message = jobService.delete(Integer.parseInt(Id));
-        return new ModelAndView("redirect:/job/manage?Message=" + Message);
+        return new ModelAndView("redirect:/job/manage", "Message", Message);
     }
     //跳转到添加页面
     @RequestMapping("add")

@@ -40,17 +40,17 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-4 col-form-label" for="val-username">职位名称 <span class="text-danger">*</span>
+                                <label class="col-lg-4 col-form-label" for="name">职位名称 <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" id="val-username" name="username" value="${job.jobName}">
+                                    <input type="text" class="form-control" id="name" name="name" value="${job.jobName}">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-4 col-form-label" for="val-password">职位介绍 <span class="text-danger">*</span>
+                                <label class="col-lg-4 col-form-label" for="Introduce">职位介绍 <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" id="val-password" name="password" value="${job.jobIntroduce}">
+                                    <input type="text" class="form-control" id="Introduce" name="Introduce" value="${job.jobIntroduce}">
                                 </div>
                             </div>
                             <div class="form-group row">

@@ -23,8 +23,8 @@ public class AttendanceController {
     private AttendanceService attendanceService;
     //考勤列表
     @RequestMapping(value = "attendanceList")
-    public ModelAndView attendanceList(@RequestParam(required = false)String Message) throws UnsupportedEncodingException {
-        if (Message!=null) URLDecoder.decode(Message, "UTF-8");
+    public ModelAndView attendanceList(@RequestParam(required = false)String Message) {
+        //if (Message!=null) URLDecoder.decode(Message, "UTF-8");
         ModelAndView modelAndView = new ModelAndView();
         List<Attendance> attendanceList = attendanceService.findAllAttendance();
         modelAndView.addObject("attendanceList", attendanceList);
@@ -35,35 +35,15 @@ public class AttendanceController {
     //签到
     @RequestMapping("signUp")
     public ModelAndView signUp(HttpSession session) throws UnsupportedEncodingException {
-        String Message="成功签到！";
         Employee employee= (Employee) session.getAttribute("employee");
-        if (attendanceService.alreadySignUp(employee.getEmployeeId())){
-            Message= "签到失败！已经签到了！";
-        }
-        else {
-            try {
-                attendanceService.signUp(employee.getEmployeeId());
-            }catch (Exception e){
-                Message= "数据库错误！";
-            }
-        }
-        return new ModelAndView("redirect:/attendance/attendanceList?Message="+ URLEncoder.encode(Message,"UTF-8"));
+        String Message=attendanceService.signUp(employee.getEmployeeId());
+        return new ModelAndView("redirect:/attendance/attendanceList","Message",Message);
     }
     // 签退
     @RequestMapping("signBack")
     public ModelAndView signBack(HttpSession session) throws UnsupportedEncodingException {
-        String Message="成功签退！";
         Employee employee= (Employee) session.getAttribute("employee");
-        if (!attendanceService.alreadySignUp(employee.getEmployeeId())){
-           Message="请先签到！";
-        }
-        else {
-            try {
-                attendanceService.signBack(employee.getEmployeeId());
-            }catch (Exception e){
-                Message="数据库错误！";
-            }
-        }
-        return new ModelAndView("redirect:/attendance/attendanceList?Message="+URLEncoder.encode(Message,"UTF-8"));
+        String Message = attendanceService.signBack(employee.getEmployeeId());
+        return new ModelAndView("redirect:/attendance/attendanceList","Message",Message);
     }
 }

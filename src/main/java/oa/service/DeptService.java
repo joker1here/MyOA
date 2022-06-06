@@ -27,16 +27,16 @@ public class DeptService {
         if (dept.getDeptId()!=0) {
             try {
                 deptMapper.updateDept(dept);
-                return "Success Update!";
+                return "操作成功!";
             } catch (Exception e) {
-                return "DataBase Wrong!";
+                return "数据库错误!";
             }
         }else {
             try{
                 deptMapper.saveDept(dept);
-                return "Success Save!";
+                return "成功保存!";
             }catch (Exception e){
-                return "DataBase Wrong!";
+                return "数据库错误";
             }
         }
     }
@@ -44,9 +44,9 @@ public class DeptService {
     public String delete(int deptId) {
         try{
             deptMapper.deleteDeptById(deptId);
-            return "Success!";
+            return "成功删除!";
         }catch (Exception e){
-            return "DataBase Wrong!";
+            return "数据库错误!";
         }
     }
 }

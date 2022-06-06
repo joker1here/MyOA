@@ -32,7 +32,8 @@
                                 <h5 class="mb-0" data-toggle="collapse" data-target="#collapse${Notice.noticeId}" aria-expanded="true" aria-controls="collapseOne">
                                     <i class="fa" aria-hidden="true"></i> 标题：${Notice.noticeName}
                                     <c:if test="${employee.userLevel>=3}">
-                                        <a href='${pageContext.request.contextPath}/notice/delete?noticeId=${Notice.noticeId}' class="ti-trash"></a>
+                                        <%--<a href='${pageContext.request.contextPath}/notice/delete?noticeId=${Notice.noticeId}' class="ti-trash"></a>--%>
+                                        <a onclick="del(${Notice.noticeId})" class="ti-trash"></a>
                                     </c:if>
                                 </h5>
                             </div>
@@ -69,11 +70,30 @@
             </div>
         </div>
     </c:if>
+    <%--TODO--%>
+    <input id="Message" type="hidden" value="${Message}">
 </div>
 <!-- #/ container -->
 <!--    Content body end-->
 
 <!--Scripts-->
+<script>
+    function del(noticeId) {
+        var c = confirm("确认删除该通知吗？");
+        if(c==true){
+            window.location.href = '${pageContext.request.contextPath}/notice/delete?noticeId='+noticeId;
+        }
+    }
+    function Message() {
+        let message = document.getElementById("Message").value;
+        //let message=$("#Message").val();
+        // console.log("success");
+        if(message !=  null && message.trim() !== "" &&message!=="null"){
+            alert(message);
+        }
+    }
+    window.onLoad=Message();
+</script>
 <script src="../../plugins/common/common.min.js"></script>
 <script src="../../js/custom.min.js"></script>
 <script src="../../js/settings.js"></script>

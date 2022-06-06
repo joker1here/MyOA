@@ -43,15 +43,10 @@ public class WorkController {
     }
     @RequestMapping("/updateFinish")
     public ModelAndView updateFinish(HttpSession session, @RequestParam(required = false) float finish, int workId){
-        String Message= "Success!";
         Work work = workService.findWorkById(workId);
         work.setWorkFinish(finish);
-        try{
-            workService.updateWork(work);
-        }catch (Exception e){
-            Message="DataBase Option Wrong！";
-        }
-        return new ModelAndView("redirect:/work/ShowWork?Message="+Message);
+        String Message= workService.updateWork(work);
+        return new ModelAndView("redirect:/work/ShowWork", "Message", Message);
     }
 
     @RequestMapping("add")
@@ -68,27 +63,18 @@ public class WorkController {
             work.setWorkTime(date);
             work.setEmployeeId(employee.getEmployeeId());
         }catch (Exception e){
-            Message = "DataFormat is Wrong!";
-            return new ModelAndView("redirect:/work/ShowWork?Message="+Message);
+            Message = "数据格式错误!";
+            return new ModelAndView("redirect:/work/ShowWork", "Message", Message);
         }
 
-        try{
-            workService.addWork(work);
-        }catch (Exception e){
-            Message = "DataBase Wrong!";
-        }
-        return new ModelAndView("redirect:/work/ShowWork?Message="+Message);
+        Message= workService.addWork(work);
+        return new ModelAndView("redirect:/work/ShowWork", "Message", Message);
     }
 
     @RequestMapping("delete")
     public ModelAndView delete(String workId){
-        String Message = "Success!";
-        try{
-            workService.deleteWork(Integer.parseInt(workId));
-        }catch (Exception e){
-            Message = "DataBase Wrong!";
-        }
-        return new ModelAndView("redirect:/work/ShowWork?Message="+Message);
+        String Message = workService.deleteWork(Integer.parseInt(workId));
+        return new ModelAndView("redirect:/work/ShowWork", "Message", Message);
     }
 
 

@@ -26,16 +26,16 @@ public class JobService {
         if (job.getJobId()!=0) {
             try {
                 jobMapper.updateJob(job);
-                return "Success Update!";
+                return "成功更新!";
             } catch (Exception e) {
-                return "DataBase Wrong!";
+                return "数据库错误!";
             }
         }else {
             try{
                 jobMapper.saveJob(job);
-                return "Success Save!";
+                return "成功保存!";
             }catch (Exception e){
-                return "DataBase Wrong!";
+                return "数据库错误!";
             }
         }
     }
@@ -43,9 +43,9 @@ public class JobService {
     public String delete(int jobId) {
         try{
             jobMapper.deleteJobById(jobId);
-            return "Success!";
+            return "成功删除!";
         }catch (Exception e){
-            return "DataBase Wrong!";
+            return "数据库错误!";
         }
     }
 }

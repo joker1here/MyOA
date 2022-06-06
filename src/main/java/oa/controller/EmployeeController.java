@@ -143,7 +143,7 @@ public class EmployeeController {
     public ModelAndView update(HttpSession session,String EmployeeID,String username,
                                String password,String address,@RequestParam(required = false) String Birthday,String email,
                                String sex,String userLevel,String DeptId,String JobId) throws ParseException {
-        String Message = "Success!";
+        String Message = "成功!";
         Employee employeeOnline = (Employee) session.getAttribute("employee");
         Employee employee = new Employee();
         //ID
@@ -174,7 +174,7 @@ public class EmployeeController {
             employee.setUserLevel(Integer.parseInt(userLevel));
         //部门
         Dept dept = deptService.findDeptByDeptName(DeptId);
-        if (DeptId!=null&&!DeptId.equals("")&&dept==null) Message = "DeptName Wrong!";
+        if (DeptId!=null&&!DeptId.equals("")&&dept==null) Message = "部门名出错!";
         else {
             if (DeptId!=null&&!DeptId.equals("")) {
                 employee.setDeptId(dept.getDeptId());
@@ -182,7 +182,7 @@ public class EmployeeController {
             }
             //职位
             Job job = jobService.findJobByJobName(JobId);
-            if (JobId!=null&&!JobId.equals("")&&job==null) Message = "JobName Wrong!";
+            if (JobId!=null&&!JobId.equals("")&&job==null) Message = "职位名出错!";
             else {
                 if (JobId!=null&&!JobId.equals("")) {
                     employee.setJobId(job.getJobId());
@@ -195,39 +195,51 @@ public class EmployeeController {
                     try {
                         employeeService.update(employee);
                     }catch (Exception e){
-                        Message = "DataBase Wrong!";
+                        Message = "数据库错误!";
                     }
                     session.setAttribute("employee",employee);
-                    return new ModelAndView("redirect:/employee/profile?Message="+Message);
+                    return new ModelAndView("redirect:/employee/profile","Message",Message);
                 }else {//非本人
                     //如果目标用户等级过高
                     if (employeeOnline.getUserLevel()<=employee.getUserLevel()){
-                        Message="Your UserLevel is Insufficient!";
-                        return new ModelAndView("redirect:/employee/change?employeeId="+employee.getEmployeeId()+"&Message="+Message);
+                        Message="你的等级不足！";
+                        ModelAndView modelAndView = new ModelAndView();
+                        modelAndView.setViewName("redirect:/employee/change");
+                        modelAndView.addObject("employeeId", employee.getEmployeeId());
+                        modelAndView.addObject("Message", Message);
+                        return modelAndView;
                     }else {
                         //更新操作
                         if (employee.getEmployeeId()!=0) {
                             try {
                                 employeeService.update(employee);
                             } catch (Exception e) {
-                                Message = "DataBase Wrong!";
+                                Message = "数据库错误!";
                             }
-                            return new ModelAndView("redirect:/employee/change?employeeId=" + employee.getEmployeeId() + "&Message=" + Message);
+                            ModelAndView modelAndView = new ModelAndView();
+                            modelAndView.setViewName("redirect:/employee/change");
+                            modelAndView.addObject("employeeId", employee.getEmployeeId());
+                            modelAndView.addObject("Message", Message);
+                            return modelAndView;
                         }else {
                             Message = employeeService.save(employee);
-                            return new ModelAndView("redirect:/employee/manage?Message=" + Message);
+                            return new ModelAndView("redirect:/employee/manage","Message",Message);
                         }
                     }
                 }
             }
         }
-        return new ModelAndView("redirect:/employee/change?employeeId="+employee.getEmployeeId()+"&Message="+Message);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/employee/change");
+        modelAndView.addObject("employeeId", employee.getEmployeeId());
+        modelAndView.addObject("Message", Message);
+        return modelAndView;
     }
     //删除用户界面
     @RequestMapping("delete")
     public ModelAndView delete(String employeeId){
         String Message = employeeService.deleteEmployeeById(Integer.parseInt(employeeId));
-        return new ModelAndView("redirect:/employee/manage?Message="+Message);
+        return new ModelAndView("redirect:/employee/manage","Message",Message);
     }
 
 
