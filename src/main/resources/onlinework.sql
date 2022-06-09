@@ -11,7 +11,7 @@
  Target Server Version : 80028
  File Encoding         : 65001
 
- Date: 06/06/2022 20:11:59
+ Date: 06/06/2022 22:38:11
 */
 
 SET NAMES utf8;
@@ -64,6 +64,10 @@ INSERT INTO `attendance` VALUES (28, 10, '2022-05-29 12:05:31', '2022-05-29 12:1
 INSERT INTO `attendance` VALUES (29, 10, '2022-05-30 05:18:14', '2022-05-30 07:05:07');
 INSERT INTO `attendance` VALUES (31, 10, '2022-05-30 14:51:42', '2022-05-31 08:07:14');
 INSERT INTO `attendance` VALUES (32, 10, '2022-05-31 08:19:01', '2022-05-31 08:19:05');
+INSERT INTO `attendance` VALUES (33, 10, '2022-06-06 12:28:54', '2022-06-06 12:28:57');
+INSERT INTO `attendance` VALUES (34, 10, '2022-06-06 12:30:03', '2022-06-06 12:35:04');
+INSERT INTO `attendance` VALUES (35, 10, '2022-06-06 12:49:25', '2022-06-06 12:49:27');
+INSERT INTO `attendance` VALUES (36, 10, '2022-06-06 13:06:38', '2022-06-06 13:06:39');
 
 -- ----------------------------
 -- Table structure for dept
@@ -80,7 +84,7 @@ CREATE TABLE `dept`  (
 -- Records of dept
 -- ----------------------------
 INSERT INTO `dept` VALUES (0, '无部门', '还没加入部门');
-INSERT INTO `dept` VALUES (1, '开发部门', '这是一个开发部门');
+INSERT INTO `dept` VALUES (1, '开发部门', '这是一个开发的部门');
 INSERT INTO `dept` VALUES (2, '销售部', '这是一个负责销售的部门');
 INSERT INTO `dept` VALUES (3, '外交部', '这是一个负责对外联络的部门');
 
@@ -115,9 +119,8 @@ CREATE TABLE `employee`  (
 INSERT INTO `employee` VALUES (1, '张三', '123', '肇庆学院', '1999-01-01', '123@123.com', '123456789', '', 1, 6, 1, 1);
 INSERT INTO `employee` VALUES (2, 'LiangHengBing', 'lianghengbing123', '肇庆学院', '2022-05-08', '123@123.com', NULL, NULL, 0, 3, 1, 3);
 INSERT INTO `employee` VALUES (9, 'zhangsan', 'zhangsan', '', '2022-05-28', '', NULL, NULL, 1, 2, 1, 3);
-INSERT INTO `employee` VALUES (10, 'Joker', 'yecanshuo159', '肇庆学院', '2022-05-01', '1231231234', NULL, NULL, 0, 4, 1, 1);
+INSERT INTO `employee` VALUES (10, 'Joker', 'yecanshuo159', '肇庆学院', '2022-04-30', '1231231234', NULL, NULL, 1, 4, 1, 1);
 INSERT INTO `employee` VALUES (25, 'wenshaojie', 'wenshaojie', '', '2022-05-25', '', NULL, NULL, 1, 0, 1, 4);
-INSERT INTO `employee` VALUES (34, '11', 'yecanshuo159', '', NULL, '', NULL, NULL, 1, 0, 0, 0);
 
 -- ----------------------------
 -- Table structure for file
@@ -142,7 +145,7 @@ CREATE TABLE `file`  (
 -- Records of file
 -- ----------------------------
 INSERT INTO `file` VALUES (1, '测试1', '文件', 'txt', '2022-05-03 11:36:09', '文件内容123', 9, 2, 0);
-INSERT INTO `file` VALUES (19, '存储地址测试', 'Logo', 'png', '2022-05-31 13:19:00', '按照时间分文件夹', 10, 10, 0);
+INSERT INTO `file` VALUES (19, '存储地址测试', 'Logo', 'png', '2022-05-31 13:19:00', '按照时间分文件夹', 10, 10, 1);
 
 -- ----------------------------
 -- Table structure for job
@@ -183,12 +186,7 @@ CREATE TABLE `notice`  (
 -- Records of notice
 -- ----------------------------
 INSERT INTO `notice` VALUES (1, '通知一', '这是通知一', '2022-05-05 22:42:10', 1);
-INSERT INTO `notice` VALUES (5, '测试通知', '这是测试用的通知', '2022-05-08 02:26:24', 2);
-INSERT INTO `notice` VALUES (6, '测试通知', '这是测试用的通知', '2022-05-08 02:26:49', 2);
-INSERT INTO `notice` VALUES (7, '测试通知', '这是测试用的通知', '2022-05-20 00:21:34', 2);
-INSERT INTO `notice` VALUES (8, '测试通知', '这是测试用的通知', '2022-05-20 00:23:00', 2);
-INSERT INTO `notice` VALUES (11, '通知二', '这是新的通知二', '2022-05-30 06:56:22', 10);
-INSERT INTO `notice` VALUES (12, '新通知', '新通知', '2022-05-30 12:06:13', 10);
+INSERT INTO `notice` VALUES (14, '11', '11', '2022-06-06 13:17:55', 10);
 
 -- ----------------------------
 -- Table structure for task
@@ -260,7 +258,7 @@ CREATE TABLE `work`  (
 -- ----------------------------
 -- Records of work
 -- ----------------------------
-INSERT INTO `work` VALUES (1, '2022-05-13 09:58:20', 1, 10, '完成任务', 1);
+INSERT INTO `work` VALUES (1, '2022-05-13 09:58:20', 1, 10, '完成任务', 55);
 INSERT INTO `work` VALUES (2, '2022-05-13 09:58:23', 2, 10, '完成任务1', 10);
 INSERT INTO `work` VALUES (6, '2022-05-25 15:32:35', 9, 10, '完成邮箱', 40);
 INSERT INTO `work` VALUES (7, '2022-06-30 15:33:07', 10, 10, '123', 100);

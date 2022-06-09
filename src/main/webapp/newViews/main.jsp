@@ -58,29 +58,10 @@
             </div>
             <div class="header-right">
                 <ul class="clearfix">
-                    <%--<li class="icons dropdown">--%>
-                    <%--    <a href="${pageContext.request.contextPath}/file/main" aria-expanded="false" target="ifd">--%>
-                    <%--        <i class="mdi mdi-email-outline"></i>--%>
-                    <%--        <!--邮箱消息-->--%>
-                    <%--        <c:if  test="${countFileNoRead>0}">--%>
-                    <%--            <span class="badge gradient-1 badge-pill badge-primary">${countFileNoRead}</span>--%>
-                    <%--        </c:if>--%>
-                    <%--    </a>--%>
-                    <%--</li>--%>
-                    <%--<li class="icons dropdown">--%>
-                    <%--    <a href="${pageContext.request.contextPath}/work/ShowWork" aria-expanded="false" target="ifd">--%>
-                    <%--        <i class="mdi mdi-bell-outline"></i>--%>
-                    <%--        <!--消息提醒-->--%>
-                    <%--        <c:if  test="${countWorkNoFinish>0}">--%>
-                    <%--            <span class="badge badge-pill gradient-2 badge-primary">${countWorkNoFinish}</span>--%>
-                    <%--        </c:if>--%>
-                    <%--    </a>--%>
-                    <%--</li>--%>
 
                     <li class="icons dropdown">
                         <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
-                            <span class="activity active"></span>
-                            <img src="../images/user/1.png" height="40" width="40" alt="">
+                            <i class="fa fa-user fa-2x" aria-hidden="true"></i>
                         </div>
                         <div class="drop-down dropdown-profile   dropdown-menu">
                             <div class="dropdown-content-body">
@@ -90,9 +71,6 @@
                                     </li>
 
                                     <hr class="my-2">
-                                    <li>
-                                        <a href="page-lock.html"><i class="icon-lock"></i> <span>锁屏</span></a>
-                                    </li>
                                     <li><a href="${pageContext.request.contextPath}/employee/logout"><i class="icon-key"></i> <span>退出登录</span></a></li>
                                 </ul>
                             </div>
@@ -123,11 +101,6 @@
                         <i class="icon-envelope menu-icon"></i> <span class="nav-text">邮箱</span>
                     </a>
                 </li>
-                <!--                    <li class="mega-menu mega-menu-sm">-->
-                <!--                        <a href="file.html" aria-expanded="false">-->
-                <!--                            <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">文件管理</span>-->
-                <!--                        </a>-->
-                <!--                    </li>-->
                 <li class="mega-menu mega-menu-sm">
                     <a href="${pageContext.request.contextPath}/attendance/attendanceList" aria-expanded="false" target="ifd">
                         <i class="fa fa-calendar"></i><span class="nav-text">考勤</span>

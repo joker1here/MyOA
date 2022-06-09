@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,14 +37,15 @@ public class FileController {
 
     //收件箱
     @RequestMapping("/main")
-    public ModelAndView main(HttpSession session){
+    public ModelAndView main(HttpSession session,@RequestParam(required = false)String Message){
         ModelAndView modelAndView = new ModelAndView();
         Employee employee = (Employee) session.getAttribute("employee");
         int countFileNoRead = fileService.CountFileNoRead(employee.getEmployeeId());
         modelAndView.addObject("countFileNoRead", countFileNoRead);
         List<oa.pojo.File> fileList = fileService.findAllReceiveFileByEmployeeId(employee.getEmployeeId());
         modelAndView.addObject("fileList", fileList);
-
+        modelAndView.addObject("fileOption", "1");
+        modelAndView.addObject("Message", Message);
         modelAndView.setViewName("/email/email.jsp");
         return modelAndView;
     }
@@ -55,40 +57,43 @@ public class FileController {
         int countFileNoRead = fileService.CountFileNoRead(employee.getEmployeeId());
         modelAndView.addObject("countFileNoRead", countFileNoRead);
         List<oa.pojo.File> fileList = fileService.findAllSentByEmployeeId(employee.getEmployeeId());
+        modelAndView.addObject("fileOption", "0");
         modelAndView.addObject("fileList", fileList);
         modelAndView.setViewName("/email/email.jsp");
         return modelAndView;
     }
     //添加界面
     @RequestMapping("/compose")
-    public ModelAndView compose(HttpSession session){
+    public ModelAndView compose(HttpSession session,@RequestParam(required = false)String Message){
         ModelAndView modelAndView = new ModelAndView();
         Employee employee = (Employee) session.getAttribute("employee");
         int countFileNoRead = fileService.CountFileNoRead(employee.getEmployeeId());
+        List<Employee> employeeList = employeeService.findAllEmployee();
+        modelAndView.addObject("employeeList", employeeList);
         modelAndView.addObject("countFileNoRead", countFileNoRead);
+        modelAndView.addObject("Message", Message);
         modelAndView.setViewName("/email/email_compose.jsp");
         return modelAndView;
     }
     //阅读界面
     @RequestMapping("/read")
-    public ModelAndView read(HttpSession session,int fileId){
+    public ModelAndView read(HttpSession session,int fileId,@RequestParam(required = false)String Message,String option){
         ModelAndView modelAndView = new ModelAndView();
         Employee employee = (Employee) session.getAttribute("employee");
         oa.pojo.File file = fileService.findFileById(fileId);
-        file.setFileRead(1);
-        //System.out.println(file);
-        try{
-            fileService.updateFile(file);
-            System.out.println(file);
-            System.out.println("更新成功");
-        }catch (Exception e){
-            System.out.println("错误");
-            modelAndView.addObject("Message", "数据库错误");
+        if (option.equals("1")) {
+            file.setFileRead(1);
+            try {
+                fileService.updateFile(file);
+            } catch (Exception e) {
+                Message = "数据库错误";
+            }
         }
 
         int countFileNoRead = fileService.CountFileNoRead(employee.getEmployeeId());
         modelAndView.addObject("countFileNoRead", countFileNoRead);
         modelAndView.addObject("file", file);
+        modelAndView.addObject("Message", Message);
         modelAndView.setViewName("/email/email_read.jsp");
         return modelAndView;
     }
@@ -96,7 +101,7 @@ public class FileController {
     @RequestMapping("/noRead")
     public ModelAndView noRead(HttpSession session,String check){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("Message", "操作成功");
+        String Message= "操作成功";
         Employee employee = (Employee) session.getAttribute("employee");
         String[] list = check.split(",");
         System.out.println(list);
@@ -108,39 +113,29 @@ public class FileController {
             System.out.println(file);
             try{
                 fileService.updateFile(file);
-                System.out.println(file);
-                System.out.println("更新成功");
             }catch (Exception e){
-                System.out.println("错误");
-                modelAndView.addObject("Message", "数据库错误");
+                Message="数据库错误";
             }
         }
-        int countFileNoRead = fileService.CountFileNoRead(employee.getEmployeeId());
-        modelAndView.addObject("countFileNoRead", countFileNoRead);
-        modelAndView.addObject("fileList", fileService.findAllReceiveFileByEmployeeId(employee.getEmployeeId()));
-        modelAndView.setViewName("/email/email.jsp");
+        modelAndView.addObject("Message", Message);
+        modelAndView.setViewName("redirect:/file/main");
         return modelAndView;
     }
     //删除邮件
     @RequestMapping("/deleteEmail")
     public ModelAndView deleteEmail(HttpSession session,String check){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("Message", "操作成功");
-        Employee employee = (Employee) session.getAttribute("employee");
+        String Message="操作成功";
         String[] list = check.split(",");
         for (String id : list) {
             try{
                 fileService.deleteFile(Integer.parseInt(id));
-                System.out.println("删除成功");
             }catch (Exception e){
-                System.out.println("错误");
-                modelAndView.addObject("Message", "数据库错误");
+                Message= "数据库错误";
             }
         }
-        int countFileNoRead = fileService.CountFileNoRead(employee.getEmployeeId());
-        modelAndView.addObject("countFileNoRead", countFileNoRead);
-        modelAndView.addObject("fileList", fileService.findAllReceiveFileByEmployeeId(employee.getEmployeeId()));
-        modelAndView.setViewName("/email/email.jsp");
+        modelAndView.addObject("Message", Message);
+        modelAndView.setViewName("redirect:/file/main");
         return modelAndView;
     }
     //发送
@@ -154,8 +149,7 @@ public class FileController {
         oa.pojo.File newFile = new oa.pojo.File();
         if (ToEmployee==null){
             modelAndView.addObject("Message", "不存在该收件人!");
-            System.out.println("不存在该收件人!");
-            modelAndView.setViewName("/email/email_compose.jsp");
+            modelAndView.setViewName("redirect:/file/compose");
             return modelAndView;
         }
         System.out.println(file);
@@ -178,8 +172,7 @@ public class FileController {
                 //System.out.println("文件名：" + name+",后缀"+type);
             }catch (Exception e){
                 modelAndView.addObject("Message", "上传文件失败!");
-                modelAndView.setViewName("/email/email_compose.jsp");
-                System.out.println("上传文件失败!");
+                modelAndView.setViewName("redirect:/file/compose");
                 return modelAndView;
             }
         }
@@ -195,8 +188,7 @@ public class FileController {
         newFile.setToEmployee(ToEmployee);
         String Message = fileService.saveFile(newFile);
         modelAndView.addObject("Message",Message);
-        System.out.println(Message);
-        modelAndView.setViewName("/email/email_compose.jsp");
+        modelAndView.setViewName("redirect:/file/compose");
         return modelAndView;
     }
     //

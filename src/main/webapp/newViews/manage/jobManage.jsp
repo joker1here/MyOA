@@ -30,8 +30,8 @@
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
                             <tr>
-                                <th>部门名称</th>
-                                <th>部门描述</th>
+                                <th>职位名称</th>
+                                <th>职位描述</th>
                                 <th>操作</th>
                             </tr>
                             </thead>

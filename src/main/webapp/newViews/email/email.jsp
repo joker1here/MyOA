@@ -37,34 +37,34 @@
                             <a href="${pageContext.request.contextPath}/file/fileListTo" class="list-group-item border-0 text-primary p-r-0">
                                 <i class="fa fa-paper-plane font-18 align-middle mr-2"></i>已发送
                             </a>
-                            <%--<a href="#" class="list-group-item border-0 p-r-0"><i class="fa fa-star-o font-18 align-middle mr-2"></i>重要 <span class="badge badge-danger badge-sm float-right m-t-5">47</span> </a>--%>
-                            <%--<a href="#" class="list-group-item border-0 p-r-0"><i class="fa fa-trash font-18 align-middle mr-2"></i>回收站</a>--%>
                         </div>
-                        <%--<h5 class="mt-5 m-b-10">邮件类别</h5>--%>
-                        <%--<div class="list-group mail-list"><a href="#" class="list-group-item border-0">--%>
-                        <%--    <span class="fa fa-briefcase f-s-14 mr-2"></span>工作</a>--%>
-                        <%--    <a href="#" class="list-group-item border-0"><span class="fa fa-sellsy f-s-14 mr-2"></span>私人</a>--%>
-                        <%--    <a href="#" class="list-group-item border-0"><span class="fa fa-tags f-s-14 mr-2"></span>社交</a>--%>
-                        <%--    <a href="#" class="list-group-item border-0"><span class="fa fa-ticket f-s-14 mr-2"></span>未分类</a>--%>
-                        <%--</div>--%>
                     </div>
                     <div class="email-right-box">
                         <div role="toolbar" class="toolbar">
                             <div class="btn-group">
                                 <button aria-expanded="false" data-toggle="dropdown" class="btn btn-dark dropdown-toggle" type="button">操作 <span class="caret m-l-5"></span>
                                 </button>
-                                <div class="dropdown-menu">
-                                    <a href="javascript: NoRead(0);" class="dropdown-item">标为未读</a>
-                                    <%--<a href="javascript: void(0);"class="dropdown-item">添加为重要</a>--%>
-                                    <a href="javascript: DeleteEmail(0);" class="dropdown-item">删除</a>
-                                </div>
+                                <c:if test="${fileOption==1}">
+                                    <div class="dropdown-menu">
+                                        <a href="javascript: NoRead(0);" class="dropdown-item">标为未读</a>
+                                            <%--<a href="javascript: void(0);"class="dropdown-item">添加为重要</a>--%>
+                                        <a href="javascript: DeleteEmail(0);" class="dropdown-item">删除</a>
+                                    </div>
+                                </c:if>
+                                <c:if test="${fileOption==0}">
+                                    <div class="dropdown-menu">
+                                        <%--<a href="javascript: NoRead(0);" class="dropdown-item">标为未读</a>--%>
+                                        <%--<a href="javascript: void(0);"class="dropdown-item">添加为重要</a>--%>
+                                        <a href="javascript: DeleteEmail(0);" class="dropdown-item">撤回</a>
+                                    </div>
+                                </c:if>
                             </div>
                         </div>
                         <div class="email-list m-t-15">
                             <%--TODO--%>
                             <c:forEach items="${fileList}" var="File">
                             <div class="message">
-                                <a href="${pageContext.request.contextPath}/file/read?fileId=${File.fileId}">
+                                <a href="${pageContext.request.contextPath}/file/read?fileId=${File.fileId}&option=${fileOption}">
                                     <div class="col-mail col-mail-1">
                                         <div class="email-checkbox">
                                             <input type="checkbox" id="${File.fileId}" name="checkbox" value="${File.fileId}">

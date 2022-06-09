@@ -36,7 +36,7 @@
                     <h3 class="card-title text-white">任务</h3>
                     <div class="d-inline-block">
                         <h2 class="text-white">${countNoFinishWork}</h2>
-                        <p class="text-white mb-0">Best wishes</p>
+                        <%--<p class="text-white mb-0">Best wishes</p>--%>
                     </div>
                     <span class="float-right display-5 opacity-5"><i class="icon-note menu-icon"></i></span>
                 </div>
@@ -51,7 +51,7 @@
                     <h3 class="card-title text-white">通知</h3>
                     <div class="d-inline-block">
                         <h2 class="text-white">${countNotice}</h2>
-                        <p class="text-white mb-0">Best wishes</p>
+                        <%--<p class="text-white mb-0">Best wishes</p>--%>
                     </div>
                     <span class="float-right display-5 opacity-5"><i class="icon-globe-alt menu-icon"></i></span>
                 </div>
@@ -66,7 +66,7 @@
                     <h3 class="card-title text-white">邮件</h3>
                     <div class="d-inline-block">
                         <h2 class="text-white">${countNoReadFile}</h2>
-                        <p class="text-white mb-0">Best wishes</p>
+                        <%--<p class="text-white mb-0">Best wishes</p>--%>
                     </div>
                     <span class="float-right display-5 opacity-5"><i class="fa fa-envelope"></i></span>
                 </div>
@@ -95,7 +95,7 @@
     <div class="col-lg-12 col-md-12">
         <div class="card">
             <div class="card-body px-0">
-                <h4 class="card-title px-4 mb-3">Todo</h4>
+                <h4 class="card-title px-4 mb-3">我的任务清单</h4>
                 <div class="todo-list">
                     <div class="tdl-holder">
                         <div class="tdl-content">
@@ -117,7 +117,7 @@
                             </ul>
                         </div>
                         <div class="px-4">
-                            <input type="text" class="tdl-new form-control" placeholder="Write new item and hit 'Enter'..." id="text">
+                            <input type="text" class="tdl-new form-control" placeholder="按回车键确认..." id="text">
                         </div>
                     </div>
                 </div>

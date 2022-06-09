@@ -43,6 +43,7 @@ public class JobController {
     @RequestMapping("update")
     public ModelAndView update(String Id,String name,String Introduce){
         Job job = new Job();
+        System.out.println(Id);
         if (Id!=null&&!Id.equals(""))
             job = jobService.findJobByJobId(Integer.parseInt(Id));
         job.setJobName(name);

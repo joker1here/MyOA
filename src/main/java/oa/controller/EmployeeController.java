@@ -35,8 +35,6 @@ public class EmployeeController {
     //转到登陆界面 TODO 有bug
     @RequestMapping("toLogin")
     public ModelAndView toLogin(@RequestParam(required = false)String Message) throws UnsupportedEncodingException {
-        if (Message!=null) URLDecoder.decode(Message, "UTF-8");
-        System.out.println("Login:"+Message);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("Message", Message);
         modelAndView.setViewName("/login/login.jsp");
@@ -82,7 +80,6 @@ public class EmployeeController {
     @RequestMapping(value = "/register")
     public ModelAndView register(@RequestParam("username") String employeeName, String password){
         String s = employeeService.register(employeeName, password);
-        System.out.println(s);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("Message", s);
         modelAndView.setViewName("/login/login.jsp");

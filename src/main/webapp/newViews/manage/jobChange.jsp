@@ -31,12 +31,12 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-validation">
-                        <form class="form-valide" action="${pageContext.request.contextPath}/employee/update" method="post">
+                        <form class="form-valide" action="${pageContext.request.contextPath}/job/update" method="post">
                             <div class="form-group row">
-                                <label class="col-lg-4 col-form-label" for="EmployeeID">职位编号 <span class="text-danger">*</span>
+                                <label class="col-lg-4 col-form-label" for="Id">职位编号 <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" id="EmployeeID" name="EmployeeID" readonly unselectable="on" value="${job.jobId}">
+                                    <input type="text" class="form-control" id="Id" name="Id" readonly unselectable="on" value="${job.jobId}">
                                 </div>
                             </div>
                             <div class="form-group row">
