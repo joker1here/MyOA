@@ -108,9 +108,6 @@
                                             <a href="javascript:reportWork(${Work.workId});" data-toggle="tooltip" data-placement="top" title="汇报进度">
                                                 <i class="fa fa-pencil color-muted m-r-5"></i>
                                             </a>
-                                            <%--<a href="#" data-toggle="tooltip" data-placement="top" title="Close">--%>
-                                            <%--    <i class="fa fa-close color-danger"></i>--%>
-                                            <%--</a>--%>
                                         </span>
                                     </td>
                                 </tr>

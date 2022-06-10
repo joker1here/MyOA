@@ -113,18 +113,12 @@
     if(!isEmpty(upd3)){
       //重复密码内容upd3不为空，开始验证
       //判断密码upd2是否为空，不为空则开始验证
-      if(!isEmpty(upd2) && upd2 == upd3)/*{
-                $("#msg1").html("密码不能为空");
-                return;
-            }else {
-                //判断密码upd2和重复密码upd3是否相等
-                if(upd2 == upd3)*/{
+      if(!isEmpty(upd2) && upd2 == upd3){
         //此处测试正确,继续
       }else{
         $("#msg1").html("密码并不相同");
         return;
       }
-      /*}*/
     }else{
       $("#msg1").html("确认密码不能为空");
       return;
@@ -224,7 +218,7 @@
     login_box.classList.add('hidden');
     register_box.classList.remove('hidden');
     clear_content();
-  })
+  });
 
   // 去登录按钮点击事件
   tologin.addEventListener('click',()=>{
@@ -232,7 +226,7 @@
     register_box.classList.add('hidden');
     login_box.classList.remove('hidden');
     clear_content();
-  })
+  });
 
   //清空输入框内容
   function clear_content() {

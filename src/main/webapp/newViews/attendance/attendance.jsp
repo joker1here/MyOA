@@ -28,8 +28,6 @@
                 <div class="general-button">
                     <button type="button" class="btn mb-1 btn-success" id="toastr-success-top-right" onclick="signUp();">上班打卡</button>
                     <button type="button" class="btn mb-1 btn-warning" id="toastr-info-top-right" onclick="signBack();">打卡签退</button>
-                    <%--<button type="button" class="btn mb-1 btn-success" onclick="signUp();">上班打卡</button>--%>
-                    <%--<button type="button" class="btn mb-1 btn-warning" onclick="signBack();">打卡签退</button>--%>
                 </div>
             </div>
         </div>
@@ -60,7 +58,6 @@
                                     <td>${Attendance.employee.employeeName}</td>
                                     <td><fmt:formatDate value="${Attendance.signUpTime}" pattern="yyyy-MM-dd HH:mm"/></td>
                                     <td><fmt:formatDate value="${Attendance.signBackTime}" pattern="yyyy-MM-dd HH:mm"/></td>
-                                    <td><%--@elvariable id="Math" type="java.lang.Math"--%>
                                     <fmt:formatNumber value="${Math.floor(Attendance.min/60)}" />小时 ${Attendance.min%60}分钟</td>
                                 </tr>
                             </c:forEach>

@@ -32,7 +32,6 @@
                                 <h5 class="mb-0" data-toggle="collapse" data-target="#collapse${Notice.noticeId}" aria-expanded="true" aria-controls="collapseOne">
                                     <i class="fa" aria-hidden="true"></i> 标题：${Notice.noticeName}
                                     <c:if test="${employee.userLevel>=3}">
-                                        <%--<a href='${pageContext.request.contextPath}/notice/delete?noticeId=${Notice.noticeId}' class="ti-trash"></a>--%>
                                         <a onclick="del(${Notice.noticeId})" class="ti-trash"></a>
                                     </c:if>
                                 </h5>

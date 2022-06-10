@@ -31,13 +31,6 @@
                 <div class="card-body">
                     <div class="form-validation">
                         <form class="form-valide" action="${pageContext.request.contextPath}/employee/update" method="post">
-                            <%--<div class="form-group row">--%>
-                            <%--    <label class="col-lg-4 col-form-label" for="EmployeeID">员工编号 <span class="text-danger">*</span>--%>
-                            <%--    </label>--%>
-                            <%--    <div class="col-lg-6">--%>
-                            <%--        <input type="text" class="form-control" id="EmployeeID" name="EmployeeID" readonly unselectable="on" value="${employee.employeeId}">--%>
-                            <%--    </div>--%>
-                            <%--</div>--%>
                             <div class="form-group row">
                                 <label class="col-lg-4 col-form-label" for="val-username">姓名 <span class="text-danger">*</span>
                                 </label>
@@ -105,7 +98,6 @@
                                             <option value="${Dept.deptName}" >${Dept.deptName}</option>
                                         </c:forEach>
                                     </select>
-                                    <%--<input type="text" class="form-control" id="DeptId" name="DeptId" unselectable="on" value="${employee.dept.deptName}">--%>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -119,7 +111,6 @@
                                             <option value="${Job.jobName}" >${Job.jobName}</option>
                                         </c:forEach>
                                     </select>
-                                    <%--<input type="text" class="form-control" id="JobId" name="JobId" unselectable="on" value="${employee.job.jobName}">--%>
                                 </div>
                             </div>
                             <div class="form-group row">

@@ -40,7 +40,6 @@
                         <div class="compose-content mt-5">
                             <form action="${pageContext.request.contextPath}/file/add" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <%--<input type="text" class="form-control bg-transparent" placeholder=" 发送给谁？" name="fileToName">--%>
                                     <select class="form-control" id="val-sex" name="fileToName">
                                         <option value="">发送给谁？</option>
                                         <c:forEach items="${employeeList}" var="Employee">

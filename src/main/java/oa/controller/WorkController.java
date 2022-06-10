@@ -76,30 +76,4 @@ public class WorkController {
         String Message = workService.deleteWork(Integer.parseInt(workId));
         return new ModelAndView("redirect:/work/ShowWork", "Message", Message);
     }
-
-
-
-
-
-
-    //TODO 一些参数
-
-    @RequestMapping("/ShowWorkFinish")
-    @ResponseBody
-    public List<Work> ShowWorkFinish(HttpSession session){
-        Employee employee = (Employee) session.getAttribute("employee");
-        return workService.ShowWorkFinish(employee.getEmployeeId());
-    }
-    @RequestMapping("/ShowWorkNoFinish")
-    @ResponseBody
-    public List<Work> ShowWorkNoFinish(HttpSession session){
-        Employee employee = (Employee) session.getAttribute("employee");
-        return workService.ShowWorkNoFinish(employee.getEmployeeId());
-    }
-    @RequestMapping("/CountWorkNoFinish")
-    @ResponseBody
-    public int CountWorkNoFinish(HttpSession session){
-        Employee employee = (Employee) session.getAttribute("employee");
-        return workService.CountWorkNoFinish(employee.getEmployeeId());
-    }
 }

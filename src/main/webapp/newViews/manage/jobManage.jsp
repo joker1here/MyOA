@@ -98,7 +98,6 @@
 <!-- Toastr -->
 <script src="../../plugins/toastr/js/toastr.min.js"></script>
 <script src="../../plugins/toastr/js/toastr.init.js"></script>
-<%--<script src="../../js/jquery-3.6.0.js"></script>--%>
 
 </body>
 </html>

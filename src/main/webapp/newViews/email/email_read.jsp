@@ -53,7 +53,6 @@
 
                         <div class="read-content">
                             <div class="media pt-5">
-                                <%--<img class="mr-3 rounded-circle" src="../../images/avatar/1.jpg">--%>
                                 <div class="media-body">
                                     <h5 class="m-b-3">${file.employeeTo.employeeName}</h5>
                                     <p class="m-b-2"><fmt:formatDate value="${file.fileTime}" pattern="yyyy-MM-dd"/></p>
@@ -64,15 +63,10 @@
                             <div class="media mb-4 mt-1">
                                 <div class="media-body"><span class="float-right"><fmt:formatDate value="${file.fileTime}" pattern="HH:mm"/></span>
                                     <h4 class="m-0 text-primary">${file.fileTitle}</h4>
-                                    <%--<small class="text-muted">To:${file.employeeTo.employeeName},${file.toEmployee.employeeName}</small>--%>
                                 </div>
                             </div>
-                            <%--<h5 class="m-b-15">Hi,${file.toEmployee.employeeName},</h5>--%>
-                            <%--<p><strong>Ingredia Nutrisha,</strong> A collection of textile samples lay spread out on the table - Samsa was a travelling salesman - and above it there hung a picture</p>--%>
                             <p>${file.fileText}
                             </p>
-                            <%--<h5 class="m-b-5 p-t-15">${file.employeeTo.employeeName}</h5>--%>
-                            <%--<p>Mr Smith</p>--%>
                             <hr>
                             <h6 class="p-t-15"><i class="fa fa-download mb-2"></i> 附件 </h6>
                             <div class="row m-b-30">

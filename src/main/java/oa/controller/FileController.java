@@ -238,38 +238,4 @@ public class FileController {
 
         }
     }
-
-
-
-    //其它
-    @RequestMapping("/CountFileNoRead")
-    @ResponseBody
-    public int CountFileNoRead(HttpSession session){
-        Employee employee = (Employee) session.getAttribute("employee");
-        return fileService.CountFileNoRead(employee.getEmployeeId());
-    }
-    @RequestMapping("/ShowFileRead")
-    @ResponseBody
-    public List<oa.pojo.File> ShowFileRead(HttpSession session){
-        Employee employee = (Employee) session.getAttribute("employee");
-        return fileService.ShowReceiveFileRead(employee.getEmployeeId());
-    }
-    @RequestMapping("/ShowFileNoRead")
-    @ResponseBody
-    public List<oa.pojo.File> ShowFileNoRead(HttpSession session){
-        Employee employee = (Employee) session.getAttribute("employee");
-        return fileService.ShowReceiveFileNoRead(employee.getEmployeeId());
-    }
-
-    @RequestMapping("/test")
-    public String test(){
-        System.out.println("testing");
-        return "/upload";
-    }
-    @RequestMapping("/test1")
-    @ResponseBody
-    public String test1(String s){
-        System.out.println("testing"+s);
-        return s;
-    }
 }

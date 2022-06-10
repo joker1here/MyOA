@@ -47,14 +47,11 @@
                                 <c:if test="${fileOption==1}">
                                     <div class="dropdown-menu">
                                         <a href="javascript: NoRead(0);" class="dropdown-item">标为未读</a>
-                                            <%--<a href="javascript: void(0);"class="dropdown-item">添加为重要</a>--%>
                                         <a href="javascript: DeleteEmail(0);" class="dropdown-item">删除</a>
                                     </div>
                                 </c:if>
                                 <c:if test="${fileOption==0}">
                                     <div class="dropdown-menu">
-                                        <%--<a href="javascript: NoRead(0);" class="dropdown-item">标为未读</a>--%>
-                                        <%--<a href="javascript: void(0);"class="dropdown-item">添加为重要</a>--%>
                                         <a href="javascript: DeleteEmail(0);" class="dropdown-item">撤回</a>
                                     </div>
                                 </c:if>
@@ -77,7 +74,6 @@
                                     </div>
                                     <div class="col-mail col-mail-2">
                                         <div class="subject">${File.fileTitle}</div>
-                                        <%--<div class="date">${File.fileTime}</div>--%>
                                         <div class="date">
                                             <fmt:formatDate value="${File.fileTime}" pattern="yyyy-MM-dd HH:mm"/>
                                         </div>
@@ -110,10 +106,6 @@
 <!-- #/ container -->
 <!--Content body end-->
 <script>
-    // $('input:checkbox:checked').each(function(){
-    //     id = $('input[type=checkbox]:checked').closest('tr').find('td:eq(2)').map(function(){return this.innerHTML}).get().join();
-    //     school = $('input[type=checkbox]:checked').closest('tr').find('td:eq(6)').map(function(){return this.innerHTML}).get().join();
-    // });
     function NoRead() {
         var array = $("input[name=checkbox]:checked");
         if(array.length==0){

@@ -99,13 +99,11 @@
                                 </label>
                                 <div class="col-lg-6">
                                     <select class="form-control" id="DeptId" name="DeptId">
-                                        <%--<option value="">请选择</option>--%>
                                         <option value="" <c:if test="${employee.dept==null}">selected</c:if>></option>
                                         <c:forEach items="${deptList}" var="Dept">
                                             <option value="${Dept.deptName}" <c:if test="${employee.deptId==Dept.deptId}">selected</c:if>>${Dept.deptName}</option>
                                         </c:forEach>
                                     </select>
-                                    <%--<input type="text" class="form-control" id="DeptId" name="DeptId" unselectable="on" value="${employee.dept.deptName}">--%>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -119,7 +117,6 @@
                                             <option value="${Job.jobName}" <c:if test="${employee.jobId==Job.jobId}">selected</c:if>>${Job.jobName}</option>
                                         </c:forEach>
                                     </select>
-                                    <%--<input type="text" class="form-control" id="JobId" name="JobId" unselectable="on" value="${employee.job.jobName}">--%>
                                 </div>
                             </div>
                             <div class="form-group row">

@@ -36,7 +36,6 @@
                     <h3 class="card-title text-white">任务</h3>
                     <div class="d-inline-block">
                         <h2 class="text-white">${countNoFinishWork}</h2>
-                        <%--<p class="text-white mb-0">Best wishes</p>--%>
                     </div>
                     <span class="float-right display-5 opacity-5"><i class="icon-note menu-icon"></i></span>
                 </div>
@@ -51,7 +50,6 @@
                     <h3 class="card-title text-white">通知</h3>
                     <div class="d-inline-block">
                         <h2 class="text-white">${countNotice}</h2>
-                        <%--<p class="text-white mb-0">Best wishes</p>--%>
                     </div>
                     <span class="float-right display-5 opacity-5"><i class="icon-globe-alt menu-icon"></i></span>
                 </div>
@@ -66,7 +64,6 @@
                     <h3 class="card-title text-white">邮件</h3>
                     <div class="d-inline-block">
                         <h2 class="text-white">${countNoReadFile}</h2>
-                        <%--<p class="text-white mb-0">Best wishes</p>--%>
                     </div>
                     <span class="float-right display-5 opacity-5"><i class="fa fa-envelope"></i></span>
                 </div>
