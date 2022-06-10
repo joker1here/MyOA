@@ -25,8 +25,7 @@
     <link href="../../css/style.css" rel="stylesheet">
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
@@ -40,17 +39,17 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-4 col-form-label" for="val-username">姓名 <span class="text-danger">*</span>
+                                <label class="col-lg-4 col-form-label" for="username">姓名 <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" id="val-username" name="username" value="${employee.employeeName}">
+                                    <input type="text" class="form-control" id="username" name="username" value="${employee.employeeName}">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-4 col-form-label" for="val-password">登录密码 <span class="text-danger">*</span>
+                                <label class="col-lg-4 col-form-label" for="password">登录密码 <span class="text-danger">*</span>
                                 </label>
                                 <div class="col-lg-6">
-                                    <input type="password" class="form-control" id="val-password" name="password" value="${employee.pwd}">
+                                    <input type="password" class="form-control" id="password" name="password" value="${employee.pwd}">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -136,7 +135,6 @@
     </div>
     <%--TODO--%>
     <input id="Message" type="hidden" value="${Message}">
-</div>
 <!-- #/ container -->
 <!--**********************************
     Content body end

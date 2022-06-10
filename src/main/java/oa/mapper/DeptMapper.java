@@ -17,7 +17,7 @@ public interface DeptMapper {
     Dept findDeptById(int id);
 
     @Insert("insert into dept VALUES" +
-            "(#{deptId},#{deptIntroduce},#{deptName})")
+            "(#{deptId},#{deptName},#{deptIntroduce})")
     void saveDept(Dept dept);
 
     @Update("update dept set deptIntroduce=#{deptIntroduce},deptName=#{deptName} " +

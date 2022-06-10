@@ -34,21 +34,7 @@
             </div>
         </div>
     </div>
-    <%--<div class="col-xl-12">--%>
-    <%--    <div class="card">--%>
-    <%--        <div class="card-body">--%>
-    <%--            <div class="basic-list-group">--%>
-    <%--                <ul class="list-group">--%>
-    <%--                    <li class="list-group-item active">当前时间：</li>--%>
-    <%--                    <li class="list-group-item">今天天气......</li>--%>
-    <%--                    <li class="list-group-item">每日格言：</li>--%>
-    <%--                    <li class="list-group-item">Porta ac consectetur ac</li>--%>
-    <%--                    <li class="list-group-item">Vestibulum at eros</li>--%>
-    <%--                </ul>--%>
-    <%--            </div>--%>
-    <%--        </div>--%>
-    <%--    </div>--%>
-    <%--</div>--%>
+
     <div class="col-12">
         <div class="card">
             <div class="card-body">

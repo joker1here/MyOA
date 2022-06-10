@@ -25,7 +25,9 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title" onclick="add()">职位管理</h4>
+                    <h4 class="card-title">职位管理</h4>
+                    <br/>
+                    <button class="btn btn-primary" onclick="add()">添加职位</button>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>
@@ -66,7 +68,7 @@
         window.location.href = '${pageContext.request.contextPath}/job/change?Id='+Id;
     }
     function del(Id) {
-        var c = confirm("确认删除该用户吗？请先确保他的工作已完成！");
+        var c = confirm("确认删除该职位吗？");
         if(c==true){
             window.location.href = '${pageContext.request.contextPath}/job/delete?Id='+Id;
         }

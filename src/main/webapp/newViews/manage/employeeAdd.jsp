@@ -25,8 +25,7 @@
     <link href="../../css/style.css" rel="stylesheet">
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
@@ -136,7 +135,6 @@
     </div>
     <%--TODO--%>
     <input id="Message" type="hidden" value="${Message}">
-</div>
 <!-- #/ container -->
 <!--**********************************
     Content body end

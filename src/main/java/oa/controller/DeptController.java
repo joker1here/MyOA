@@ -42,7 +42,7 @@ public class DeptController {
     }
     //修改操作
     @RequestMapping("update")
-    public ModelAndView update(String Id,String name,String Introduce){
+    public ModelAndView update(@RequestParam(required = false) String Id,String name,String Introduce){
         Dept dept = new Dept();
         if (Id!=null&&!Id.equals(""))
             dept = deptService.findDeptByDeptId(Integer.parseInt(Id));

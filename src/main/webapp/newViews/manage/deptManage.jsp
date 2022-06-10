@@ -19,13 +19,14 @@
     <link href="../../plugins/toastr/css/toastr.min.css" rel="stylesheet">
 </head>
 <body>
-<%--<div class="container-fluid">--%>
     <div class="row">
         <%--12列宽--%>
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title" onclick="add()">部门管理</h4>
+                    <h4 class="card-title" >部门管理</h4>
+                    <br/>
+                    <button class="btn btn-primary" onclick="add()">添加部门</button>
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered zero-configuration">
                             <thead>

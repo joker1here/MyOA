@@ -165,7 +165,9 @@ public class EmployeeController {
         //邮箱
         employee.setEmail(email);
         //性别
-        employee.setSex(Integer.parseInt(sex));
+        System.out.println(sex);
+        //if (sex!=null)
+            employee.setSex(Integer.parseInt(sex));
         //等级
         if (userLevel!=null&&!userLevel.equals(""))
             employee.setUserLevel(Integer.parseInt(userLevel));
